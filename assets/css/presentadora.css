@@ -1,0 +1,52 @@
+#presentadora{
+    position: absolute;
+    width: 400px;
+    height: 590px;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    bottom: 50px;
+    
+    left: 10%;
+    border: #000 solid 1px;
+
+    transform-origin: 0% 0%;
+    -webkit-transform-origin: 0% 0%;
+    -o-transform-origin: 0% 0%;
+
+    /*transform: scale(0.8);
+    -webkit-transform: scale(0.8);
+    -o-transform: scale(0.8);*/
+}
+
+#presentadora-feliz{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+#presentadora-prepara{
+    position: absolute;
+    top: 79px;
+    left: 126px;
+}
+#presentadora-desprepara{
+    position: absolute;
+    top: 79px;
+    left: 126px;
+}
+#presentadora-habla{
+    position: absolute;
+    top: 79px;
+    left: 126px;
+}
+
+.presentadora-on{
+    display: block;
+}
+.presentadora-off{
+    display: none;
+}
+
+.presentadora-move{
+
+}

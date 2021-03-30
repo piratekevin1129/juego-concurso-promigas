@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html translate="no" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="assets/css/fonts.css" type="text/css" rel="stylesheet" />
+    <link href="assets/css/clock.css" type="text/css" rel="stylesheet" />
+    <link href="assets/css/main.css" type="text/css" rel="stylesheet" />
+    <link href="assets/css/transicion.css" type="text/css" rel="stylesheet" />
+    <link href="assets/css/pantalla.css" type="text/css" rel="stylesheet" />
+    <link href="assets/css/presentadora.css" type="text/css" rel="stylesheet" />
+
+    <!--Librerias-->
+    <link href="assets/sprites/fotograma.css" rel="stylesheet" type="text/css" />
+    <link href="assets/sprites/sprite.css" rel="stylesheet" type="text/css" />
+    <title>Juego Promigas</title>
+</head>
+<body>
+    <div id="contenedor">
+        <div id="televisor">
+            <div id="canal">
+                <div id="inicio" class="video-off">
+                    <video id="video-inicio">
+                        <source src="assets/media/inicio.mp4" type="video/mp4" />
+                    </video>
+                </div>
+                <div id="intro" class="video-off">
+                    <video id="video-intro">
+                        <source src="assets/media/intro_corto.mp4" type="video/mp4" />
+                    </video>
+                    <div id="luces">
+                        <div class="luz" id="luz-1"></div>
+                        <div class="luz" id="luz-2"></div>
+                        <div class="luz" id="luz-3"></div>
+                        <div class="luz" id="luz-4"></div>
+                    </div>
+                </div>
+
+                <div id="presentadora" class="presentadora-off">
+                    <div id="presentadora-feliz" class="spd_movieclip" width="400" height="590" frames="51" src="assets/images/presentadora-feliz/"></div>
+                    <div id="presentadora-prepara" class="spd_movieclip" width="300" height="508" frames="10" src="assets/images/presentadora-prepara/"></div>
+                    <div id="presentadora-desprepara" class="spd_movieclip" width="300" height="508" frames="10" src="assets/images/presentadora-desprepara/"></div>
+                    <div id="presentadora-habla" class="spd_movieclip" width="300" height="508" frames="31" src="assets/images/presentadora-habla/"></div>
+                </div>
+            </div>
+            <div id="welcome-page" class="welcome-page-off">
+                <div></div>
+                <p>Toca la pantalla para que encender el TV</p>
+            </div>
+        </div>
+        
+        <!--<div id="video-publico">
+            <video>
+                <source src="assets/media/publico.mp4" type="video/mp4" />
+            </video>
+        </div>-->
+
+        <div id="pantalla" class="pantalla-off">
+            <div id="pantalla-1"></div>
+            <div id="pantalla-2"></div>
+            <div id="pantalla-brillo">
+                <div id="pantalla-brillo-1" class="pantalla-brillo-1-init"></div>
+                <div id="pantalla-brillo-2" class="pantalla-brillo-2-init"></div>
+                <div id="pantalla-brillo-3" class="pantalla-brillo-3-init"></div>
+            </div>
+        </div>
+
+        <div id="transicion" class="transicion-off">
+            <div id="transicion-fondo">
+                <div id="transicion-fondo-2"></div>
+
+                <div id="transicion-fondo-3">
+                    <div id="transicion-fondo-dots-1"></div>
+                    <div id="transicion-fondo-dots-2"></div>
+                </div>
+                
+                <div id="transicion-titulos">
+                    <div id="transcicion-titulo3"></div>
+                    <div id="transcicion-titulo2"></div>
+                    <div id="transcicion-titulo1"></div>
+                </div>
+
+                <div id="transicion-fondo-1"></div>
+            </div>
+        </div>
+
+        <div id="marco-tv"></div>
+        <div id="destello-tv"></div>
+
+        <div id="reloj" class="reloj-off">
+            <div id="reloj-1">
+                <div id="reloj-1-1" class="reloj-solapa-1"><p id="reloj-1-1-p">0</p></div>
+                <div id="reloj-1-2" class="reloj-solapa-2"><p id="reloj-1-2-p">0</p></div>
+                <div id="reloj-1-3" class="reloj-solapa-3"><p id="reloj-1-3-p">0</p></div>
+            </div>
+            <div id="reloj-2">
+                <div id="reloj-2-1" class="reloj-solapa-1"><p id="reloj-2-1-p">0</p></div>
+                <div id="reloj-2-2" class="reloj-solapa-2"><p id="reloj-2-2-p">0</p></div>
+                <div id="reloj-2-3" class="reloj-solapa-3"><p id="reloj-2-3-p">0</p></div>
+            </div>
+            <div id="reloj-3">
+                <div id="reloj-3-1" class="reloj-solapa-1"><p id="reloj-3-1-p">0</p></div>
+                <div id="reloj-3-2" class="reloj-solapa-2"><p id="reloj-3-2-p">0</p></div>
+                <div id="reloj-3-3" class="reloj-solapa-3"><p id="reloj-3-3-p">0</p></div>
+            </div>
+            <div id="reloj-4">
+                <div id="reloj-4-1" class="reloj-solapa-1"><p id="reloj-4-1-p">0</p></div>
+                <div id="reloj-4-2" class="reloj-solapa-2"><p id="reloj-4-2-p">0</p></div>
+                <div id="reloj-4-3" class="reloj-solapa-3"><p id="reloj-4-3-p">0</p></div>
+            </div>
+            <div id="reloj-puntos">
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <div id="footer-tv">
+            <h1>Gestión de seguros</h1>
+            <button id="sonido-btn" class="sonido-btn-on"></button>
+        </div>
+        <div id="logo-cont">
+            <div id="logo"></div>
+        </div>
+    </div>
+
+    <div id="loader" class="loader-state-1 loader-on">
+        <div id="loader-clip" class="spd_sprite" width="38" height="38" frames="25" src="assets/images/preloader_sprite.png"></div>
+        <div id="loader-text">Cargando</div>
+    </div>
+
+    <script src="assets/js/tools.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/clock.js"></script>
+    <script src="assets/js/transicion.js"></script>
+    <script src="assets/js/pantalla.js"></script>
+    <script src="assets/js/presentadora.js"></script>
+
+    <!--Librerias-->
+    <script src="assets/sprites/fotograma.js"></script>
+    <script src="assets/sprites/sprite.js"></script>
+</body>
+
+<script>
+
+var tvturnon_mp3 = null
+var transicion_mp3 = null
+var intro_mp3 = null
+var intro_aplausos_mp3 = null
+var introduccion_mp3 = null
+
+window.onload = function(){
+    prepareTransition()
+
+    spdLoadSprite({idname:'loader-clip',autoplay:'off',callBack:function(){ 
+        spdCreateAnimation({id:0,sprite:'loader-clip'})
+        spdPlayAnimation({frame:1,stop:0,loop:true},0)
+
+        spdCreateMovieClip({idname:'presentadora-feliz',callBack:function(){
+        spdCreateMovieClip({idname:'presentadora-prepara',callBack:function(){
+        spdCreateMovieClip({idname:'presentadora-desprepara',callBack:function(){
+        spdCreateMovieClip({idname:'presentadora-habla',callBack:function(){
+            spdCreateMovieClipAnimation({id:0,moviename:'presentadora-feliz'})
+            spdCreateMovieClipAnimation({id:1,moviename:'presentadora-prepara'})
+            spdCreateMovieClipAnimation({id:2,moviename:'presentadora-desprepara'})
+            spdCreateMovieClipAnimation({id:3,moviename:'presentadora-habla'})
+            
+            getE('loader').classList.remove('loader-state-1')
+            getE('loader').classList.add('loader-state-2')
+    
+            loadAudio({src:'assets/media/tv-turn-on.mp3',callBack:function(data){
+            tvturnon_mp3 = data
+            loadAudio({src:'assets/media/transicion.mp3',callBack:function(data){
+            transicion_mp3 = data
+            loadAudio({src:'assets/media/intro.mp3',callBack:function(data){
+            intro_mp3 = data
+            loadAudio({src:'assets/media/intro_aplausos.mp3',callBack:function(data){
+            intro_aplausos_mp3 = data
+            loadAudio({src:'assets/media/juego/introduccion.mp3',callBack:function(data){
+            introduccion_mp3 = data
+            
+                getE('loader').classList.remove('loader-on')
+                getE('loader').classList.add('loader-off')
+                spdStopAnimation(0)
+                getE('welcome-page').className = "welcome-page-on"
+    
+                document.body.onclick = function(){
+                    document.body.onclick = null
+                    clickComenzar()
+                }
+            }})
+            }})
+            }})
+            }})
+            }})
+        }})
+        }})
+        }})
+        }})
+
+    }})
+
+    //setTimer()
+    //setTransition({title:'¿Estás listo?'})
+    
+}
+
+</script>
+</html>

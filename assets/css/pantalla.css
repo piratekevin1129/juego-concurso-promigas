@@ -1,0 +1,226 @@
+/******************TURN ON TV********************/
+#pantalla{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.pantalla-off{
+    visibility: hidden;
+}
+.pantalla-on{
+    visibility: visible;
+}
+#pantalla-1,#pantalla-2{
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    
+    left: 0px;
+    margin: 0px;
+    padding: 0px;
+    background-color: #000000;
+}
+#pantalla-1{
+    top: 0px;
+    transform-origin: center 0%;
+    -webkit-transform-origin: center 0%;
+    -o-transform-origin: center 0%;
+}
+#pantalla-2{
+    bottom: 0px;
+    transform-origin: center 100%;
+    -webkit-transform-origin: center 100%;
+    -o-transform-origin: center 100%;
+}
+
+.pantalla-1-on{
+    animation-name: animacion-pantalla-1-tv-turnon;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-delay: 0.75s;
+
+    -webkit-animation-name: animacion-pantalla-1-tv-turnon;
+    -webkit-animation-duration: 0.5s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-delay: 0.75s;
+}
+@keyframes animacion-pantalla-1-tv-turnon{
+    0%{
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        -o-transform: scale(1);
+    }
+    100%{
+        transform: scale(1,0);
+        -webkit-transform: scale(1,0);
+        -o-transform: scale(1,0);
+    }
+}
+
+
+#pantalla-brillo{
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    top: 50%;
+    top: calc(50% - 10px);
+    top: -moz-calc(50% - 10px);
+    left: 0px;
+}
+#pantalla-brillo-1{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    margin: 0px;
+    top: 0px;
+    left: 50%;
+    left: calc(50% - 10px);
+    left: -moz-calc(50% - 10px);
+    
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url(../images/icon-tv-turn-star1.svg);
+}
+.pantalla-brillo-1-init{
+    opacity: 0;
+}
+.pantalla-brillo-1-on{
+    animation-name: animacion-brillo-tv-turnon;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    -webkit-animation-name: animacion-brillo-tv-turnon;
+    -webkit-animation-duration: 0.5s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes animacion-brillo-tv-turnon{
+    0%{
+        opacity: 0;
+        transform: scale(0);
+        -webkit-transform: scale(0);
+        -o-transform: scale(0);
+        filter: blur(0px);
+        -webkit-filter: blur(0px);
+        -o-filter: blur(0px);
+    }
+    50%{
+        opacity: 1;
+        transform: scale(2);
+        -webkit-transform: scale(2);
+        -o-transform: scale(2);
+        filter: blur(5px);
+        -webkit-filter: blur(5px);
+        -o-filter: blur(5px);
+    }
+    75%{
+        opacity: 1;
+        transform: scale(2);
+        -webkit-transform: scale(2);
+        -o-transform: scale(2);
+        filter: blur(2px);
+        -webkit-filter: blur(2px);
+        -o-filter: blur(2px);
+    }
+    100%{
+        opacity: 1;
+        transform: scale(0);
+        -webkit-transform: scale(0);
+        -o-transform: scale(0);
+        filter: blur(5px);
+        -webkit-filter: blur(5px);
+        -o-filter: blur(5px);
+    }
+}
+
+#pantalla-brillo-2,
+#pantalla-brillo-3{
+    position: absolute;
+    height: 5px;
+    
+    top: 7.5px;
+    margin: 0px;
+    padding: 0px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: 0px 0px;
+    background-image: url(../images/icon-tv-turn-line.png);
+}
+#pantalla-brillo-2{
+    right: 50%;
+    transform-origin: 100% center;
+    -webkit-transform-origin: 100% center;
+    -o-transform-origin: 100% center;
+}
+#pantalla-brillo-3{
+    left: 50%;
+    transform-origin: 0% center;
+    -webkit-transform-origin: 0% center;
+    -o-transform-origin: 0% center;
+}
+.pantalla-brillo-2-init{
+    opacity: 0;
+}
+.pantalla-brillo-3-init{
+    opacity: 0;
+}
+.pantalla-brillo-2-on,
+.pantalla-brillo-3-on{
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-delay: 0.25s;
+    
+    -webkit-animation-duration: 0.5s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-delay: 0.25s;
+    opacity: 0;
+}
+.pantalla-brillo-2-on{
+    animation-name: animacion-raya-tv-turnon;
+    -webkit-animation-name: animacion-raya-tv-turnon;
+}
+.pantalla-brillo-3-on{
+    animation-name: animacion-raya-tv-turnon;
+    -webkit-animation-name: animacion-raya-tv-turnon;
+}
+@keyframes animacion-raya-tv-turnon{
+    0%{
+        opacity: 0;
+        transform: scale(0);
+        -webkit-transform: scale(0);
+        -o-transform: scale(0);
+        width: 20px;
+        filter: blur(0px);
+        -webkit-filter: blur(0px);
+        -o-filter: blur(0px);
+    }
+    60%{
+        opacity: 1;
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        -o-transform: scale(1);
+        width: 100%;
+        filter: blur(5px);
+        -webkit-filter: blur(5px);
+        -o-filter: blur(5px);
+    }
+    100%{
+        opacity: 1;
+        transform: scale(1,0.1);
+        -webkit-transform: scale(1,0.1);
+        -o-transform: scale(1,0.1);
+        width: 50%;
+        filter: blur(2px);
+        -webkit-filter: blur(2px);
+        -o-filter: blur(2px);
+    }
+}

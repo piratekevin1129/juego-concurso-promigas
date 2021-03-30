@@ -1,0 +1,202 @@
+@font-face {
+    font-family: 'Oswald-Bold';
+    src: url('fonts/Oswald-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Oswald-SemiBold';
+    src: url('fonts/.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+#reloj{
+    position: absolute;
+    width: 174px;
+    height: 108px;
+    margin: 0px;
+    padding: 0px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-image: url(../images/reloj.png);
+    top: 50px;
+    right: 50px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.reloj-off{
+    visibility: hidden;
+}
+
+#reloj-1,#reloj-2,#reloj-3,#reloj-4{
+    position: relative;
+    width: 26px;
+    height: 48px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    background-color: #35352F;
+    /*border-top: 2px solid #35352F;
+    border-bottom: 2px solid #35352F;
+    border-left: 1px solid #35352F;
+    border-right: 1px solid #35352F;*/
+    display: block;
+
+    perspective: 100px;
+    -webkit-perspective: 100px;
+    -o-perspective: 100px;
+    margin-top: 25px;
+}
+#reloj-1{
+    margin-left: 16px;
+}
+#reloj-2{
+    margin-left: 5px;
+}
+#reloj-3{
+    margin-left: 20px;
+}
+#reloj-4{
+    margin-left: 5px;
+}
+
+#reloj-puntos{
+    position: absolute;
+    width: 5px;
+    height: 20px;
+    top: 40px;
+    left: 81px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+#reloj-puntos > div{
+    position: relative;
+    width: 5px;
+    height: 5px;
+    border-radius: 2px;
+    background-color: #35352F;
+    margin: 0px;
+    padding: 0px;
+}
+
+.reloj-solapa-1{
+    position: absolute;
+    display: block;
+    width: 22px;
+    height: 44px;
+    left: 2px;
+    top: 2px;
+    background-repeat: no-repeat;
+    background-image: url(../images/reloj-solapa-centro.png);
+    border-radius: 2px;
+}
+.reloj-solapa-2,
+.reloj-solapa-3{
+    position: absolute;
+    display: block;
+    width: 22px;
+    height: 22px;
+    left: 2px;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+.reloj-solapa-2{
+    border-radius: 2px 2px 0px 0px;
+    top: 2px;
+    background-image: url(../images/reloj-solapa-centro.png);
+    background-position: 0px 0%;
+    transform-origin: center 100%;
+    -webkit-transform-origin: center 100%;
+    -o-transform-origin: center 100%;
+}
+.reloj-solapa-3{
+    border-radius: 0px 0px 2px 2px;
+    bottom: 2px;
+    background-position: 0px 100%;
+    background-image: url(../images/reloj-solapa-centro.png);
+    transform-origin: center 0%;
+    -webkit-transform-origin: center 0%;
+    -o-transform-origin: center 0%;
+}
+
+.reloj-solapa-1 p,
+.reloj-solapa-2 p,
+.reloj-solapa-3 p{
+    position: absolute;
+    display: flex;
+    width: 22px;
+    height: 44px;
+    padding: 0px;
+    margin: 0px;
+    left: 0px;
+    align-items: center;
+    justify-content: center;
+
+    font-family: 'Oswald-Bold';
+    font-size: 40px;
+    color: #40403c;
+    text-align: center;
+    font-weight: normal;
+    line-height: normal;
+    cursor: default;
+}
+.reloj-solapa-1 p{
+    top: 0px;
+}
+.reloj-solapa-2 p{
+    top: 0px;
+}
+.reloj-solapa-3 p{
+    bottom: 0px;
+}
+
+.solapa-arriba,.solapa-abajo{
+    animation-duration: 0.25s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    
+    -webkit-animation-duration: 0.25s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-fill-mode: forwards;
+}
+.solapa-arriba{
+    animation-name: animacion-solapa-arriba;
+    -webkit-animation-name: animacion-solapa-arriba;
+}
+.solapa-abajo{
+    animation-name: animacion-solapa-abajo;
+    -webkit-animation-name: animacion-solapa-abajo;
+}
+
+@keyframes animacion-solapa-arriba{
+    0%{
+        transform: rotateX(0deg);
+        -webkit-transform: rotateX(0deg);
+        -o-transform: rotateX(0deg);
+    }
+    100%{
+        transform: rotateX(-90deg);
+        -webkit-transform: rotateX(-90deg);
+        -o-transform: rotateX(-90deg);
+    }
+}
+@keyframes animacion-solapa-abajo{
+    0%{
+        transform: rotateX(90deg);
+        -webkit-transform: rotateX(90deg);
+        -o-transform: rotateX(90deg);
+    }
+    100%{
+        transform: rotateX(0deg);
+        -webkit-transform: rotateX(0deg);
+        -o-transform: rotateX(0deg);
+    }
+}
