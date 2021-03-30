@@ -20,7 +20,7 @@ function clickComenzar(){
 
                 intro_mp3.play()
                 getE('video-intro').onended = function(){
-                    getE('video-intro').currentTime = 1.08
+                    getE('video-intro').currentTime = 0
                     getE('video-intro').play()
                 }
                 intro_aplausos_mp3.play()

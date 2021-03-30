@@ -206,9 +206,9 @@ html,body{
 /*************INTRO************/
 #intro{
     background-color: #FFFFFF;
-    filter: blur(2px);
-    -webkit-filter: blur(2px);
-    -o-filter: blur(2px);
+    filter: blur(1px);
+    -webkit-filter: blur(1px);
+    -o-filter: blur(1px);
 }
 #video-intro{
     top: -120px;
@@ -229,6 +229,7 @@ html,body{
     transform-origin: center 0%;
     -webkit-transform-origin: center 0%;
     -o-transform-origin: center 0%;
+    opacity: 0.3;
 
     background-repeat: no-repeat;
     background-size: auto 100%;
@@ -256,32 +257,65 @@ html,body{
     left: -moz-calc(80% - (465px / 2));
 }
 .luces-on .luz{
-    animation-duration: 5s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
 
-    -webkit-animation-duration: 5s;
     -webkit-animation-timing-function: linear;
     -webkit-animation-iteration-count: infinite;
 }
 .luces-on #luz-1{
+    animation-duration: 7s;
+    -webkit-animation-duration: 7s;
     animation-name: animacion-luz-escenario-1;
     -webkit-animation-name: animacion-luz-escenario-1;
 }
 .luces-on #luz-2{
+    animation-duration: 8s;
+    -webkit-animation-duration: 8s;
     animation-name: animacion-luz-escenario-2;
     -webkit-animation-name: animacion-luz-escenario-2;
 }
 .luces-on #luz-3{
+    animation-duration: 9s;
+    -webkit-animation-duration: 9s;
     animation-name: animacion-luz-escenario-3;
     -webkit-animation-name: animacion-luz-escenario-3;
 }
 .luces-on #luz-4{
+    animation-duration: 6s;
+    -webkit-animation-duration: 6s;
     animation-name: animacion-luz-escenario-4;
     -webkit-animation-name: animacion-luz-escenario-4;
 }
 
 @keyframes animacion-luz-escenario-1{
+    0%{
+        transform: rotate(20deg);
+        -webkit-transform: rotate(20deg);
+        -o-transform: rotate(20deg);
+    }
+    45%{
+        transform: rotate(-20deg);
+        -webkit-transform: rotate(-20deg);
+        -o-transform: rotate(-20deg);
+    }
+    50%{
+        transform: rotate(-20deg);
+        -webkit-transform: rotate(-20deg);
+        -o-transform: rotate(-20deg);
+    }
+    95%{
+        transform: rotate(20deg);
+        -webkit-transform: rotate(20deg);
+        -o-transform: rotate(20deg);
+    }
+    100%{
+        transform: rotate(20deg);
+        -webkit-transform: rotate(20deg);
+        -o-transform: rotate(20deg);
+    }
+}
+@keyframes animacion-luz-escenario-2{
     0%{
         transform: rotate(0deg);
         -webkit-transform: rotate(0deg);
@@ -306,6 +340,310 @@ html,body{
         transform: rotate(0deg);
         -webkit-transform: rotate(0deg);
         -o-transform: rotate(0deg);
+    }
+}
+@keyframes animacion-luz-escenario-3{
+    0%{
+        transform: rotate(-15deg);
+        -webkit-transform: rotate(-15deg);
+        -o-transform: rotate(-15deg);
+    }
+    45%{
+        transform: rotate(10deg);
+        -webkit-transform: rotate(10deg);
+        -o-transform: rotate(10deg);
+    }
+    50%{
+        transform: rotate(10deg);
+        -webkit-transform: rotate(10deg);
+        -o-transform: rotate(10deg);
+    }
+    95%{
+        transform: rotate(-15deg);
+        -webkit-transform: rotate(-15deg);
+        -o-transform: rotate(-15deg);
+    }
+    100%{
+        transform: rotate(-15deg);
+        -webkit-transform: rotate(-15deg);
+        -o-transform: rotate(-15deg);
+    }
+}
+@keyframes animacion-luz-escenario-4{
+    0%{
+        transform: rotate(5deg);
+        -webkit-transform: rotate(5deg);
+        -o-transform: rotate(5deg);
+    }
+    45%{
+        transform: rotate(-25deg);
+        -webkit-transform: rotate(-25deg);
+        -o-transform: rotate(-25deg);
+    }
+    50%{
+        transform: rotate(-25deg);
+        -webkit-transform: rotate(-25deg);
+        -o-transform: rotate(-25deg);
+    }
+    95%{
+        transform: rotate(5deg);
+        -webkit-transform: rotate(5deg);
+        -o-transform: rotate(5deg);
+    }
+    100%{
+        transform: rotate(5deg);
+        -webkit-transform: rotate(5deg);
+        -o-transform: rotate(5deg);
+    }
+}
+
+#tablero{
+    position: absolute;
+    width: 500px;
+    height: 228px;
+    margin: 0px;
+    padding: 20px 0px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url(../images/tablero.png);
+    top: 30px;
+    left: 50%;
+    left: calc(50% - (625px / 2));
+    left: -moz-calc(50% - (625px / 2));
+
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+#tablero-brillo{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-image: url(../images/tablero-luz.svg);
+
+    
+}
+.tablero-brillo-on{
+    animation-name: animacion-tablero-luz;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    -webkit-animation-name: animacion-tablero-luz;
+    -webkit-animation-duration: 3s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+}
+@keyframes animacion-tablero-luz{
+    0%{
+        filter: drop-shadow(0px 0px 0px #FFFFFF);
+        -webkit-filter: drop-shadow(0px 0px 0px #FFFFFF);
+        -o-filter: drop-shadow(0px 0px 0px #FFFFFF);
+    }
+    50%{
+        filter: drop-shadow(0px 0px 10px #FFFFFF);
+        -webkit-filter: drop-shadow(0px 0px 10px #FFFFFF);
+        -o-filter: drop-shadow(0px 0px 10px #FFFFFF);
+    }
+    100%{
+        filter: drop-shadow(0px 0px 0px #FFFFFF);
+        -webkit-filter: drop-shadow(0px 0px 0px #FFFFFF);
+        -o-filter: drop-shadow(0px 0px 0px #FFFFFF);
+    }
+}
+
+#tablero > p{
+    position: relative;
+    display: block;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+
+    font-family: 'SohoGothicPro-Medium';
+    font-size: 20px;
+    color: #FFFFFF;
+    text-align: center;
+    font-weight: normal;
+    line-height: normal;
+
+    text-shadow: -1px 1px 2px rgba(0,0,0,0.7);
+}
+#tablero > h6{
+    position: relative;
+    display: block;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+
+    font-family: 'SohoGothicPro-Light';
+    font-size: 25px;
+    color: #ECB45C;
+    text-align: center;
+    font-weight: normal;
+    line-height: normal;
+
+    text-shadow: -1px 1px 2px rgba(0,0,0,0.7);
+}
+
+.tablero-row{
+    position: relative;
+    width: 60%;
+    height: 90px;
+    margin: 0px auto;
+    padding: 0px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.tablero-col{
+    position: relative;
+    display: flex;
+    margin: 0px;
+    padding: 0px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 33.33%;
+}
+.tablero-col > p,
+.tablero-col > h6{
+    display: block;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+
+    font-family: 'SohoGothicPro-Medium';
+    font-size: 25px;
+    text-align: center;
+    font-weight: normal;
+    line-height: normal;
+    text-shadow: -1px 1px 2px rgba(0,0,0,0.5);
+}
+.tablero-col > p{
+    color: #FFFFFF;
+}
+.tablero-col > h6{
+    color: #ECB45C;
+}
+
+#trofeo{
+    position: absolute;
+    margin: 0px;
+    padding: 0px;
+    width: 174px;
+    height: 300px;
+    bottom: 200px;
+    left: 2%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-image: url(../images/trofeo.png);
+}
+    
+#trofeo-brillo{
+    position: absolute;
+    height: 20%;
+    top: 2%;
+    margin: 0px;
+    padding: 0px;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+
+    animation-name: animacion-brillo-trofeo;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    -webkit-animation-name: animacion-brillo-trofeo;
+    -webkit-animation-duration: 3s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+}
+@keyframes animacion-brillo-trofeo{
+    0%{
+        width: 0%;
+        left: 32%;
+        opacity: 0;
+        filter: blur(0px);
+        -webkit-filter: blur(0px);
+        -o-filter: blur(0px);
+    }
+    10%{
+        width: 20%;
+        left: 40%;
+        opacity: 1;
+        filter: blur(10px);
+        -webkit-filter: blur(10px);
+        -o-filter: blur(10px);
+    }
+    20%{
+        width: 0%;
+        left: 67%;
+        opacity: 0;
+        filter: blur(0px);
+        -webkit-filter: blur(0px);
+        -o-filter: blur(0px);
+    }
+    100%{
+        width: 0%;
+        left: 67%;
+        opacity: 0;
+        filter: blur(0px);
+        -webkit-filter: blur(0px);
+        -o-filter: blur(0px);
+    }
+}
+
+#trofeo-luces{
+    position: absolute;
+    width: 239px;
+    height: 88px;
+    margin: 0px;
+    padding: 0px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-image: url(../images/trofeo-luces.svg);
+
+    transform-origin: center 100%;
+    -webkit-transform-origin: center 100%;
+    -o-transform-origin: center 100%;
+
+    top: 13%;
+    top: calc(13% - 82px);
+    top: -moz-calc(13% - 82px);
+    left: 50%;
+    left: calc(50% - (239px / 2));
+    left: -moz-calc(50% - (239px / 2));
+
+    animation-name: animacion-luz-trofeo;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+    -webkit-animation-name: animacion-luz-trofeo;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-timing-function: ease-out;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes animacion-luz-trofeo{
+    0%{
+        transform: scale(0);
+        -webkit-transform: scale(0);
+        -o-transform: scale(0);
+        opacity: 1;
+    }
+    100%{
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        -o-transform: scale(1);
+        opacity: 0;
     }
 }
 

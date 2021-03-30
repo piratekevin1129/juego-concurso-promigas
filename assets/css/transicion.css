@@ -202,6 +202,7 @@
     cursor: default;
 
     left: 50%;
+    top: 50%;
 
     transform: translateY(-50%) translateX(-50%);
     -webkit-transform: translateY(-50%) translateX(-50%);
@@ -346,16 +347,14 @@
 
 @keyframes animacion-transicion-titulo1-in{
     0%{
-        transform: translateY(-50%) translateX(-50%);
-        -webkit-transform: translateY(-50%) translateX(-50%);
-        -o-transform: translateY(-50%) translateX(-50%);
-        left: 50%;
+        transform: translateY(-50%) translateX(-50%) scale(1,1);
+        -webkit-transform: translateY(-50%) translateX(-50%) scale(1,1);
+        -o-transform: translateY(-50%) translateX(-50%) scale(1,1);
     }
     100%{
-        transform: translateY(-50%) translateX(-50%);
-        -webkit-transform: translateY(-50%) translateX(-50%);
-        -o-transform: translateY(-50%) translateX(-50%);
-        left: 40%;
+        transform: translateY(-50%) translateX(-50%) scale(1.5,1);
+        -webkit-transform: translateY(-50%) translateX(-50%) scale(1.5,1);
+        -o-transform: translateY(-50%) translateX(-50%) scale(1.5,1);
     }
 }
 @keyframes animacion-transicion-titulo2-in{
