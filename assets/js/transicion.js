@@ -77,6 +77,9 @@ function setTransition(data,prepare,callBack){
                             animacion_transition_titulo_span = null
     
                             getE('transicion').className = "transicion-off"
+                            getE('transcicion-titulo1').classList.remove('transicion-titulo1-on')
+                            getE('transcicion-titulo2').classList.remove('transicion-titulo2-on')
+                            getE('transcicion-titulo3').classList.remove('transicion-titulo3-on')
                             callBack()
                         },1000)
                     },2000)

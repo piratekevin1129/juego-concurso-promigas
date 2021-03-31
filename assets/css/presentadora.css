@@ -55,12 +55,12 @@
 }
 .presentadora-in{
     animation-name: animacion-presentadora-in;
-    animation-duration: 0.5s;
+    animation-duration: 0.75s;
     animation-timing-function: linear;
     animation-fill-mode: forwards;
     animation-iteration-count: 1;
     -webkit-animation-name: animacion-presentadora-in;
-    -webkit-animation-duration: 0.5s;
+    -webkit-animation-duration: 0.75s;
     -webkit-animation-timing-function: linear;
     -webkit-animation-fill-mode: forwards;
     -webkit-animation-iteration-count: 1;
@@ -72,6 +72,9 @@
         transform: rotate(-5deg);
         -webkit-transform: rotate(-5deg);
         -o-transform: rotate(-5deg);
+        filter: blur(2px);
+        -webkit-filter: blur(2px);
+        -o-filter: blur(2px);
     }
     50%{
         left: 5%;
@@ -79,6 +82,9 @@
         transform: rotate(0deg);
         -webkit-transform: rotate(0deg);
         -o-transform: rotate(0deg);
+        filter: blur(0px);
+        -webkit-filter: blur(0px);
+        -o-filter: blur(0px);
     }
     80%{
         left: 5%;
@@ -86,6 +92,9 @@
         transform: rotate(5deg);
         -webkit-transform: rotate(5deg);
         -o-transform: rotate(5deg);
+        filter: blur(0px);
+        -webkit-filter: blur(0px);
+        -o-filter: blur(0px);
     }
     100%{
         left: 5%;
@@ -93,5 +102,42 @@
         transform: rotate(0deg);
         -webkit-transform: rotate(0deg);
         -o-transform: rotate(0deg);
+        filter: blur(0px);
+        -webkit-filter: blur(0px);
+        -o-filter: blur(0px);
+    }
+}
+.presentadora-gone{
+    animation-name: animacion-presentadora-gone;
+    animation-duration: 0.75s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    -webkit-animation-name: animacion-presentadora-gone;
+    -webkit-animation-duration: 0.75s;
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-iteration-count: 1;
+}
+@keyframes animacion-presentadora-gone{
+    0%{
+        left: 5%;
+        opacity: 1;
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        filter: blur(0px);
+        -webkit-filter: blur(0px);
+        -o-filter: blur(0px);
+    }
+    100%{
+        left: -5%;
+        opacity: 0;
+        transform: rotate(-5deg);
+        -webkit-transform: rotate(-5deg);
+        -o-transform: rotate(-5deg);
+        filter: blur(2px);
+        -webkit-filter: blur(2px);
+        -o-filter: blur(2px);
     }
 }

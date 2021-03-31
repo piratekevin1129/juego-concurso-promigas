@@ -22,7 +22,7 @@
 .concursantes-preguntas{
 	width: 1200px;/*(500 * .8) * 3*/
 	height: 400px;/*500 * .8*/
-	right: 50px;
+	left: 40%;
 	bottom: 70px;
 
 	transform-origin: 100% 100%;

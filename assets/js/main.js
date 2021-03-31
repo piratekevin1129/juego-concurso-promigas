@@ -53,31 +53,38 @@ function clickComenzar(){
                             spdStopMovieclip(3)
                             spdSetMovieclip({id:3,f:1})
 
+                            //parar concursantes parpadeando
+                            spdStopMovieclip(7)
+                            spdStopMovieclip(11)
+                            spdStopMovieclip(15)
+
                             //se va
                             getE('intro').className = 'video-on intro-out'
+                            getE('presentadora').classList.add('presentadora-gone')
+
                             animacion_entradas = setTimeout(function(){
                                 clearTimeout(animacion_entradas)
                                 animacion_entradas = null
 
                                 setTransition({title:'¡Prepárate!'},
                                     function(){
-                                        spdStopMovieclip(7)
-                                        spdStopMovieclip(11)
-                                        spdStopMovieclip(15)
-
                                         showPresentadora('prepara')
-                                    },
-                                    function(){
-                                        spdPlayMovieclip({frame:1,stop:0,loop:true},7)
-                                        spdPlayMovieclip({frame:1,stop:0,loop:true},11)
-                                        spdPlayMovieclip({frame:1,stop:0,loop:true},15)
-
-                                        //Empezar preguntas
-                                        /*getE('intro').className = 'video-on intro-in'
                                         getE('video-intro').currentTime = 0
                                         getE('video-intro').pause()
+                                        getE('video-intro').className = 'video-intro-off'
+
+                                        getE('fondo-intro').className = 'fondo-intro-on'
+                                        getE('concursantes').className = 'concursantes-preguntas'
+                                        getE('tablero-brillo').className = ''
+                                    },
+                                    function(){
+                                        //spdPlayMovieclip({frame:1,stop:0,loop:true},7)
+                                        //spdPlayMovieclip({frame:1,stop:0,loop:true},11)
+                                        //spdPlayMovieclip({frame:1,stop:0,loop:true},15)
+
+                                        //Empezar preguntas
                                         //getE('intro')
-                                        empezarPreguntas()*/
+                                        empezarPreguntas()
                                     }
                                 )
                             },1000)
@@ -89,8 +96,35 @@ function clickComenzar(){
     })
 }
 
+var actual_pregunta = 0
+var actual_pregunta_data = null
+
 function empezarPreguntas(){
-    alert("empezar preguntas")
+    actual_pregunta_data = data_preguntas[actual_pregunta]
+    //alert("empezar preguntas")
+    spdPlayMovieclip({frame:1,stop:10,loop:false,end:function(){
+        alert("ya")
+        /*audio_general_mp3 = new Audio()
+        audio_general_mp3.onloadedmetadata = null
+        audio_general_mp3.src = 'assets/media/juego/'+(actual_pregunta+1)+'/pregunta.mp3'
+        audio_general_mp3.load()
+        audio_general_mp3.onloadedmetadata = function(){
+            audio_general_mp3.onloadedmetadata = null
+            audio_general_mp3.currentTime = 0
+            audio_general_mp3.play()
+
+            showPresentadora('habla')
+            spdPlayMovieclip({frame:1,stop:0,loop:true},1)
+        }
+        audio_general_mp3.onended = function(){
+            audio_general_mp3.onloadedmetadata = null
+            audio_general_mp3.onended = null
+
+            showPresentadora('desprepara')
+            spdPlayMovieclip({frame:1,stop:0,loop:true},2)
+        }*/
+
+    }},1)
 }
 
 /*audio_general_mp3 = new Audio()
