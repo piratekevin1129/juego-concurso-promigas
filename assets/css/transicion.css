@@ -198,7 +198,7 @@
     height: 100px;
     box-sizing: border-box;
     margin: 0px;
-    padding: 0px 10%;
+    padding: 0px;
     cursor: default;
 
     left: 50%;
@@ -208,14 +208,9 @@
     -webkit-transform: translateY(-50%) translateX(-50%);
     -o-transform: translateY(-50%) translateX(-50%);
 }
-#transcicion-titulo1 span{
-    font-family: 'SohoGothicPro-Bold';
-    font-size: 70px;
-    text-align: center;
-    color: #FFFFFF;
-    font-weight: normal;
-    line-height: normal;
-    margin: 0px;
+.transicion-titulo-span{
+    margin-top: 0px;
+    margin-bottom: 0px;
     padding: 0px;
     position: relative;
 
@@ -223,6 +218,36 @@
     -webkit-transform-origin: center 0%;
     -o-transform-origin: center 0%;
 }
+.transicion-titulo-span-1{
+    margin: 0px;
+    padding: 0px;
+    position: relative;
+    font-family: 'SohoGothicPro-Bold';
+    font-size: 70px;
+    text-align: center;
+    color: #FFFFFF;
+    font-weight: normal;
+    line-height: normal;
+}
+.transicion-titulo-span-2{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: -5px;
+    left: 5px;
+
+    font-family: 'SohoGothicPro-Bold';
+    font-size: 70px;
+    text-align: center;
+    color: #008b8d;
+    font-weight: normal;
+    line-height: normal;
+    text-shadow: 0px 0px 2px #FFFFFF;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 0px;
+}
+
 .transicion-titulo-span-space{
     visibility: hidden;
     color: rgba(0,0,0,0);
@@ -235,18 +260,10 @@
     opacity: 0;
 }
 .transicion-titulo-span-in{
-    animation-name: animacion-transicion-titulo-span-in;
-    animation-timing-function: linear;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-    animation-duration: 0.5s;
-
-    -webkit-animation-name: animacion-transicion-titulo-span-in;
-    -webkit-animation-timing-function: linear;
-    -webkit-animation-iteration-count: 1;
-    -webkit-animation-fill-mode: forwards;
-    -webkit-animation-duration: 0.5s;
+    animation: animacion-transicion-titulo-span-in 0.5s 0s 1 linear forwards, animacion-transicion-titulo-span-ining 10s 0s 1 linear forwards;
+    -webkit-animation: animacion-transicion-titulo-span-in 0.5s 0s 1 linear forwards, animacion-transicion-titulo-span-ining 10s 0s 1 linear forwards;
 }
+
 @keyframes animacion-transicion-titulo-span-in{
     0%{
         transform: scale(0);
@@ -270,13 +287,23 @@
         opacity: 1;
     }
 }
+@keyframes animacion-transicion-titulo-span-ining{
+    0%{
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    100%{
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
 
 #transcicion-titulo3{
     position: absolute;
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 100%;
+    justify-content: left;
+    width: 1920px;
     height: 210px;
     margin: 0px;
     padding: 0px;
@@ -285,7 +312,7 @@
 
     font-family: 'SohoGothicPro-Bold';
     font-size: 140px;
-    text-align: center;
+    text-align: left;
     color: rgba(15,102,96,0.7);
     font-weight: normal;
     line-height: normal;
@@ -297,8 +324,8 @@
     position: absolute;
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 100%;
+    justify-content: left;
+    width: 1920px;
     height: 250px;
     margin: 0px;
     padding: 0px;
@@ -307,7 +334,7 @@
 
     font-family: 'SohoGothicPro-Bold';
     font-size: 180px;
-    text-align: center;
+    text-align: left;
     color: rgba(15,102,96,0.5);
     font-weight: normal;
     line-height: normal;
@@ -332,10 +359,10 @@
     -webkit-animation-fill-mode: forwards;
     -webkit-animation-delay: 0.5s;
 }
-.transicion-titulo1-on{
+/*.transicion-titulo1-on{
     animation-name: animacion-transicion-titulo1-in;
     -webkit-animation-name: animacion-transicion-titulo1-in;
-}
+}*/
 .transicion-titulo2-on{
     animation-name: animacion-transicion-titulo2-in;
     -webkit-animation-name: animacion-transicion-titulo2-in;
@@ -347,14 +374,12 @@
 
 @keyframes animacion-transicion-titulo1-in{
     0%{
-        transform: translateY(-50%) translateX(-50%) scale(1,1);
-        -webkit-transform: translateY(-50%) translateX(-50%) scale(1,1);
-        -o-transform: translateY(-50%) translateX(-50%) scale(1,1);
+        margin-left: 0px;
+        margin-right: 0px;
     }
     100%{
-        transform: translateY(-50%) translateX(-50%) scale(1.5,1);
-        -webkit-transform: translateY(-50%) translateX(-50%) scale(1.5,1);
-        -o-transform: translateY(-50%) translateX(-50%) scale(1.5,1);
+        margin-left: 20px;
+        margin-right: 20px;
     }
 }
 @keyframes animacion-transicion-titulo2-in{

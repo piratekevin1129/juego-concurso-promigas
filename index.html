@@ -10,6 +10,7 @@
     <link href="assets/css/transicion.css" type="text/css" rel="stylesheet" />
     <link href="assets/css/pantalla.css" type="text/css" rel="stylesheet" />
     <link href="assets/css/presentadora.css" type="text/css" rel="stylesheet" />
+    <link href="assets/css/participantes.css" type="text/css" rel="stylesheet" />
 
     <!--Librerias-->
     <link href="assets/sprites/fotograma.css" rel="stylesheet" type="text/css" />
@@ -29,26 +30,7 @@
                     <video id="video-intro">
                         <source src="assets/media/publico.mp4" type="video/mp4" />
                     </video>
-                    <div id="tablero">
-                        <p>¿Cuánto sabes de nuestra</p>
-                        <p>Politica de Seguros?</p>
-                        <h6>V/S</h6>
-                        <div class="tablero-row">
-                            <div class="tablero-col">
-                                <p>Juan</p>
-                                <h6>0</h6>
-                            </div>
-                            <div class="tablero-col">
-                                <p>Pedro</p>
-                                <h6>0</h6>
-                            </div>
-                            <div class="tablero-col">
-                                <p>Ana</p>
-                                <h6>0</h6>
-                            </div>
-                        </div>
-                        <div id="tablero-brillo" class="tablero-brillo-on"></div>
-                    </div>
+                    
                     <div id="trofeo">
                         <div id="trofeo-stand"></div>
                         <div id="trofeo-brillo"></div>
@@ -59,6 +41,59 @@
                         <div class="luz" id="luz-2"></div>
                         <div class="luz" id="luz-3"></div>
                         <div class="luz" id="luz-4"></div>
+                    </div>
+
+                    <div id="concursantes" class="concursantes-intro">
+                        <div id="participante-1" class="participante-off">
+                            <div class="participante-silla"></div>
+                            <div id="p1-neutro"></div>
+                            <div id="p1-feliz" class="spd_movieclip" width="320" height="500" frames="45" src="assets/images/p1-feliz/"></div>
+                            <div id="p1-piensa" class="spd_movieclip" width="250" height="430" frames="45" src="assets/images/p1-piensa/"></div>
+                            <div id="p1-triste" class="spd_movieclip" width="250" height="430" frames="26" src="assets/images/p1-triste/"></div>
+                            <div id="p1-quieto" class="spd_movieclip" width="250" height="430" frames="20" src="assets/images/p1-quieto/"></div>
+                            <div class="participante-mesa"></div>
+                        </div>
+
+                        <div id="participante-2" class="participante-off">
+                            <div class="participante-silla"></div>
+                            <div id="p2-neutro"></div>
+                            <div id="p2-feliz" class="spd_movieclip" width="320" height="500" frames="45" src="assets/images/p2-feliz/"></div>
+                            <div id="p2-piensa" class="spd_movieclip" width="250" height="430" frames="45" src="assets/images/p2-piensa/"></div>
+                            <div id="p2-triste" class="spd_movieclip" width="250" height="430" frames="26" src="assets/images/p2-triste/"></div>
+                            <div id="p2-quieto" class="spd_movieclip" width="250" height="430" frames="20" src="assets/images/p2-quieto/"></div>
+                            <div class="participante-mesa"></div>
+                        </div>
+
+                        <div id="participante-3" class="participante-off">
+                            <div class="participante-silla"></div>
+                            <div id="p3-neutro"></div>
+                            <div id="p3-feliz" class="spd_movieclip" width="320" height="500" frames="45" src="assets/images/p3-feliz/"></div>
+                            <div id="p3-piensa" class="spd_movieclip" width="250" height="430" frames="45" src="assets/images/p3-piensa/"></div>
+                            <div id="p3-triste" class="spd_movieclip" width="250" height="430" frames="26" src="assets/images/p3-triste/"></div>
+                            <div id="p3-quieto" class="spd_movieclip" width="250" height="430" frames="20" src="assets/images/p3-quieto/"></div>
+                            <div class="participante-mesa"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tablero" class="tablero-off">
+                    <div id="tablero-brillo" class="tablero-brillo-on"></div>
+                    <div id="tablero-rayas"></div>
+                    <p>¿Cuánto sabes de nuestra <br />Politica de Seguros?</p>
+                    <h6>V/S</h6>
+                    <div class="tablero-row">
+                        <div class="tablero-col">
+                            <p>Juan</p>
+                            <h6>0</h6>
+                        </div>
+                        <div class="tablero-col">
+                            <p>Pedro</p>
+                            <h6>0</h6>
+                        </div>
+                        <div class="tablero-col">
+                            <p>Ana</p>
+                            <h6>0</h6>
+                        </div>
                     </div>
                 </div>
 
@@ -159,6 +194,7 @@
     <script src="assets/js/transicion.js"></script>
     <script src="assets/js/pantalla.js"></script>
     <script src="assets/js/presentadora.js"></script>
+    <script src="assets/js/participantes.js"></script>
 
     <!--Librerias-->
     <script src="assets/sprites/fotograma.js"></script>
@@ -184,39 +220,93 @@ window.onload = function(){
         spdCreateMovieClip({idname:'presentadora-prepara',callBack:function(){
         spdCreateMovieClip({idname:'presentadora-desprepara',callBack:function(){
         spdCreateMovieClip({idname:'presentadora-habla',callBack:function(){
-            spdCreateMovieClipAnimation({id:0,moviename:'presentadora-feliz'})
-            spdCreateMovieClipAnimation({id:1,moviename:'presentadora-prepara'})
-            spdCreateMovieClipAnimation({id:2,moviename:'presentadora-desprepara'})
-            spdCreateMovieClipAnimation({id:3,moviename:'presentadora-habla'})
-            
-            getE('loader').classList.remove('loader-state-1')
-            getE('loader').classList.add('loader-state-2')
-    
-            loadAudio({src:'assets/media/tv-turn-on.mp3',callBack:function(data){
-            tvturnon_mp3 = data
-            loadAudio({src:'assets/media/transicion.mp3',callBack:function(data){
-            transicion_mp3 = data
-            loadAudio({src:'assets/media/intro.mp3',callBack:function(data){
-            intro_mp3 = data
-            loadAudio({src:'assets/media/intro_aplausos.mp3',callBack:function(data){
-            intro_aplausos_mp3 = data
-            loadAudio({src:'assets/media/juego/introduccion.mp3',callBack:function(data){
-            introduccion_mp3 = data
-            
-                getE('loader').classList.remove('loader-on')
-                getE('loader').classList.add('loader-off')
-                spdStopAnimation(0)
-                getE('welcome-page').className = "welcome-page-on"
-    
-                document.body.onclick = function(){
-                    document.body.onclick = null
-                    clickComenzar()
-                }
+
+        spdCreateMovieClip({idname:'p1-feliz',callBack:function(){
+        spdCreateMovieClip({idname:'p1-piensa',callBack:function(){
+        spdCreateMovieClip({idname:'p1-triste',callBack:function(){
+        spdCreateMovieClip({idname:'p1-quieto',callBack:function(){
+        //loadImage({url:'assets/images/p1-neutro/imagen.png',callBack:function(){
+
+        spdCreateMovieClip({idname:'p2-feliz',callBack:function(){
+        spdCreateMovieClip({idname:'p2-piensa',callBack:function(){
+        spdCreateMovieClip({idname:'p2-triste',callBack:function(){
+        spdCreateMovieClip({idname:'p2-quieto',callBack:function(){
+        //loadImage({url:'assets/images/p2-neutro/imagen.png',callBack:function(){
+
+        spdCreateMovieClip({idname:'p3-feliz',callBack:function(){
+        spdCreateMovieClip({idname:'p3-piensa',callBack:function(){
+        spdCreateMovieClip({idname:'p3-triste',callBack:function(){
+        spdCreateMovieClip({idname:'p3-quieto',callBack:function(){
+        //loadImage({url:'assets/images/p3-neutro/imagen.png',callBack:function(){
+
+            loadImage({url:'assets/images/silla.svg',callBack:function(){
+            loadImage({url:'assets/images/mesa.svg',callBack:function(){
+
+                spdCreateMovieClipAnimation({id:0,moviename:'presentadora-feliz'})
+                spdCreateMovieClipAnimation({id:1,moviename:'presentadora-prepara'})
+                spdCreateMovieClipAnimation({id:2,moviename:'presentadora-desprepara'})
+                spdCreateMovieClipAnimation({id:3,moviename:'presentadora-habla'})
+
+                spdCreateMovieClipAnimation({id:4,moviename:'p1-feliz'})
+                spdCreateMovieClipAnimation({id:5,moviename:'p1-piensa'})
+                spdCreateMovieClipAnimation({id:6,moviename:'p1-triste'})
+                spdCreateMovieClipAnimation({id:7,moviename:'p1-quieto'})
+                spdCreateMovieClipAnimation({id:8,moviename:'p2-feliz'})
+                spdCreateMovieClipAnimation({id:9,moviename:'p2-piensa'})
+                spdCreateMovieClipAnimation({id:10,moviename:'p2-triste'})
+                spdCreateMovieClipAnimation({id:11,moviename:'p2-quieto'})
+                spdCreateMovieClipAnimation({id:12,moviename:'p3-feliz'})
+                spdCreateMovieClipAnimation({id:13,moviename:'p3-piensa'})
+                spdCreateMovieClipAnimation({id:14,moviename:'p3-triste'})
+                spdCreateMovieClipAnimation({id:15,moviename:'p3-quieto'})
+                
+                getE('loader').classList.remove('loader-state-1')
+                getE('loader').classList.add('loader-state-2')
+        
+                loadAudio({src:'assets/media/tv-turn-on.mp3',callBack:function(data){
+                tvturnon_mp3 = data
+                loadAudio({src:'assets/media/transicion.mp3',callBack:function(data){
+                transicion_mp3 = data
+                loadAudio({src:'assets/media/intro.mp3',callBack:function(data){
+                intro_mp3 = data
+                loadAudio({src:'assets/media/intro_aplausos.mp3',callBack:function(data){
+                intro_aplausos_mp3 = data
+                loadAudio({src:'assets/media/juego/introduccion.mp3',callBack:function(data){
+                introduccion_mp3 = data
+                
+                    getE('loader').classList.remove('loader-on')
+                    getE('loader').classList.add('loader-off')
+                    spdStopAnimation(0)
+                    getE('welcome-page').className = "welcome-page-on"
+        
+                    document.body.onclick = function(){
+                        document.body.onclick = null
+                        clickComenzar()
+                    }
+                }})
+                }})
+                }})
+                }})
+                }})
+
             }})
             }})
-            }})
-            }})
-            }})
+
+        }})
+        }})
+        }})
+        }})
+
+        }})
+        }})
+        }})
+        }})
+
+        }})
+        }})
+        }})
+        }})
+
         }})
         }})
         }})

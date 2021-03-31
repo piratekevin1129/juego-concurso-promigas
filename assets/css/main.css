@@ -179,7 +179,6 @@ html,body{
     position: absolute;
     width: 100%;
     height: auto;
-    top: 0px;
     left: 0px;
     margin: 0px;
     padding: 0px;
@@ -197,22 +196,32 @@ html,body{
     padding: 0px;
 }
 .video-off{
-    visibility: hidden;
+    display: none;
 }
 .video-on{
-    visibility: visible;
+    display: block;
 }
 
 /*************INTRO************/
 #intro{
     background-color: #FFFFFF;
+}
+.intro-out{
+    top: 0px;
+    transition: top 1s ease-in-out;
+    -webkit-transition: top 1s ease-in-out;
+}
+.intro-in{
+    top: -120px;
+    transition: top 1s ease-in-out;
+    -webkit-transition: top 1s ease-in-out;
+}
+#video-intro{
     filter: blur(1px);
     -webkit-filter: blur(1px);
     -o-filter: blur(1px);
 }
-#video-intro{
-    top: -120px;
-}
+
 #luces{
     position: absolute;
     width: 100%;
@@ -399,24 +408,42 @@ html,body{
 
 #tablero{
     position: absolute;
-    width: 500px;
-    height: 228px;
+    width: 400px;
+    height: 182px;
     margin: 0px;
-    padding: 20px 0px;
+    padding: 20px 0px 0px 0px;
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
     background-image: url(../images/tablero.png);
-    top: 30px;
+    top: 20px;
     left: 50%;
-    left: calc(50% - (625px / 2));
-    left: -moz-calc(50% - (625px / 2));
+    left: calc(50% - (400px / 2));
+    left: -moz-calc(50% - (400px / 2));
 
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
+.tablero-off{
+    display: none;
+}
+.tablero-on{
+    display: flex;
+}
+#tablero-rayas{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-image: url(../images/tablero-rayas.png);
+}
+
 #tablero-brillo{
     position: absolute;
     width: 100%;
@@ -427,16 +454,14 @@ html,body{
     background-size: contain;
     background-position: center;
     background-image: url(../images/tablero-luz.svg);
-
-    
 }
 .tablero-brillo-on{
     animation-name: animacion-tablero-luz;
-    animation-duration: 3s;
+    animation-duration: 0.75s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
     -webkit-animation-name: animacion-tablero-luz;
-    -webkit-animation-duration: 3s;
+    -webkit-animation-duration: 0.75s;
     -webkit-animation-iteration-count: infinite;
     -webkit-animation-timing-function: linear;
 }
@@ -447,9 +472,9 @@ html,body{
         -o-filter: drop-shadow(0px 0px 0px #FFFFFF);
     }
     50%{
-        filter: drop-shadow(0px 0px 10px #FFFFFF);
-        -webkit-filter: drop-shadow(0px 0px 10px #FFFFFF);
-        -o-filter: drop-shadow(0px 0px 10px #FFFFFF);
+        filter: drop-shadow(0px 0px 4px #FFFFFF);
+        -webkit-filter: drop-shadow(0px 0px 4px #FFFFFF);
+        -o-filter: drop-shadow(0px 0px 4px #FFFFFF);
     }
     100%{
         filter: drop-shadow(0px 0px 0px #FFFFFF);
@@ -466,13 +491,14 @@ html,body{
     padding: 0px;
 
     font-family: 'SohoGothicPro-Medium';
-    font-size: 20px;
+    font-size: 18px;
     color: #FFFFFF;
     text-align: center;
     font-weight: normal;
     line-height: normal;
 
     text-shadow: -1px 1px 2px rgba(0,0,0,0.7);
+    margin-bottom: 5px;
 }
 #tablero > h6{
     position: relative;
@@ -482,19 +508,20 @@ html,body{
     padding: 0px;
 
     font-family: 'SohoGothicPro-Light';
-    font-size: 25px;
+    font-size: 20px;
     color: #ECB45C;
     text-align: center;
     font-weight: normal;
     line-height: normal;
 
     text-shadow: -1px 1px 2px rgba(0,0,0,0.7);
+    margin-bottom: 10px;
 }
 
 .tablero-row{
     position: relative;
-    width: 60%;
-    height: 90px;
+    width: 70%;
+    height: auto;
     margin: 0px auto;
     padding: 0px;
     box-sizing: border-box;
@@ -521,7 +548,7 @@ html,body{
     padding: 0px;
 
     font-family: 'SohoGothicPro-Medium';
-    font-size: 25px;
+    font-size: 18px;
     text-align: center;
     font-weight: normal;
     line-height: normal;
@@ -540,7 +567,7 @@ html,body{
     padding: 0px;
     width: 174px;
     height: 300px;
-    bottom: 200px;
+    bottom: 50px;
     left: 2%;
     background-repeat: no-repeat;
     background-size: contain;
@@ -550,8 +577,8 @@ html,body{
     
 #trofeo-brillo{
     position: absolute;
-    height: 20%;
-    top: 2%;
+    height: 12%;
+    top: 6%;
     margin: 0px;
     padding: 0px;
     background-color: #FFFFFF;
@@ -575,15 +602,15 @@ html,body{
         -webkit-filter: blur(0px);
         -o-filter: blur(0px);
     }
-    10%{
-        width: 20%;
-        left: 40%;
+    5%{
+        width: 25%;
+        left: 35%;
         opacity: 1;
         filter: blur(10px);
         -webkit-filter: blur(10px);
         -o-filter: blur(10px);
     }
-    20%{
+    10%{
         width: 0%;
         left: 67%;
         opacity: 0;
@@ -625,18 +652,22 @@ html,body{
 
     animation-name: animacion-luz-trofeo;
     animation-duration: 1s;
-    animation-timing-function: ease-out;
-    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
     -webkit-animation-name: animacion-luz-trofeo;
     -webkit-animation-duration: 1s;
-    -webkit-animation-timing-function: ease-out;
-    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: ease-in-out;
+
 }
 @keyframes animacion-luz-trofeo{
     0%{
         transform: scale(0);
         -webkit-transform: scale(0);
         -o-transform: scale(0);
+        opacity: 1;
+    }
+    50%{
         opacity: 1;
     }
     100%{

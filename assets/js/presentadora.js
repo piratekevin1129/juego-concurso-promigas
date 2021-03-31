@@ -1,3 +1,5 @@
+var animacion_entrada_presentadora = null
+
 function showPresentadora(status){
     getE('presentadora').className = 'presentadora-on'
     getE('presentadora-feliz').className = 'presentadora-off'

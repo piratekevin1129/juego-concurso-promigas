@@ -28,23 +28,26 @@ function prepareTransition(){
 
 var animacion_transition_dots = null
 var animacion_transition_titulo_span = null
-function setTransition(data,callBack){
+function setTransition(data,prepare,callBack){
     var titulo = data.title
     var titulo_array = titulo.split("")
 
     var spans = ""
     for(i = 0;i<titulo_array.length;i++){
         if(titulo_array[i]==" "){
-            spans+='<span class="transicion-titulo-span-init transicion-titulo-span-space">-</span>'
+            spans+='<span class="transicion-titulo-span transicion-titulo-span-init transicion-titulo-span-space">-</span>'
         }else{
-            spans+='<span class="transicion-titulo-span-init">'+titulo_array[i]+'</span>'
+            spans+='<span class="transicion-titulo-span transicion-titulo-span-init">'
+                spans+='<span class="transicion-titulo-span-2">'+titulo_array[i]+'</span>'
+                spans+='<span class="transicion-titulo-span-1">'+titulo_array[i]+'</span>'
+            spans+='</span>'
         }
     }
     getE('transcicion-titulo1').innerHTML = spans
     getE('transcicion-titulo2').innerHTML = titulo
     getE('transcicion-titulo3').innerHTML = titulo
 
-    var spans_array = getE('transcicion-titulo1').getElementsByTagName('span')
+    var spans_array = getE('transcicion-titulo1').getElementsByClassName('transicion-titulo-span')
     var s = 0
 
     animacion_transicion = setTimeout(function(){
@@ -66,7 +69,8 @@ function setTransition(data,callBack){
                         clearTimeout(animacion_transition_titulo_span)
                         animacion_transition_titulo_span = null
     
-                        getE('transicion').className = "transicion-out" 
+                        getE('transicion').className = "transicion-out"
+                        prepare()
     
                         animacion_transition_titulo_span = setTimeout(function(){
                             clearTimeout(animacion_transition_titulo_span)
@@ -80,6 +84,7 @@ function setTransition(data,callBack){
             }else{
                 spans_array[s].classList.remove('transicion-titulo-span-init')
                 spans_array[s].classList.add('transicion-titulo-span-in')
+                spans_array[s].classList.add('transicion-titulo-span-ining')
                 s++
             }
         },100)
