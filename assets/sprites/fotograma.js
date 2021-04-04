@@ -99,7 +99,14 @@ function spdPlayMovieclip(data,id){
         movieclips[id] = null
     }
 
-    movieclips[id].frame = data.frame
+    if(data.frame!=0){
+        movieclips[id].frame = data.frame
+    }else{
+        if(movieclips[id].frame==null||movieclips[id].frame==undefined){
+            movieclips[id].frame = 1
+        }
+    }
+    
     setFotograma(movieclips[id].frame,movieclips[id].moviename)
 
     movieclips[id].animation = setInterval(function(){

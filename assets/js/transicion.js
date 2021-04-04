@@ -59,22 +59,22 @@ function setTransition(data,prepare,callBack){
                 clearInterval(animacion_transition_titulo_span)
                 animacion_transition_titulo_span = null
     
-                animacion_transition_titulo_span = setTimeout(function(){
-                    clearTimeout(animacion_transition_titulo_span)
-                    animacion_transition_titulo_span = null
+                animacion_transicion = setTimeout(function(){
+                    clearTimeout(animacion_transicion)
+                    animacion_transicion = null
     
                     getE('transicion').className = "transicion-on-2"
     
-                    animacion_transition_titulo_span = setTimeout(function(){
-                        clearTimeout(animacion_transition_titulo_span)
-                        animacion_transition_titulo_span = null
+                    animacion_transicion = setTimeout(function(){
+                        clearTimeout(animacion_transicion)
+                        animacion_transicion = null
     
                         getE('transicion').className = "transicion-out"
                         prepare()
     
-                        animacion_transition_titulo_span = setTimeout(function(){
-                            clearTimeout(animacion_transition_titulo_span)
-                            animacion_transition_titulo_span = null
+                        animacion_transicion = setTimeout(function(){
+                            clearTimeout(animacion_transicion)
+                            animacion_transicion = null
     
                             getE('transicion').className = "transicion-off"
                             getE('transcicion-titulo1').classList.remove('transicion-titulo1-on')
@@ -102,3 +102,72 @@ function setTransition(data,prepare,callBack){
 }
 
 var animacion_transicion = null
+
+/***********************CORTINA*******************/
+
+var cortina_colors = ['00b7e8','5ebe30','ff9c00','004492','ad3094','364d68','00929b']
+var animacion_cortina_titulo_span = null
+function setCortina(data,prepare,callBack){
+    var titulo = data.title
+    var titulo_array = titulo.split("")
+
+    var spans = ""
+    for(i = 0;i<titulo_array.length;i++){
+        spans+='<span class="cortina-titulo-span cortina-titulo-span-init">'
+            spans+='<span class="cortina-titulo-span-1" style="color:#'+cortina_colors[getRand(0,(cortina_colors.length-1))]+'">'+titulo_array[i]+'</span>'
+        spans+='</span>'
+    }
+    getE('cortina-titulo').innerHTML = spans
+    
+    var spans_array = getE('cortina-titulo').getElementsByClassName('cortina-titulo-span')
+    var s = 0
+
+    animacion_cortina = setTimeout(function(){
+        clearTimeout(animacion_cortina)
+        animacion_cortina = null
+
+        animacion_cortina_titulo_span = setInterval(function(){
+            if(s==spans_array.length){
+                clearInterval(animacion_cortina_titulo_span)
+                animacion_cortina_titulo_span = null
+    
+                animacion_cortina = setTimeout(function(){
+                    clearTimeout(animacion_cortina)
+                    animacion_cortina = null
+
+                    unsetCortina(prepare,callBack)
+                },1000)            
+            }else{
+                spans_array[s].classList.remove('cortina-titulo-span-init')
+                spans_array[s].classList.add('cortina-titulo-span-in')
+                spans_array[s].classList.add('cortina-titulo-span-ining')
+                s++
+            }
+        },50)
+    },20)
+    
+    getE('cortina').className = "cortina-on"
+    getE('cortina-titulo').className = 'cortina-titulo-on'
+}
+
+function unsetCortina(prepare,callBack){
+    getE('cortina-fondo').className = 'cortina-fondo-on'
+    animacion_cortina = setTimeout(function(){
+        clearTimeout(animacion_cortina)
+        animacion_cortina = null
+
+        prepare()
+        getE('cortina-fondo').className = 'cortina-fondo-off'
+        getE('cortina-titulo').className = 'cortina-titulo-off'
+
+        animacion_cortina = setTimeout(function(){
+            clearTimeout(animacion_cortina)
+            animacion_cortina = null
+    
+            getE('cortina').className = 'cortina-off'
+            callBack()
+        },500)
+    },500)
+}
+
+var animacion_cortina = null

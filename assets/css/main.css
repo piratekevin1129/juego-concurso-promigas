@@ -152,10 +152,10 @@ html,body{
 }
 #welcome-page div{
     position: absolute;
-    width: 200%;
-    height: 200%;
-    top: -100%;
-    left: -100%;
+    width: 150%;
+    height: 150%;
+    top: -75%;
+    left: -75%;
     margin: 0px;
     padding: 0px;
 
@@ -184,11 +184,6 @@ html,body{
     padding: 0px;
 }
 #video-intro,#video-inicio{
-    /*position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;*/
     position: relative;
     width: 100%;
     height: auto;
@@ -212,10 +207,14 @@ html,body{
     -webkit-transition: top 1s ease-in-out;
 }
 .intro-in{
-    top: -120px;
-    transition: top 1s ease-in-out;
-    -webkit-transition: top 1s ease-in-out;
+    top: -150px;
+    transition: top 10s linear;
+    -webkit-transition: top 10s linear;
 }
+.intro-center{
+    top: -150px;
+}
+
 #video-intro{
     filter: blur(1px);
     -webkit-filter: blur(1px);
@@ -227,22 +226,42 @@ html,body{
 .video-intro-on{
     display: block;
 }
+
 #fondo-intro{
-    background-color: #0A2726;
-    position: absolute;
+    position: relative;
     width: 100%;
-    height: 100%;
+    height: auto;
     top: 0px;
     left: 0px;
     margin: 0px;
     padding: 0px;
 }
+#fondo-intro img{
+    width: 100%;
+    height: auto;
+}
+#piso-intro{
+    position: absolute;   
+    width: 100%;
+    height: 20%;
+    bottom: 0px;
+    left: 0px;
+    margin: 0px;
+    padding: 0px;
+
+    background: #007076;
+    background: linear-gradient(to bottom, #008990, #004c51);
+    background: -webkit-linear-gradient(to bottom, #008990, #004c51);
+    background: -o-linear-gradient(to bottom, #008990, #004c51);
+}
+
 .fondo-intro-off{
     display: none;
 }
 .fondo-intro-on{
     display: block;
 }
+
 
 #luces{
     position: absolute;
@@ -286,6 +305,14 @@ html,body{
     left: 80%;
     left: calc(80% - (465px / 2));
     left: -moz-calc(80% - (465px / 2));
+}
+
+.luces-off .luz{
+    animation: none;
+    animation: unset;
+    -webkit-animation: none;
+    -webkit-animation: unset;
+    display: none;
 }
 .luces-on .luz{
     animation-timing-function: linear;
@@ -453,6 +480,16 @@ html,body{
 .tablero-on{
     display: flex;
 }
+.tablero-out{
+    top: -182px !important;
+    transition: top 0.5s;
+    -webkit-transition: top 0.5s;
+}
+.tablero-in{
+    top: 20px !important;
+    transition: top 0.5s;
+    -webkit-transition: top 0.5s;
+}
 #tablero-rayas{
     position: absolute;
     width: 100%;
@@ -538,6 +575,46 @@ html,body{
     text-shadow: -1px 1px 2px rgba(0,0,0,0.7);
     margin-bottom: 10px;
 }
+.tablero-score-active{
+    animation-name: animacion-tablero-score-activo;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+
+    -webkit-animation-name: animacion-tablero-score-activo;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-iteration-count: 1;
+}
+@keyframes animacion-tablero-score-activo{
+    0%{
+        transform: scale(0);
+        -webkit-transform: scale(0);
+        -o-transform: scale(0);
+    }
+    40%{
+        transform: scale(1.2);
+        -webkit-transform: scale(1.2);
+        -o-transform: scale(1.2);
+    }
+    70%{
+        transform: scale(0.8);
+        -webkit-transform: scale(0.8);
+        -o-transform: scale(0.8);
+    }
+    90%{
+        transform: scale(1.1);
+        -webkit-transform: scale(1.1);
+        -o-transform: scale(1.1);
+    }
+    100%{
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        -o-transform: scale(1);
+    }
+}
 
 .tablero-row{
     position: relative;
@@ -586,14 +663,16 @@ html,body{
     position: absolute;
     margin: 0px;
     padding: 0px;
-    width: 174px;
-    height: 300px;
-    bottom: 50px;
-    left: 2%;
+    bottom: 20px;
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
     background-image: url(../images/trofeo.png);
+}
+.trofeo-intro{
+    width: 174px;
+    height: 300px;
+    left: 2%;
 }
     
 #trofeo-brillo{
@@ -651,8 +730,8 @@ html,body{
 
 #trofeo-luces{
     position: absolute;
-    width: 239px;
-    height: 88px;
+    width: 137%;
+    height: 29%;
     margin: 0px;
     padding: 0px;
     background-repeat: no-repeat;
@@ -660,50 +739,60 @@ html,body{
     background-size: contain;
     background-image: url(../images/trofeo-luces.svg);
 
+    top: -7%;
+    left: 50%;
+
     transform-origin: center 100%;
     -webkit-transform-origin: center 100%;
     -o-transform-origin: center 100%;
-
-    top: 13%;
-    top: calc(13% - 82px);
-    top: -moz-calc(13% - 82px);
-    left: 50%;
-    left: calc(50% - (239px / 2));
-    left: -moz-calc(50% - (239px / 2));
-
+    
     animation-name: animacion-luz-trofeo;
     animation-duration: 1s;
     animation-iteration-count: infinite;
-    animation-timing-function: ease-in-out;
+    animation-timing-function: ease-out;
     -webkit-animation-name: animacion-luz-trofeo;
     -webkit-animation-duration: 1s;
     -webkit-animation-iteration-count: infinite;
-    -webkit-animation-timing-function: ease-in-out;
-
+    -webkit-animation-timing-function: ease-out;
 }
 @keyframes animacion-luz-trofeo{
     0%{
-        transform: scale(0);
-        -webkit-transform: scale(0);
-        -o-transform: scale(0);
+        transform: translateX(-50%) translateY(-50%) scale(0);
+        -webkit-transform: translateX(-50%) translateY(-50%) scale(0);
+        -o-transform: translateX(-50%) translateY(-50%) scale(0);
         opacity: 1;
     }
     50%{
         opacity: 1;
     }
     100%{
-        transform: scale(1);
-        -webkit-transform: scale(1);
-        -o-transform: scale(1);
+        transform: translateX(-50%) translateY(-50%) scale(1);
+        -webkit-transform: translateX(-50%) translateY(-50%) scale(1);
+        -o-transform: translateX(-50%) translateY(-50%) scale(1);
         opacity: 0;
     }
+}
+
+.trofeo-off{
+    display: none !important;
+}
+.trofeo-off #trofeo-brillo,
+.trofeo-off #trofeo-luces{
+    animation: none !important;
+    animation: unset !important;
+    -webkit-animation: none !important;
+    -webkit-animation: unset !important;
+}
+.trofeo-big{
+    width: 232px;
+    height: 400px;
+    left: 0%;
 }
 
 /************INICIO***********/
 #inicio{
     background-color: #FFFFFF;
 }
-
 
 #marco-tv{
     position: absolute;

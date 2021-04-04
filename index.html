@@ -11,6 +11,7 @@
     <link href="assets/css/pantalla.css" type="text/css" rel="stylesheet" />
     <link href="assets/css/presentadora.css" type="text/css" rel="stylesheet" />
     <link href="assets/css/participantes.css" type="text/css" rel="stylesheet" />
+    <link href="assets/css/preguntas.css" type="text/css" rel="stylesheet" />
 
     <!--Librerias-->
     <link href="assets/sprites/fotograma.css" rel="stylesheet" type="text/css" />
@@ -30,22 +31,18 @@
                     <video id="video-intro" class="video-intro-on">
                         <source src="assets/media/publico.mp4" type="video/mp4" />
                     </video>
-                    <div id="fondo-intro" class="fondo-intro-off"></div>
+                    <div id="fondo-intro" class="fondo-intro-off">
+                        <img src="assets/images/fondo_publico.jpg" />
+                        <div id="piso-intro"></div>
+                    </div>
                     
-                    <div id="trofeo">
-                        <div id="trofeo-stand"></div>
+                    <div id="trofeo" class="trofeo-intro">
                         <div id="trofeo-brillo"></div>
                         <div id="trofeo-luces"></div>
                     </div>
-                    <div id="luces">
-                        <div class="luz" id="luz-1"></div>
-                        <div class="luz" id="luz-2"></div>
-                        <div class="luz" id="luz-3"></div>
-                        <div class="luz" id="luz-4"></div>
-                    </div>
 
-                    <div id="concursantes" class="concursantes-intro">
-                        <div id="participante-1" class="participante-off">
+                    <div id="concursantes" class="concursantes-off">
+                        <div id="participante-1" bot="1" class="participante-pos1 participante-off">
                             <div class="participante-silla"></div>
                             <div id="p1-neutro"></div>
                             <div id="p1-feliz" class="spd_movieclip" width="320" height="500" frames="45" src="assets/images/p1-feliz/"></div>
@@ -55,7 +52,7 @@
                             <div class="participante-mesa"></div>
                         </div>
 
-                        <div id="participante-2" class="participante-off">
+                        <div id="participante-2" bot="2" class="participante-pos2 participante-off">
                             <div class="participante-silla"></div>
                             <div id="p2-neutro"></div>
                             <div id="p2-feliz" class="spd_movieclip" width="320" height="500" frames="45" src="assets/images/p2-feliz/"></div>
@@ -65,7 +62,7 @@
                             <div class="participante-mesa"></div>
                         </div>
 
-                        <div id="participante-3" class="participante-off">
+                        <div id="participante-3" bot="3" class="participante-pos3 participante-off">
                             <div class="participante-silla"></div>
                             <div id="p3-neutro"></div>
                             <div id="p3-feliz" class="spd_movieclip" width="320" height="500" frames="45" src="assets/images/p3-feliz/"></div>
@@ -75,34 +72,58 @@
                             <div class="participante-mesa"></div>
                         </div>
                     </div>
-                </div>
 
-                <div id="tablero" class="tablero-off">
-                    <div id="tablero-brillo" class="tablero-brillo-on"></div>
-                    <div id="tablero-rayas"></div>
-                    <p>¿Cuánto sabes de nuestra <br />Politica de Seguros?</p>
-                    <h6>V/S</h6>
-                    <div class="tablero-row">
-                        <div class="tablero-col">
-                            <p>Juan</p>
-                            <h6>0</h6>
-                        </div>
-                        <div class="tablero-col">
-                            <p>Pedro</p>
-                            <h6>0</h6>
-                        </div>
-                        <div class="tablero-col">
-                            <p>Ana</p>
-                            <h6>0</h6>
-                        </div>
+                    <div id="presentadora" class="presentadora-off">
+                        <div id="presentadora-feliz" class="spd_movieclip" width="400" height="590" frames="51" src="assets/images/presentadora-feliz/"></div>
+                        <div id="presentadora-prepara" class="spd_movieclip" width="300" height="508" frames="10" src="assets/images/presentadora-prepara/"></div>
+                        <div id="presentadora-desprepara" class="spd_movieclip" width="300" height="508" frames="10" src="assets/images/presentadora-desprepara/"></div>
+                        <div id="presentadora-habla" class="spd_movieclip" width="300" height="508" frames="31" src="assets/images/presentadora-habla/"></div>
+                        <div id="presentadora-quieta" class="spd_movieclip" width="300" height="508" frames="10" src="assets/images/presentadora-quieta/"></div>
                     </div>
                 </div>
+            </div>
+            
+            <div id="luces" class="luces-off">
+                <div class="luz" id="luz-1"></div>
+                <div class="luz" id="luz-2"></div>
+                <div class="luz" id="luz-3"></div>
+                <div class="luz" id="luz-4"></div>
+            </div>
+            
+            <div id="tablero" class="tablero-off">
+                <div id="tablero-brillo" class="tablero-brillo-on"></div>
+                <div id="tablero-rayas"></div>
+                <p>¿Cuánto sabes de nuestra <br />Politica de Seguros?</p>
+                <h6>V/S</h6>
+                <div class="tablero-row">
+                    <div class="tablero-col" id="tablero-score-1">
+                        <p>Juan</p>
+                        <h6>0</h6>
+                    </div>
+                    <div class="tablero-col" id="tablero-score-2">
+                        <p>Pedro</p>
+                        <h6>0</h6>
+                    </div>
+                    <div class="tablero-col" id="tablero-score-3">
+                        <p>Ana</p>
+                        <h6>0</h6>
+                    </div>
+                </div>
+            </div>
 
-                <div id="presentadora" class="presentadora-off">
-                    <div id="presentadora-feliz" class="spd_movieclip" width="400" height="590" frames="51" src="assets/images/presentadora-feliz/"></div>
-                    <div id="presentadora-prepara" class="spd_movieclip" width="300" height="508" frames="10" src="assets/images/presentadora-prepara/"></div>
-                    <div id="presentadora-desprepara" class="spd_movieclip" width="300" height="508" frames="10" src="assets/images/presentadora-desprepara/"></div>
-                    <div id="presentadora-habla" class="spd_movieclip" width="300" height="508" frames="31" src="assets/images/presentadora-habla/"></div>
+            <div id="pregunta-cont-1" class="pregunta-cont-1-out">
+                <div id="pregunta-1-enunciado"></div>
+                <div id="pregunta-1-opciones">
+                    <div class="pregunta-1-opcion pregunta-1-opciona">
+                        <div class="pregunta-1-opcion-txt"><p>Verdadero</p></div>
+                        <div class="pregunta-1-opcion-icon"></div>
+                        <div class="pregunta-1-zona" ind="1"></div>
+                    </div>
+                    <div class="pregunta-1-opcion pregunta-1-opcionb">
+                        <div class="pregunta-1-opcion-txt"><p>Falso</p></div>
+                        <div class="pregunta-1-opcion-icon"></div>
+                        <div class="pregunta-1-zona" ind="2"></div>
+                    </div>
                 </div>
             </div>
 
@@ -174,8 +195,14 @@
             </div>
         </div>
 
+        <div id="cortina" class="cortina-off">
+            <div id="cortina-fondo"></div>
+            <div id="cortina-titulo"></div>
+        </div>
+
         <div id="marco-tv"></div>
         <div id="destello-tv"></div>
+
 
         <div id="footer-tv">
             <h1>Gestión de seguros</h1>
@@ -212,12 +239,26 @@ var transicion_mp3 = null
 var intro_mp3 = null
 var intro_aplausos_mp3 = null
 var introduccion_mp3 = null
+var suspenso_mp3 = null
+var over_mp3 = null
+var click_mp3 = null
+var aplausos_mp3 = null
+var puff_mp3 = null
+var bien_mp3 = null
+var mal_mp3 = null
+var dateprisa_mp3 = null
+var booh_mp3 = null
 
-var total_elements_to_load = 24
+var p1_bien_mp3 = null
+var p2_bien_mp3 = null
+var p3_bien_mp3 = null
+var p_bien_mp3 = null
+
+var total_elements_to_load = 31
 var actual_element_loaded = 0
 function setLoaderPercent(){
     actual_element_loaded++
-    var percent = (actual_element_loaded*100)/24
+    var percent = (actual_element_loaded*100)/total_elements_to_load
     var perc = parseInt(percent)
 
     getE('loader-text').innerHTML = String(perc+'%')
@@ -226,10 +267,12 @@ function setLoaderPercent(){
 window.onload = function(){
     prepareTransition()
 
+    getE('loader').classList.remove('loader-state-1')
+    getE('loader').classList.add('loader-state-2')
+
     spdLoadSprite({idname:'loader-clip',autoplay:'off',callBack:function(){ 
         spdCreateAnimation({id:0,sprite:'loader-clip'})
         spdPlayAnimation({frame:1,stop:0,loop:true},0)
-        setLoaderPercent()
 
         spdCreateMovieClip({idname:'presentadora-feliz',callBack:function(){
         setLoaderPercent()
@@ -238,6 +281,8 @@ window.onload = function(){
         spdCreateMovieClip({idname:'presentadora-desprepara',callBack:function(){
         setLoaderPercent()
         spdCreateMovieClip({idname:'presentadora-habla',callBack:function(){
+        setLoaderPercent()
+        spdCreateMovieClip({idname:'presentadora-quieta',callBack:function(){
         setLoaderPercent()
 
         spdCreateMovieClip({idname:'p1-feliz',callBack:function(){
@@ -271,9 +316,7 @@ window.onload = function(){
         //loadImage({url:'assets/images/p3-neutro/imagen.png',callBack:function(){
 
             loadImage({url:'assets/images/silla.svg',callBack:function(){
-            setLoaderPercent()
             loadImage({url:'assets/images/mesa.svg',callBack:function(){
-            setLoaderPercent()
 
                 spdCreateMovieClipAnimation({id:0,moviename:'presentadora-feliz'})
                 spdCreateMovieClipAnimation({id:1,moviename:'presentadora-prepara'})
@@ -292,9 +335,8 @@ window.onload = function(){
                 spdCreateMovieClipAnimation({id:13,moviename:'p3-piensa'})
                 spdCreateMovieClipAnimation({id:14,moviename:'p3-triste'})
                 spdCreateMovieClipAnimation({id:15,moviename:'p3-quieto'})
-                
-                getE('loader').classList.remove('loader-state-1')
-                getE('loader').classList.add('loader-state-2')
+
+                spdCreateMovieClipAnimation({id:16,moviename:'presentadora-quieta'})
         
                 loadAudio({src:'assets/media/tv-turn-on.mp3',callBack:function(data){
                 tvturnon_mp3 = data
@@ -311,6 +353,41 @@ window.onload = function(){
                 loadAudio({src:'assets/media/juego/introduccion.mp3',callBack:function(data){
                 introduccion_mp3 = data
                 setLoaderPercent()
+                loadAudio({src:'assets/media/over.mp3',callBack:function(data){
+                over_mp3 = data
+                setLoaderPercent()
+                loadAudio({src:'assets/media/click.mp3',callBack:function(data){
+                click_mp3 = data
+                setLoaderPercent()
+                loadAudio({src:'assets/media/puff.mp3',callBack:function(data){
+                puff_mp3 = data
+                setLoaderPercent()
+                loadAudio({src:'assets/media/bien.mp3',callBack:function(data){
+                bien_mp3 = data
+                setLoaderPercent()
+                loadAudio({src:'assets/media/mal.mp3',callBack:function(data){
+                mal_mp3 = data
+                setLoaderPercent()
+                loadAudio({src:'assets/media/aplausos.mp3',callBack:function(data){
+                aplausos_mp3 = data
+                setLoaderPercent()
+                loadAudio({src:'assets/media/suspenso.mp3',callBack:function(data){
+                suspenso_mp3 = data
+                setLoaderPercent()
+                loadAudio({src:'assets/media/date_prisa.mp3',callBack:function(data){
+                dateprisa_mp3 = data
+                setLoaderPercent()
+                loadAudio({src:'assets/media/booh.mp3',callBack:function(data){
+                booh_mp3 = data
+                setLoaderPercent()
+
+                loadAudio({src:'assets/media/juego/p1_bien.mp3',callBack:function(data){
+                p1_bien_mp3 = data
+                loadAudio({src:'assets/media/juego/p2_bien.mp3',callBack:function(data){
+                p2_bien_mp3 = data
+                loadAudio({src:'assets/media/juego/p3_bien.mp3',callBack:function(data){
+                p3_bien_mp3 = data
+                setLoaderPercent()
                 
                     getE('loader').classList.remove('loader-on')
                     getE('loader').classList.add('loader-off')
@@ -321,6 +398,19 @@ window.onload = function(){
                         document.body.onclick = null
                         clickComenzar()
                     }
+                
+                }})
+                }})
+                }})
+                }})
+                }})
+                }})
+                }})
+                }})
+                }})
+                }})
+                }})
+                }})
                 }})
                 }})
                 }})
@@ -345,6 +435,7 @@ window.onload = function(){
         }})
         }})
 
+        }})
         }})
         }})
         }})

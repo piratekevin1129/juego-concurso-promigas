@@ -4,8 +4,11 @@ var _timer_1 = 0
 var _timer_2 = 0
 var _timer_3 = 0
 var _timer_4 = 0
+var _timeout = null
 
-function setTimer(){
+function setTimer(data){
+    _timer = data.t
+    _timeout = data.timeout
     formatTimer()
     
     getE('reloj-1-1-p').innerHTML = (check0(_timer_1-1))
@@ -24,6 +27,10 @@ function setTimer(){
     getE('reloj-4-2-p').innerHTML = (check00(_timer_4))
     getE('reloj-4-3-p').innerHTML = (check00(_timer_4))
     animacionReloj()
+}
+
+function getTimer(){
+    return _timer
 }
 
 function formatTimer(){
@@ -84,8 +91,11 @@ function animacionReloj(){
         var _timer_4_prev = _timer_4
         _timer--
         formatTimer()
-        
+
         if(_timer>=0){
+            if(_timer==5){
+                dateprisa_mp3.play()
+            }
             if(_timer_1!=_timer_1_prev){
                 relojBajar1()
             }
@@ -101,6 +111,8 @@ function animacionReloj(){
         }else{
             clearTimeout(animacion_reloj)
             animacion_reloj = null
+
+            _timeout()
         }
     },1000)
     

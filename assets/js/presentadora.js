@@ -6,6 +6,7 @@ function showPresentadora(status){
     getE('presentadora-prepara').className = 'presentadora-off'
     getE('presentadora-desprepara').className = 'presentadora-off'
     getE('presentadora-habla').className = 'presentadora-off'
+    getE('presentadora-quieta').className = 'presentadora-off'
     
     var ind_p = -1
     if(status=='feliz'){
@@ -20,6 +21,9 @@ function showPresentadora(status){
     }else if(status=='habla'){
         p = 3
         getE('presentadora-habla').className = 'presentadora-on'
+    }else if(status=='quieta'){
+        p = 4
+        getE('presentadora-quieta').className = 'presentadora-on'
     }
 
     //spdPlayMovieclip({frame:1,stop:0,loop:true},p)
@@ -31,4 +35,25 @@ function hidePresentadora(){
     getE('presentadora-prepara').className = 'presentadora-off'
     getE('presentadora-desprepara').className = 'presentadora-off'
     getE('presentadora-habla').className = 'presentadora-off'   
+    getE('presentadora-quieta').className = 'presentadora-off'
+}
+
+var animacion_presentadora_quieta = null
+function animarPresentadoraQuieta(){
+    spdPlayMovieclip({frame:1,stop:10,loop:false,end:function(){
+        animarPresentadoraQuieta2()
+    }},16)
+}
+function animarPresentadoraQuieta2(){
+    animacion_presentadora_quieta = setTimeout(function(){
+        clearTimeout(animacion_presentadora_quieta)
+        animacion_presentadora_quieta = null
+
+        animarPresentadoraQuieta()
+    },200)
+}
+function stopPresentadoraQuieta(){
+    clearTimeout(animacion_presentadora_quieta)
+    animacion_presentadora_quieta = null
+    spdStopMovieclip(16)
 }
