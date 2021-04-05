@@ -601,7 +601,7 @@ function nextPregunta(){
             )
         },1000)
     }else{
-        if(actual_pregunta==data_preguntas.length){
+        if(actual_pregunta==4){
             loadFinal()
         }else{
             preparePregunta('Siguiente Pregunta')
@@ -797,11 +797,12 @@ function loadFinal(){
                             showPresentadora('feliz')
                             getE('presentadora').classList.add('presentadora-final')
                             spdPlayMovieclip({frame:1,stop:50,loop:false,end:function(){
+                                spdStopMovieclip(0)
+                                spdSetMovieclip({id:0,f:1})
 
                                 setCortina({title:'¡Chao Chao!'},
                                     function(){
                                         //prepare
-                                        
                                         getE('video-intro').pause()
                                         getE('video-intro').onended = null
                                         
@@ -812,8 +813,6 @@ function loadFinal(){
 
                                         getE('tablero-brillo').className = 'tablero-off'
 
-                                        spdStopMovieclip(0)
-                                        spdSetMovieclip({id:0,f:1})
                                         showPresentadora('quieta')
                                         getE('presentadora').classList.add('presentadora-final')
 
