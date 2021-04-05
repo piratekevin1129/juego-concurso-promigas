@@ -1,23 +1,7 @@
 var data_preguntas = [
 	{
-		id:1,
-		tipo:'verdaderofalso',
-		pregunta:'¿Es correcto decir que la mayoría de contratos requieren pólizas?',
-		opciones:[
-			'Verdadero',
-			'Falso'
-		],
-		retroalimentacion:'<p><span>Correcto.</span> <br />¡La gran mayoría! Dado que nos pueden ocasionar afectación en el patrimonio por:</p><ul><li>Retracto de la oferta</li><li>Incumplimiento de obligaciones contractuales</li><li>Incumplimiento de obligaciones laborales</li><li>Daños a nuestros bienes o de terceros</li><li>Y lesiones personales o muerte de empleados o terceros</li></ul><p>Por lo tanto, antes de celebrar cualquier contrato consulta con el área de seguros.</p>',
-		audiocorrect:'bien',
-		audioincorrect:'mal',
-		audiotiempo:'tiempo',
-		preguntaaudio:'pregunta',
-		opcionesaudio:null,
-		correcta:1
-	},
-	{
 		id:2,
-		tipo:'pregunta',
+		tipo:'seleccionmultiple',
 		pregunta:'¿Cuáles son las etapas de la contratación y sus respectivas pólizas?',
 		opciones:[
 			'Etapa Precontractual con póliza de Cumplimiento (Seriedad de la oferta)',
@@ -34,12 +18,29 @@ var data_preguntas = [
 		correcta:4
 	},
 	{
+		id:1,
+		tipo:'verdaderofalso',
+		pregunta:'¿Es correcto decir que la mayoría de contratos requieren pólizas?',
+		opciones:[
+			'Verdadero',
+			'Falso'
+		],
+		retroalimentacion:'<p><span>Correcto.</span> <br />¡La gran mayoría! Dado que nos pueden ocasionar afectación en el patrimonio por:</p><ul><li>Retracto de la oferta</li><li>Incumplimiento de obligaciones contractuales</li><li>Incumplimiento de obligaciones laborales</li><li>Daños a nuestros bienes o de terceros</li><li>Y lesiones personales o muerte de empleados o terceros</li></ul><p>Por lo tanto, antes de celebrar cualquier contrato consulta con el área de seguros.</p>',
+		audiocorrect:'bien',
+		audioincorrect:'mal',
+		audiotiempo:'tiempo',
+		preguntaaudio:'pregunta',
+		opcionesaudio:null,
+		correcta:1
+	},
+	
+	{
 		id:3,
 		tipo:'arrastrar',
 	},
 	{
 		id:4,
-		tipo:'pregunta',
+		tipo:'seleccionmultiple',
 		pregunta:'¿Cuales son las cláusulas especiales que debemos verificar en las pólizas?',
 		opciones:[
 			'Cláusula de proporcionalidad',

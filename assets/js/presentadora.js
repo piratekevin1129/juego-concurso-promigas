@@ -29,6 +29,22 @@ function showPresentadora(status){
     //spdPlayMovieclip({frame:1,stop:0,loop:true},p)
 }
 
+function resetPresentadora(){
+    //presentadora
+	spdStopMovieclip(0)
+	spdSetMovieclip({id:0,f:1})
+	spdStopMovieclip(1)
+	spdSetMovieclip({id:1,f:1})
+	spdStopMovieclip(2)
+	spdSetMovieclip({id:2,f:1})
+	spdStopMovieclip(3)
+	spdSetMovieclip({id:3,f:1})
+    spdStopMovieclip(16)
+	spdSetMovieclip({id:16,f:1})
+
+	showPresentadora('quieta')
+}
+
 function hidePresentadora(){
     getE('presentadora').className = 'presentadora-off'
     getE('presentadora-feliz').className = 'presentadora-off'

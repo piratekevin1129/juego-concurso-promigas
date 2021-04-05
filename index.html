@@ -35,6 +35,13 @@
                         <img src="assets/images/fondo_publico.jpg" />
                         <div id="piso-intro"></div>
                     </div>
+
+                    <div id="luces" class="luces-off">
+                        <div class="luz" id="luz-1"></div>
+                        <div class="luz" id="luz-2"></div>
+                        <div class="luz" id="luz-3"></div>
+                        <div class="luz" id="luz-4"></div>
+                    </div>
                     
                     <div id="trofeo" class="trofeo-intro">
                         <div id="trofeo-brillo"></div>
@@ -83,12 +90,6 @@
                 </div>
             </div>
             
-            <div id="luces" class="luces-off">
-                <div class="luz" id="luz-1"></div>
-                <div class="luz" id="luz-2"></div>
-                <div class="luz" id="luz-3"></div>
-                <div class="luz" id="luz-4"></div>
-            </div>
             
             <div id="tablero" class="tablero-off">
                 <div id="tablero-brillo" class="tablero-brillo-on"></div>
@@ -96,17 +97,17 @@
                 <p>¿Cuánto sabes de nuestra <br />Politica de Seguros?</p>
                 <h6>V/S</h6>
                 <div class="tablero-row">
-                    <div class="tablero-col" id="tablero-score-1">
+                    <div class="tablero-col">
                         <p>Juan</p>
-                        <h6>0</h6>
+                        <h6 id="tablero-score-1">0</h6>
                     </div>
-                    <div class="tablero-col" id="tablero-score-2">
+                    <div class="tablero-col">
                         <p>Pedro</p>
-                        <h6>0</h6>
+                        <h6 id="tablero-score-2">0</h6>
                     </div>
-                    <div class="tablero-col" id="tablero-score-3">
+                    <div class="tablero-col">
                         <p>Ana</p>
-                        <h6>0</h6>
+                        <h6 id="tablero-score-3">0</h6>
                     </div>
                 </div>
             </div>
@@ -114,16 +115,68 @@
             <div id="pregunta-cont-1" class="pregunta-cont-1-out">
                 <div id="pregunta-1-enunciado"></div>
                 <div id="pregunta-1-opciones">
-                    <div class="pregunta-1-opcion pregunta-1-opciona">
+                    <div id="pregunta-1-opcion0" class="pregunta-1-opcion pregunta-1-opciona">
                         <div class="pregunta-1-opcion-txt"><p>Verdadero</p></div>
                         <div class="pregunta-1-opcion-icon"></div>
-                        <div class="pregunta-1-zona" ind="1"></div>
+                        <div class="pregunta-1-zona"></div>
                     </div>
-                    <div class="pregunta-1-opcion pregunta-1-opcionb">
+                    <div id="pregunta-1-opcion1" class="pregunta-1-opcion pregunta-1-opcionb">
                         <div class="pregunta-1-opcion-txt"><p>Falso</p></div>
                         <div class="pregunta-1-opcion-icon"></div>
-                        <div class="pregunta-1-zona" ind="2"></div>
+                        <div class="pregunta-1-zona"></div>
                     </div>
+                </div>
+            </div>
+
+            <div id="pregunta-cont-2" class="pregunta-cont-2-out">
+                <div id="pregunta-2-enunciado">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's </div>
+                <div id="pregunta-2-opciones">
+                    <div id="pregunta-2-opcion0" class="pregunta-2-opcion pregunta-2-opciona">
+                        <div class="pregunta-2-opcion-letra">A</div>
+                        <div class="pregunta-2-opcion-icon">
+                            <div class="pregunta-2-opcion-icon-tuerca"></div>
+                        </div>
+                        <div class="pregunta-2-opcion-txt"><p>Etapa Contractual y Etapa Postcontractual con póliza de cumplimiento (cuenta con amparos para ambas etapas) y póliza de Responsabilidad Civil</p></div>
+                        <div class="pregunta-2-zona"></div>
+                    </div>
+                    <div id="pregunta-2-opcion1" class="pregunta-2-opcion pregunta-2-opcionb">
+                        <div class="pregunta-2-opcion-letra">B</div>
+                        <div class="pregunta-2-opcion-icon">
+                            <div class="pregunta-2-opcion-icon-tuerca"></div>
+                        </div>
+                        <div class="pregunta-2-opcion-txt"><p>Lorem ipsu e dolor adome salvatore</p></div>
+                        <div class="pregunta-2-zona"></div>
+                    </div>
+                    <div id="pregunta-2-opcion2" class="pregunta-2-opcion pregunta-2-opcionc">
+                        <div class="pregunta-2-opcion-letra">C</div>
+                        <div class="pregunta-2-opcion-icon">
+                            <div class="pregunta-2-opcion-icon-tuerca"></div>
+                        </div>
+                        <div class="pregunta-2-opcion-txt"><p>Lorem ipsu e dolor adome salvatore</p></div>
+                        <div class="pregunta-2-zona"></div>
+                    </div>
+                    <div id="pregunta-2-opcion3" class="pregunta-2-opcion pregunta-2-opciond">
+                        <div class="pregunta-2-opcion-letra">D</div>
+                        <div class="pregunta-2-opcion-icon">
+                            <div class="pregunta-2-opcion-icon-tuerca"></div>
+                        </div>
+                        <div class="pregunta-2-opcion-txt"><p>Lorem ipsu e dolor adome salvatore</p></div>
+                        <div class="pregunta-2-zona"></div>
+                    </div>
+                </div>
+                <div id="pregunta-2-marco">
+                    <div id="pregunta-2-marco-3-1"></div>
+                    <div id="pregunta-2-marco-1">
+                        <div id="pregunta-2-participante">
+                            <div id="participante-alterno" class="participante-on">
+                                <div class="participante-silla"></div>
+                                <div id="pa-piensa" class="spd_movieclip" width="250" height="430" frames="45" src="assets/images/p1-piensa/"></div>
+                                <div class="participante-mesa"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="pregunta-2-marco-2"></div>
+                    <div id="pregunta-2-marco-3-2"></div>
                 </div>
             </div>
 
@@ -160,12 +213,6 @@
             </div>
         </div>
         
-        <!--<div id="video-publico">
-            <video>
-                <source src="assets/media/publico.mp4" type="video/mp4" />
-            </video>
-        </div>-->
-
         <div id="pantalla" class="pantalla-off">
             <div id="pantalla-1"></div>
             <div id="pantalla-2"></div>
@@ -202,7 +249,6 @@
 
         <div id="marco-tv"></div>
         <div id="destello-tv"></div>
-
 
         <div id="footer-tv">
             <h1>Gestión de seguros</h1>
@@ -247,6 +293,7 @@ var puff_mp3 = null
 var bien_mp3 = null
 var mal_mp3 = null
 var dateprisa_mp3 = null
+var reloj_mp3 = null
 var booh_mp3 = null
 
 var p1_bien_mp3 = null
@@ -292,6 +339,7 @@ window.onload = function(){
         spdCreateMovieClip({idname:'p1-triste',callBack:function(){
         setLoaderPercent()
         spdCreateMovieClip({idname:'p1-quieto',callBack:function(){
+        spdCreateMovieClip({idname:'pa-piensa',callBack:function(){
         setLoaderPercent()
         //loadImage({url:'assets/images/p1-neutro/imagen.png',callBack:function(){
 
@@ -337,6 +385,7 @@ window.onload = function(){
                 spdCreateMovieClipAnimation({id:15,moviename:'p3-quieto'})
 
                 spdCreateMovieClipAnimation({id:16,moviename:'presentadora-quieta'})
+                spdCreateMovieClipAnimation({id:17,moviename:'pa-piensa'})
         
                 loadAudio({src:'assets/media/tv-turn-on.mp3',callBack:function(data){
                 tvturnon_mp3 = data
@@ -376,6 +425,8 @@ window.onload = function(){
                 setLoaderPercent()
                 loadAudio({src:'assets/media/date_prisa.mp3',callBack:function(data){
                 dateprisa_mp3 = data
+                loadAudio({src:'assets/media/reloj.mp3',callBack:function(data){
+                reloj_mp3 = data
                 setLoaderPercent()
                 loadAudio({src:'assets/media/booh.mp3',callBack:function(data){
                 booh_mp3 = data
@@ -416,6 +467,7 @@ window.onload = function(){
                 }})
                 }})
                 }})
+                }})
 
             }})
             }})
@@ -430,6 +482,7 @@ window.onload = function(){
         }})
         }})
 
+        }})
         }})
         }})
         }})

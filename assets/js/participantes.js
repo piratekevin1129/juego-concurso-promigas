@@ -62,6 +62,37 @@ function setParticipante(p,s,b){
 	}
 }
 
+function resetParticipantes(){
+	spdStopMovieclip(4)
+	spdSetMovieclip({id:4,f:1})
+    spdStopMovieclip(5)
+	spdSetMovieclip({id:5,f:1})
+	spdStopMovieclip(6)
+	spdSetMovieclip({id:6,f:1})
+	spdStopMovieclip(7)
+	spdSetMovieclip({id:7,f:1})
+	spdStopMovieclip(8)
+	spdSetMovieclip({id:8,f:1})
+	spdStopMovieclip(9)
+	spdSetMovieclip({id:9,f:1})
+	spdStopMovieclip(10)
+	spdSetMovieclip({id:10,f:1})
+	spdStopMovieclip(11)
+	spdSetMovieclip({id:11,f:1})
+	spdStopMovieclip(12)
+	spdSetMovieclip({id:12,f:1})
+	spdStopMovieclip(13)
+	spdSetMovieclip({id:13,f:1})
+	spdStopMovieclip(14)
+	spdSetMovieclip({id:14,f:1})
+	spdStopMovieclip(15)
+	spdSetMovieclip({id:15,f:1})
+
+	setParticipante(1,'quieto')
+	setParticipante(2,'quieto')
+	setParticipante(3,'quieto')
+}
+
 var animacion_participante = null
 
 var animacion_participante_piensa = null

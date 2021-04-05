@@ -5,8 +5,15 @@ var _timer_2 = 0
 var _timer_3 = 0
 var _timer_4 = 0
 var _timeout = null
+var _timer_reset = ''
 
 function setTimer(data){
+    if(_timer_reset!=''){
+        getE('reloj').innerHTML = _timer_reset
+    }else{
+        _timer_reset = getE('reloj').innerHTML
+    }
+    
     _timer = data.t
     _timeout = data.timeout
     formatTimer()
@@ -31,6 +38,19 @@ function setTimer(data){
 
 function getTimer(){
     return _timer
+}
+
+function stopTimer(){
+    clearTimeout(animacion_reloj)
+    animacion_reloj = null
+    clearTimeout(animacion_reloj1)
+    animacion_reloj1 = null
+    clearTimeout(animacion_reloj2)
+    animacion_reloj2 = null
+    clearTimeout(animacion_reloj3)
+    animacion_reloj3 = null
+    clearTimeout(animacion_reloj4)
+    animacion_reloj4 = null
 }
 
 function formatTimer(){
@@ -93,8 +113,8 @@ function animacionReloj(){
         formatTimer()
 
         if(_timer>=0){
-            if(_timer==5){
-                dateprisa_mp3.play()
+            if(_timer==10){
+                setDatePrisaAnim()
             }
             if(_timer_1!=_timer_1_prev){
                 relojBajar1()
@@ -142,6 +162,8 @@ function relojBajar1(){
             getE('reloj-1-2-p').innerHTML = check0(_timer_1)
             getE('reloj-1-3-p').innerHTML = check0(_timer_1)
             getE('reloj-1-1-p').innerHTML = check0(parseInt(_timer_1)-1)
+            reloj_mp3.currentTime = 0
+            reloj_mp3.play()
         },250)
     },250)
 }
@@ -170,6 +192,8 @@ function relojBajar2(){
             getE('reloj-2-2-p').innerHTML = check00(_timer_2)
             getE('reloj-2-3-p').innerHTML = check00(_timer_2)
             getE('reloj-2-1-p').innerHTML = check00(parseInt(_timer_2)-1)
+            reloj_mp3.currentTime = 0
+            reloj_mp3.play()
         },250)
     },250)
 }
@@ -198,6 +222,8 @@ function relojBajar3(){
             getE('reloj-3-2-p').innerHTML = check0(_timer_3)
             getE('reloj-3-3-p').innerHTML = check0(_timer_3)
             getE('reloj-3-1-p').innerHTML = check0(parseInt(_timer_3)-1)
+            reloj_mp3.currentTime = 0
+            reloj_mp3.play()
         },250)
     },250)
 }
@@ -226,6 +252,8 @@ function relojBajar4(){
             getE('reloj-4-2-p').innerHTML = check00(_timer_4)
             getE('reloj-4-3-p').innerHTML = check00(_timer_4)
             getE('reloj-4-1-p').innerHTML = check00(parseInt(_timer_4-1))
+            reloj_mp3.currentTime = 0
+            reloj_mp3.play()
         },250)
     },250)
 }
