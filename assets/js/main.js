@@ -6,17 +6,21 @@ function clickComenzar2(){
 }
 
 function clickComenzar(){
-    getE('welcome-page').className = 'welcome-page-off'
+    //getE('welcome-page').className = 'welcome-page-off'
 
     turnTvOn(function(){
-        //getE('inicio').className = 'video-on'
-        //getE('video-inicio').play()
-        //getE('video-inicio').onended = function(){
+        getE('inicio').className = 'video-on'
+        getE('video-inicio').play()
+        getE('video-inicio').onended = function(){
             setTransition({title:'Vamos a comenzar'},
                 function(){
                     //prepare
+                    //tumbar video para que no estorbe
+                    var source = getE('video-inicio')
+                    source.src = ''
+
                     getE('inicio').innerHTML = ''
-                    getE('inicio').style.display = 'none'
+                    getE('inicio').className = 'video-off'
 
                     getE('intro').className = 'video-on intro-out'
 
@@ -77,10 +81,9 @@ function clickComenzar(){
 
                         preparePregunta('¡Prepárate!')
                     }
-                    
                 }
             )
-        //}
+        }
     })
 }
 
@@ -141,7 +144,6 @@ function empezarPreguntas(){
     audio_general_mp3.src = 'assets/media/juego/'+actual_pregunta_data.id+'/'+actual_pregunta_data.preguntaaudio+'.mp3'
     audio_general_mp3.load()
     audio_general_mp3.onloadedmetadata = function(){
-
         spdPlayMovieclip({frame:1,stop:10,loop:false,end:function(){
             audio_general_mp3.currentTime = 0
             audio_general_mp3.play()
@@ -150,7 +152,6 @@ function empezarPreguntas(){
             getE('presentadora').classList.add('presentadora-big')
             spdPlayMovieclip({frame:1,stop:0,loop:true},3)
         }},1)
-        
     }
     audio_general_mp3.onended = function(){
         audio_general_mp3.onloadedmetadata = null
@@ -189,7 +190,7 @@ function empezarPreguntas(){
                     getE('pregunta-1-opcion1').getElementsByClassName('pregunta-1-opcion-txt')[0].innerHTML = '<p>'+actual_pregunta_data.opciones[1]+'</p>'
 
                     getE('pregunta-cont-1').className = 'pregunta-cont-1-in'
-                    zonas = getE('pregunta-cont-1').getElementsByClassName('pregunta-1-opcion')
+                    zonas = getE('pregunta-cont-1').getElementsByClassName('pregunta-1-zona')
                     for(i = 0;i<zonas.length;i++){
                         zonas[i].setAttribute('onclick','clickOpcion('+(i+1)+')')
                         zonas[i].setAttribute('onmouseover','overOpcion()')
@@ -201,6 +202,14 @@ function empezarPreguntas(){
                     setParticipante(3,'piensa')
 
                     participantePensar(5)
+
+                    animacion_pregunta = setTimeout(function(){
+                        clearTimeout(animacion_pregunta)
+                        animacion_pregunta = null
+
+                        getE('pregunta-1-opciones').className = 'preguntas-1-opciones-front'
+                    },1000)
+
                 }
                 else if(actual_pregunta_data.tipo=='seleccionmultiple'){
                     getE('pregunta-2-enunciado').innerHTML = actual_pregunta_data.pregunta
@@ -210,7 +219,7 @@ function empezarPreguntas(){
                     getE('pregunta-2-opcion3').getElementsByClassName('pregunta-2-opcion-txt')[0].innerHTML = actual_pregunta_data.opciones[3]
                     
                     getE('pregunta-cont-2').className = 'pregunta-cont-2-in'
-                    zonas = getE('pregunta-cont-2').getElementsByClassName('pregunta-2-opcion')
+                    zonas = getE('pregunta-cont-2').getElementsByClassName('pregunta-2-zona')
                     for(i = 0;i<zonas.length;i++){
                         zonas[i].setAttribute('onclick','clickOpcion('+(i+1)+')')
                         zonas[i].setAttribute('onmouseover','overOpcion()')
@@ -225,7 +234,9 @@ function empezarPreguntas(){
                         animacion_pregunta = null
 
                         getE('pregunta-cont-2').className = 'pregunta-cont-2-on'
+                        getE('pregunta-2-opciones').className = 'preguntas-2-opciones-front'
                     },500)
+                    
                 }
             //},1000)
         }},2)
@@ -235,7 +246,6 @@ function empezarPreguntas(){
 function overOpcion(){
     var over_audio = new Audio('assets/media/over.mp3')
     over_audio.play()
-    console.log("over")
 }
 
 function outOpcion(){
@@ -272,6 +282,7 @@ function clickResponde(){
             zonas[i].removeAttribute('onmouseover')
             zonas[i].removeAttribute('onmouseout')
         }
+        getE('pregunta-1-opciones').className = ''
         getE('pregunta-cont-1').className = 'pregunta-cont-1-out'
 
         stopParticipantePensar(5)
@@ -284,6 +295,7 @@ function clickResponde(){
             zonas[i].removeAttribute('onmouseover')
             zonas[i].removeAttribute('onmouseout')
         }
+        getE('pregunta-2-opciones').className = ''
         getE('pregunta-cont-2').className = 'pregunta-cont-2-out'
 
         stopParticipantePensar(17)
@@ -377,6 +389,7 @@ function ganarPregunta(){
                         showPresentadora('habla')
                         getE('presentadora').classList.add('presentadora-intro')
                         spdPlayMovieclip({frame:1,stop:0,loop:true},3)
+                        susurros_mp3.play()
                     }},1)
 
                 }
@@ -398,7 +411,6 @@ function ganarPregunta(){
             /*}else{
                 alert("No audio")
             }*/
-
         }
     )
 }
@@ -507,6 +519,7 @@ function perderPregunta(answer){
                             showPresentadora('habla')
                             getE('presentadora').classList.add('presentadora-intro')
                             spdPlayMovieclip({frame:1,stop:0,loop:true},3)
+                            susurros_mp3.play()
                         }
                         audio_general_mp3.onended = function(){
                             audio_general_mp3.onloadedmetadata = null
@@ -528,24 +541,69 @@ function perderPregunta(answer){
                     }*/
                 }
             }},1)
-
-            //getE('presentadora').classList.remove('presentadora-out')
-            //getE('presentadora').classList.add('presentadora-in')
-            //puff_mp3.play()
-
-            //animacion_entrada_presentadora = setTimeout(function(){
-                //clearTimeout(animacion_entrada_presentadora)
-                //animacion_entrada_presentadora = null
-
-
-            //},1000)
         }
     )
 }
 
 function nextPregunta(){
+    susurros_mp3.pause()
+    susurros_mp3.currentTime = 0
     actual_pregunta++
-    preparePregunta('Siguiente Pregunta')
+    if(actual_pregunta==4){
+        //comercial
+
+        //se va
+        getE('intro').className = 'video-on intro-out'
+        animacion_entradas = setTimeout(function(){
+            clearTimeout(animacion_entradas)
+            animacion_entradas = null
+
+            setTransition({title:'¡Ya regresamos!'},
+                function(){
+                    //resetear animaciones de concursantes tristes y felices
+                    
+                    getE('video-intro').currentTime = 0
+                    getE('video-intro').pause()
+                    getE('video-intro').onended = null
+                    getE('video-intro').className = 'video-intro-off'
+                    
+                    getE('tablero-score-1').className = ''
+                    getE('tablero-score-2').className = ''
+                    getE('tablero-score-3').className = ''
+
+                    getE('tablero').className = 'tablero-off'
+                    getE('tablero-brillo').className = ''
+                    getE('comercial').className = 'video-on'
+                },
+                function(){
+                    getE('video-comercial').src = 'assets/media/comercial.mp4'
+                    getE('video-comercial').addEventListener('loadedmetadata',setVideoComercial,true)
+                    //getE('video-comercial').addEventListener('loaded',setVideoComercial,true)
+                    //getE('video-comercial').addEventListener('loadeddata',setVideoComercial,true)
+                    //getE('video-comercial').addEventListener('error',function(){alert("error")},true)
+                    getE('video-comercial').load()
+                }
+            )
+        },1000)
+    }else{
+        preparePregunta('Siguiente Pregunta')
+    }
+    
+}
+function setVideoComercial(e){
+    getE('video-comercial').removeEventListener('loadedmetadata',setVideoComercial,true)
+    getE('video-comercial').play()                
+    getE('video-comercial').onended = function(){
+        getE('video-comercial').onloadedmetadata = null
+        getE('video-comercial').onended = null
+        //tumbar video para que no estorbe
+        var source = getE('video-comercial')
+        source.src = ''
+
+        getE('comercial').innerHTML = ''
+        getE('comercial').className = 'video-off'
+        preparePregunta('Siguiente Pregunta')
+    }
 }
 
 function setDatePrisaAnim(){

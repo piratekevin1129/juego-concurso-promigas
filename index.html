@@ -88,6 +88,9 @@
                         <div id="presentadora-quieta" class="spd_movieclip" width="300" height="508" frames="10" src="assets/images/presentadora-quieta/"></div>
                     </div>
                 </div>
+                <div id="comercial" class="video-off">
+                    <video id="video-comercial"></video>
+                </div>
             </div>
             
             
@@ -97,16 +100,16 @@
                 <p>¿Cuánto sabes de nuestra <br />Politica de Seguros?</p>
                 <h6>V/S</h6>
                 <div class="tablero-row">
-                    <div class="tablero-col">
-                        <p>Juan</p>
+                    <div class="tablero-col" id="tablero-col-1">
+                        <p id="tablero-name-1">Juan</p>
                         <h6 id="tablero-score-1">0</h6>
                     </div>
-                    <div class="tablero-col">
-                        <p>Pedro</p>
+                    <div class="tablero-col" id="tablero-col-2">
+                        <p id="tablero-name-2">Pedro</p>
                         <h6 id="tablero-score-2">0</h6>
                     </div>
-                    <div class="tablero-col">
-                        <p>Ana</p>
+                    <div class="tablero-col" id="tablero-col-3">
+                        <p id="tablero-name-3">Ana</p>
                         <h6 id="tablero-score-3">0</h6>
                     </div>
                 </div>
@@ -136,7 +139,7 @@
                         <div class="pregunta-2-opcion-icon">
                             <div class="pregunta-2-opcion-icon-tuerca"></div>
                         </div>
-                        <div class="pregunta-2-opcion-txt"><p>Etapa Contractual y Etapa Postcontractual con póliza de cumplimiento (cuenta con amparos para ambas etapas) y póliza de Responsabilidad Civil</p></div>
+                        <div class="pregunta-2-opcion-txt"><p>Lorem ipsu e dolor adome salvatore</p></div>
                         <div class="pregunta-2-zona"></div>
                     </div>
                     <div id="pregunta-2-opcion1" class="pregunta-2-opcion pregunta-2-opcionb">
@@ -206,6 +209,36 @@
                     <div></div>
                 </div>
             </div>
+
+            <div id="bienvenida" class="bienvenida-off">
+                <div id="bienvenida-rueda-1"></div>
+                <div id="bienvenida-rueda-2"></div>
+                <h1 class="bienvenida-title">¿Con quién deseas jugar?</h1>
+
+                <div id="bienvenida-participantes" class="bienvenida-participantes-off">
+                    <div id="bienvenida-p1">
+                        <div class="bienvenido-personaje">
+                            <div class="ojos"></div>
+                        </div>
+                        <p class="bienvenida-name">Juan</p>
+                        <div class="bienvenido-personaje-zona" onclick="clickPersonaje(1)" onmouseover="overPersonaje()"></div>
+                    </div>
+                    <div id="bienvenida-p2">
+                        <div class="bienvenido-personaje">
+                            <div class="ojos"></div>
+                        </div>
+                        <p class="bienvenida-name">Ana</p>
+                        <div class="bienvenido-personaje-zona" onclick="clickPersonaje(2)" onmouseover="overPersonaje()"></div>
+                    </div>
+                    <div id="bienvenida-p3">
+                        <div class="bienvenido-personaje">
+                            <div class="ojos"></div>
+                        </div>
+                        <p class="bienvenida-name">Pedro</p>
+                        <div class="bienvenido-personaje-zona" onclick="clickPersonaje(3)" onmouseover="overPersonaje()"></div>
+                    </div>
+                </div>
+            </div>
         
             <div id="welcome-page" class="welcome-page-off">
                 <div></div>
@@ -259,7 +292,7 @@
         </div>
     </div>
 
-    <div id="loader" class="loader-state-1 loader-on">
+    <div id="loader" class="loader-state-2 loader-on">
         <div id="loader-clip" class="spd_sprite" width="38" height="38" frames="25" src="assets/images/preloader_sprite.png"></div>
         <div id="loader-text">Cargando</div>
     </div>
@@ -281,6 +314,7 @@
 <script>
 
 var tvturnon_mp3 = null
+var tvturnoff_mp3 = null
 var transicion_mp3 = null
 var intro_mp3 = null
 var intro_aplausos_mp3 = null
@@ -295,180 +329,281 @@ var mal_mp3 = null
 var dateprisa_mp3 = null
 var reloj_mp3 = null
 var booh_mp3 = null
+var susurros_mp3 = null
 
 var p1_bien_mp3 = null
+var p1_bien_mp3_url = 'juan_bien'
 var p2_bien_mp3 = null
+var p2_bien_mp3_url = 'pedro_bien'
 var p3_bien_mp3 = null
+var p3_bien_mp3_url = 'ana_bien'
 var p_bien_mp3 = null
 
-var total_elements_to_load = 31
+var bienvenida_mp3 = null
+
+var total_elements_to_load = 30
 var actual_element_loaded = 0
 function setLoaderPercent(){
     actual_element_loaded++
     var percent = (actual_element_loaded*100)/total_elements_to_load
     var perc = parseInt(percent)
+    if(perc>100){
+        perc = 100
+    }
 
     getE('loader-text').innerHTML = String(perc+'%')
 }
 
 window.onload = function(){
-    prepareTransition()
-
-    getE('loader').classList.remove('loader-state-1')
-    getE('loader').classList.add('loader-state-2')
-
     spdLoadSprite({idname:'loader-clip',autoplay:'off',callBack:function(){ 
         spdCreateAnimation({id:0,sprite:'loader-clip'})
+
+        spdPlayAnimation({frame:1,stop:0,loop:true},0)
+        getE('loader').classList.remove('loader-state-1')
+        getE('loader').classList.add('loader-state-2')
+
+        loadAudio({src:'assets/media/bienvenida.mp3',callBack:function(data){
+        bienvenida_mp3 = data
+        loadAudio({src:'assets/media/tv-turn-on.mp3',callBack:function(data){
+        tvturnon_mp3 = data
+        loadAudio({src:'assets/media/tv-turn-off.mp3',callBack:function(data){
+        tvturnoff_mp3 = data
+        loadAudio({src:'assets/media/over.mp3',callBack:function(data){
+        over_mp3 = data
+        loadAudio({src:'assets/media/click.mp3',callBack:function(data){
+        click_mp3 = data
+            
+            getE('loader').classList.remove('loader-on')
+            getE('loader').classList.add('loader-off')
+            spdStopAnimation(0)
+            getE('welcome-page').className = "welcome-page-on"
+
+            document.body.onclick = function(){
+                document.body.onclick = null
+
+                getE('welcome-page').className = "welcome-page-off"
+                turnTvOn(function(){
+                    getE('bienvenida').className = "bienvenida-on"
+                    getE('bienvenida-participantes').className = 'bienvenida-participantes-on'
+                    bienvenida_mp3.play()
+                })
+            }
+            
+        }})
+        }})
+        }})
+        }})
+        }})
+    }})
+}
+
+function overPersonaje(){
+    var over_audio = new Audio('assets/media/over.mp3')
+    over_audio.play()
+}
+
+var personaje_selected = 1
+
+function clickPersonaje(per){
+    personaje_selected = per
+    getE('bienvenida-participantes').className = 'bienvenida-participantes-off'
+    bienvenida_mp3.pause()
+    click_mp3.play()
+    preLoadGame()
+}
+
+function preLoadGame(){
+    turnTvOff(function(){
+        getE('bienvenida').className = "bienvenida-out"
+        getE('loader').classList.remove('loader-off')
+        getE('loader').classList.add('loader-on')
         spdPlayAnimation({frame:1,stop:0,loop:true},0)
 
-        spdCreateMovieClip({idname:'presentadora-feliz',callBack:function(){
-        setLoaderPercent()
-        spdCreateMovieClip({idname:'presentadora-prepara',callBack:function(){
-        setLoaderPercent()
-        spdCreateMovieClip({idname:'presentadora-desprepara',callBack:function(){
-        setLoaderPercent()
-        spdCreateMovieClip({idname:'presentadora-habla',callBack:function(){
-        setLoaderPercent()
-        spdCreateMovieClip({idname:'presentadora-quieta',callBack:function(){
-        setLoaderPercent()
+        //setear trampita
+        if(personaje_selected==2){
+            getE('p1-feliz').setAttribute('src','assets/images/p3-feliz/')
+            getE('p1-piensa').setAttribute('src','assets/images/p3-piensa/')
+            getE('p1-triste').setAttribute('src','assets/images/p3-triste/')
+            getE('p1-quieto').setAttribute('src','assets/images/p3-quieto/')
 
-        spdCreateMovieClip({idname:'p1-feliz',callBack:function(){
-        setLoaderPercent()
-        spdCreateMovieClip({idname:'p1-piensa',callBack:function(){
-        setLoaderPercent()
-        spdCreateMovieClip({idname:'p1-triste',callBack:function(){
-        setLoaderPercent()
-        spdCreateMovieClip({idname:'p1-quieto',callBack:function(){
-        spdCreateMovieClip({idname:'pa-piensa',callBack:function(){
-        setLoaderPercent()
-        //loadImage({url:'assets/images/p1-neutro/imagen.png',callBack:function(){
+            getE('p3-feliz').setAttribute('src','assets/images/p1-feliz/')
+            getE('p3-piensa').setAttribute('src','assets/images/p1-piensa/')
+            getE('p3-triste').setAttribute('src','assets/images/p1-triste/')
+            getE('p3-quieto').setAttribute('src','assets/images/p1-quieto/')
 
-        spdCreateMovieClip({idname:'p2-feliz',callBack:function(){
-        setLoaderPercent()
-        spdCreateMovieClip({idname:'p2-piensa',callBack:function(){
-        setLoaderPercent()
-        spdCreateMovieClip({idname:'p2-triste',callBack:function(){
-        setLoaderPercent()
-        spdCreateMovieClip({idname:'p2-quieto',callBack:function(){
-        setLoaderPercent()
-        //loadImage({url:'assets/images/p2-neutro/imagen.png',callBack:function(){
+            getE('pa-piensa').setAttribute('src','assets/images/p3-piensa/')
 
-        spdCreateMovieClip({idname:'p3-feliz',callBack:function(){
-        setLoaderPercent()
-        spdCreateMovieClip({idname:'p3-piensa',callBack:function(){
-        setLoaderPercent()
-        spdCreateMovieClip({idname:'p3-triste',callBack:function(){
-        setLoaderPercent()
-        spdCreateMovieClip({idname:'p3-quieto',callBack:function(){
-        setLoaderPercent()
-        //loadImage({url:'assets/images/p3-neutro/imagen.png',callBack:function(){
+            getE('tablero-name-1').innerHTML = "Ana"
+            getE('tablero-name-3').innerHTML = "Juan"
 
-            loadImage({url:'assets/images/silla.svg',callBack:function(){
-            loadImage({url:'assets/images/mesa.svg',callBack:function(){
+            p1_bien_mp3_url = 'ana_bien'
+            p3_bien_mp3_url = 'juan_bien'
+        }else if(personaje_selected==3){
+            getE('p1-feliz').setAttribute('src','assets/images/p2-feliz/')
+            getE('p1-piensa').setAttribute('src','assets/images/p2-piensa/')
+            getE('p1-triste').setAttribute('src','assets/images/p2-triste/')
+            getE('p1-quieto').setAttribute('src','assets/images/p2-quieto/')
 
-                spdCreateMovieClipAnimation({id:0,moviename:'presentadora-feliz'})
-                spdCreateMovieClipAnimation({id:1,moviename:'presentadora-prepara'})
-                spdCreateMovieClipAnimation({id:2,moviename:'presentadora-desprepara'})
-                spdCreateMovieClipAnimation({id:3,moviename:'presentadora-habla'})
+            getE('p2-feliz').setAttribute('src','assets/images/p1-feliz/')
+            getE('p2-piensa').setAttribute('src','assets/images/p1-piensa/')
+            getE('p2-triste').setAttribute('src','assets/images/p1-triste/')
+            getE('p2-quieto').setAttribute('src','assets/images/p1-quieto/')
 
-                spdCreateMovieClipAnimation({id:4,moviename:'p1-feliz'})
-                spdCreateMovieClipAnimation({id:5,moviename:'p1-piensa'})
-                spdCreateMovieClipAnimation({id:6,moviename:'p1-triste'})
-                spdCreateMovieClipAnimation({id:7,moviename:'p1-quieto'})
-                spdCreateMovieClipAnimation({id:8,moviename:'p2-feliz'})
-                spdCreateMovieClipAnimation({id:9,moviename:'p2-piensa'})
-                spdCreateMovieClipAnimation({id:10,moviename:'p2-triste'})
-                spdCreateMovieClipAnimation({id:11,moviename:'p2-quieto'})
-                spdCreateMovieClipAnimation({id:12,moviename:'p3-feliz'})
-                spdCreateMovieClipAnimation({id:13,moviename:'p3-piensa'})
-                spdCreateMovieClipAnimation({id:14,moviename:'p3-triste'})
-                spdCreateMovieClipAnimation({id:15,moviename:'p3-quieto'})
+            getE('pa-piensa').setAttribute('src','assets/images/p2-piensa/')
 
-                spdCreateMovieClipAnimation({id:16,moviename:'presentadora-quieta'})
-                spdCreateMovieClipAnimation({id:17,moviename:'pa-piensa'})
-        
-                loadAudio({src:'assets/media/tv-turn-on.mp3',callBack:function(data){
-                tvturnon_mp3 = data
-                setLoaderPercent()
-                loadAudio({src:'assets/media/transicion.mp3',callBack:function(data){
-                transicion_mp3 = data
-                setLoaderPercent()
-                loadAudio({src:'assets/media/intro.mp3',callBack:function(data){
-                intro_mp3 = data
-                setLoaderPercent()
-                loadAudio({src:'assets/media/intro_aplausos.mp3',callBack:function(data){
-                intro_aplausos_mp3 = data
-                setLoaderPercent()
-                loadAudio({src:'assets/media/juego/introduccion.mp3',callBack:function(data){
-                introduccion_mp3 = data
-                setLoaderPercent()
-                loadAudio({src:'assets/media/over.mp3',callBack:function(data){
-                over_mp3 = data
-                setLoaderPercent()
-                loadAudio({src:'assets/media/click.mp3',callBack:function(data){
-                click_mp3 = data
-                setLoaderPercent()
-                loadAudio({src:'assets/media/puff.mp3',callBack:function(data){
-                puff_mp3 = data
-                setLoaderPercent()
-                loadAudio({src:'assets/media/bien.mp3',callBack:function(data){
-                bien_mp3 = data
-                setLoaderPercent()
-                loadAudio({src:'assets/media/mal.mp3',callBack:function(data){
-                mal_mp3 = data
-                setLoaderPercent()
-                loadAudio({src:'assets/media/aplausos.mp3',callBack:function(data){
-                aplausos_mp3 = data
-                setLoaderPercent()
-                loadAudio({src:'assets/media/suspenso.mp3',callBack:function(data){
-                suspenso_mp3 = data
-                setLoaderPercent()
-                loadAudio({src:'assets/media/date_prisa.mp3',callBack:function(data){
-                dateprisa_mp3 = data
-                loadAudio({src:'assets/media/reloj.mp3',callBack:function(data){
-                reloj_mp3 = data
-                setLoaderPercent()
-                loadAudio({src:'assets/media/booh.mp3',callBack:function(data){
-                booh_mp3 = data
-                setLoaderPercent()
+            getE('tablero-name-1').innerHTML = "Pedro"
+            getE('tablero-name-2').innerHTML = "Juan"
 
-                loadAudio({src:'assets/media/juego/p1_bien.mp3',callBack:function(data){
-                p1_bien_mp3 = data
-                loadAudio({src:'assets/media/juego/p2_bien.mp3',callBack:function(data){
-                p2_bien_mp3 = data
-                loadAudio({src:'assets/media/juego/p3_bien.mp3',callBack:function(data){
-                p3_bien_mp3 = data
-                setLoaderPercent()
-                
-                    getE('loader').classList.remove('loader-on')
-                    getE('loader').classList.add('loader-off')
-                    spdStopAnimation(0)
-                    getE('welcome-page').className = "welcome-page-on"
-        
-                    document.body.onclick = function(){
-                        document.body.onclick = null
-                        clickComenzar()
-                    }
-                
-                }})
-                }})
-                }})
-                }})
-                }})
-                }})
-                }})
-                }})
-                }})
-                }})
-                }})
-                }})
-                }})
-                }})
-                }})
-                }})
-                }})
-                }})
+            p1_bien_mp3_url = 'pedro_bien'
+            p2_bien_mp3_url = 'juan_bien'
+        }else{
+            //todo como esta
+        }
+        loadGame()
+    })
+}
 
+function loadGame(){
+    prepareTransition()
+
+    spdCreateMovieClip({idname:'presentadora-feliz',callBack:function(){
+    setLoaderPercent()
+    spdCreateMovieClip({idname:'presentadora-prepara',callBack:function(){
+    setLoaderPercent()
+    spdCreateMovieClip({idname:'presentadora-desprepara',callBack:function(){
+    setLoaderPercent()
+    spdCreateMovieClip({idname:'presentadora-habla',callBack:function(){
+    setLoaderPercent()
+    spdCreateMovieClip({idname:'presentadora-quieta',callBack:function(){
+    setLoaderPercent()
+
+    spdCreateMovieClip({idname:'p1-feliz',callBack:function(){
+    setLoaderPercent()
+    spdCreateMovieClip({idname:'p1-piensa',callBack:function(){
+    setLoaderPercent()
+    spdCreateMovieClip({idname:'p1-triste',callBack:function(){
+    setLoaderPercent()
+    spdCreateMovieClip({idname:'p1-quieto',callBack:function(){
+
+    //clonar el alterno
+    spdCreateMovieClip({idname:'pa-piensa',callBack:function(){
+    setLoaderPercent()
+    //loadImage({url:'assets/images/p1-neutro/imagen.png',callBack:function(){
+
+    spdCreateMovieClip({idname:'p2-feliz',callBack:function(){
+    setLoaderPercent()
+    spdCreateMovieClip({idname:'p2-piensa',callBack:function(){
+    setLoaderPercent()
+    spdCreateMovieClip({idname:'p2-triste',callBack:function(){
+    setLoaderPercent()
+    spdCreateMovieClip({idname:'p2-quieto',callBack:function(){
+    setLoaderPercent()
+    //loadImage({url:'assets/images/p2-neutro/imagen.png',callBack:function(){
+
+    spdCreateMovieClip({idname:'p3-feliz',callBack:function(){
+    setLoaderPercent()
+    spdCreateMovieClip({idname:'p3-piensa',callBack:function(){
+    setLoaderPercent()
+    spdCreateMovieClip({idname:'p3-triste',callBack:function(){
+    setLoaderPercent()
+    spdCreateMovieClip({idname:'p3-quieto',callBack:function(){
+    setLoaderPercent()
+    //loadImage({url:'assets/images/p3-neutro/imagen.png',callBack:function(){
+
+        loadImage({url:'assets/images/silla.svg',callBack:function(){
+        loadImage({url:'assets/images/mesa.svg',callBack:function(){
+        loadImage({url:'assets/images/fondo_publico.jpg',callBack:function(){
+        loadImage({url:'assets/images/fondo-intro.jpg',callBack:function(){
+        loadImage({url:'assets/images/fondo-pregunta1.jpg',callBack:function(){
+        loadImage({url:'assets/images/fondo-pregunta2.jpg',callBack:function(){
+
+            spdCreateMovieClipAnimation({id:0,moviename:'presentadora-feliz'})
+            spdCreateMovieClipAnimation({id:1,moviename:'presentadora-prepara'})
+            spdCreateMovieClipAnimation({id:2,moviename:'presentadora-desprepara'})
+            spdCreateMovieClipAnimation({id:3,moviename:'presentadora-habla'})
+
+            spdCreateMovieClipAnimation({id:4,moviename:'p1-feliz'})
+            spdCreateMovieClipAnimation({id:5,moviename:'p1-piensa'})
+            spdCreateMovieClipAnimation({id:6,moviename:'p1-triste'})
+            spdCreateMovieClipAnimation({id:7,moviename:'p1-quieto'})
+            spdCreateMovieClipAnimation({id:8,moviename:'p2-feliz'})
+            spdCreateMovieClipAnimation({id:9,moviename:'p2-piensa'})
+            spdCreateMovieClipAnimation({id:10,moviename:'p2-triste'})
+            spdCreateMovieClipAnimation({id:11,moviename:'p2-quieto'})
+            spdCreateMovieClipAnimation({id:12,moviename:'p3-feliz'})
+            spdCreateMovieClipAnimation({id:13,moviename:'p3-piensa'})
+            spdCreateMovieClipAnimation({id:14,moviename:'p3-triste'})
+            spdCreateMovieClipAnimation({id:15,moviename:'p3-quieto'})
+
+            spdCreateMovieClipAnimation({id:16,moviename:'presentadora-quieta'})
+            spdCreateMovieClipAnimation({id:17,moviename:'pa-piensa'})
+    
+            loadAudio({src:'assets/media/transicion.mp3',callBack:function(data){
+            transicion_mp3 = data
+            setLoaderPercent()
+            loadAudio({src:'assets/media/intro.mp3',callBack:function(data){
+            intro_mp3 = data
+            setLoaderPercent()
+            loadAudio({src:'assets/media/intro_aplausos.mp3',callBack:function(data){
+            intro_aplausos_mp3 = data
+            setLoaderPercent()
+            loadAudio({src:'assets/media/juego/introduccion.mp3',callBack:function(data){
+            introduccion_mp3 = data
+            setLoaderPercent()
+            loadAudio({src:'assets/media/puff.mp3',callBack:function(data){
+            puff_mp3 = data
+            setLoaderPercent()
+            loadAudio({src:'assets/media/bien.mp3',callBack:function(data){
+            bien_mp3 = data
+            setLoaderPercent()
+            loadAudio({src:'assets/media/mal.mp3',callBack:function(data){
+            mal_mp3 = data
+            setLoaderPercent()
+            loadAudio({src:'assets/media/aplausos.mp3',callBack:function(data){
+            aplausos_mp3 = data
+            setLoaderPercent()
+            loadAudio({src:'assets/media/susurros.mp3',callBack:function(data){
+            susurros_mp3 = data
+            setLoaderPercent()
+            loadAudio({src:'assets/media/suspenso.mp3',callBack:function(data){
+            suspenso_mp3 = data
+            setLoaderPercent()
+            loadAudio({src:'assets/media/date_prisa.mp3',callBack:function(data){
+            dateprisa_mp3 = data
+            loadAudio({src:'assets/media/reloj.mp3',callBack:function(data){
+            reloj_mp3 = data
+            setLoaderPercent()
+            loadAudio({src:'assets/media/booh.mp3',callBack:function(data){
+            booh_mp3 = data
+            setLoaderPercent()
+
+            loadAudio({src:'assets/media/juego/'+p1_bien_mp3_url+'.mp3',callBack:function(data){
+            p1_bien_mp3 = data
+            loadAudio({src:'assets/media/juego/'+p2_bien_mp3_url+'.mp3',callBack:function(data){
+            p2_bien_mp3 = data
+            loadAudio({src:'assets/media/juego/'+p3_bien_mp3_url+'.mp3',callBack:function(data){
+            p3_bien_mp3 = data
+            setLoaderPercent()
+            
+                getE('loader').classList.remove('loader-on')
+                getE('loader').classList.add('loader-off')
+                spdStopAnimation(0)
+                clickComenzar()
+            
+            }})
+            }})
+            }})
+            }})
+            }})
+            }})
+            }})
+            }})
+            }})
+            }})
+            }})
+            }})
+            }})
+            }})
             }})
             }})
 
@@ -476,24 +611,29 @@ window.onload = function(){
         }})
         }})
         }})
-
-        }})
-        }})
         }})
         }})
 
-        }})
-        }})
-        }})
-        }})
-        }})
+    }})
+    }})
+    }})
+    }})
 
-        }})
-        }})
-        }})
-        }})
-        }})
+    }})
+    }})
+    }})
+    }})
 
+    }})
+    }})
+    }})
+    }})
+    }})
+
+    }})
+    }})
+    }})
+    }})
     }})
 
     //setTimer()

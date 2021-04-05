@@ -175,7 +175,7 @@ html,body{
     -webkit-transition: opacity 0.5s;
 }
 
-#intro,#inicio{
+#intro,#inicio,#comercial{
     position: absolute;
     width: 100%;
     height: auto;
@@ -183,7 +183,7 @@ html,body{
     margin: 0px;
     padding: 0px;
 }
-#video-intro,#video-inicio{
+#video-intro,#video-inicio,#video-comercial{
     position: relative;
     width: 100%;
     height: auto;
@@ -262,6 +262,17 @@ html,body{
     display: block;
 }
 
+/********COMERCIAL********/
+#comercial{
+    top: 0px;
+    background-color: #000000;
+    height: 100%;
+    height: calc(100% - 70px);
+    height: -moz-calc(100% - 70px);
+}
+#video-comercial{
+    height: 100%;
+}
 
 #luces{
     position: absolute;
@@ -928,6 +939,322 @@ html,body{
     -o-transform: scale(1.1);
 }
 
+/********************BIENVENIDA***************************/
+#bienvenida{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    margin: 0px;
+    padding: 0px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-image: url(../images/fondo-intro.jpg);
 
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
+.bienvenida-off{
+    visibility: hidden;
+}
+.bienvenida-on{
+    visibility: visible;
+}
+.bienvenida-out{
+    display: none;
+}
 
+#bienvenida-rueda-1,
+#bienvenida-rueda-2{
+    position: absolute;
+    width: 1000px;
+    height: 1000px;
+    margin: 0px;
+    padding: 0px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-image: url(../images/rueda-inicio.png);
+}
+#bienvenida-rueda-1{
+    top: -500px;
+    left: -500px;
+}
+#bienvenida-rueda-2{
+    top: 100%;
+    top: calc(100% - 500px);
+    top: -moz-calc(100% - 500px);
+    left: 100%;
+    left: calc(100% - 500px);
+    left: -moz-calc(100% - 500px);
+}
+
+.bienvenida-on #bienvenida-rueda-1,
+.bienvenida-on #bienvenida-rueda-2{
+    animation-duration: 20s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    
+    -webkit-animation-duration: 20s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+}
+.bienvenida-on #bienvenida-rueda-1{
+    animation-name: animacion-rueda-intro-1;
+    -webkit-animation-name: animacion-rueda-intro-1;
+}
+.bienvenida-on #bienvenida-rueda-2{
+    animation-name: animacion-rueda-intro-2;
+    -webkit-animation-name: animacion-rueda-intro-2;
+}
+@keyframes animacion-rueda-intro-1{
+    0%{
+        transform: rotate(0deg) scale(1);
+        -webkit-transform: rotate(0deg) scale(1);
+        -o-transform: rotate(0deg) scale(1);
+    }
+    50%{
+        transform: rotate(180deg) scale(1.2);
+        -webkit-transform: rotate(180deg) scale(1.2);
+        -o-transform: rotate(180deg) scale(1.2);
+    }
+    100%{
+        transform: rotate(360deg) scale(1);
+        -webkit-transform: rotate(360deg) scale(1);
+        -o-transform: rotate(360deg) scale(1);
+    }
+}
+@keyframes animacion-rueda-intro-2{
+    0%{
+        transform: rotate(360deg) scale(1.2);
+        -webkit-transform: rotate(360deg) scale(1.2);
+        -o-transform: rotate(360deg) scale(1.2);
+    }
+    50%{
+        transform: rotate(180deg) scale(1);
+        -webkit-transform: rotate(180deg) scale(1);
+        -o-transform: rotate(180deg) scale(1);
+    }
+    100%{
+        transform: rotate(0deg) scale(1.2);
+        -webkit-transform: rotate(0deg) scale(1.2);
+        -o-transform: rotate(0deg) scale(1.2);
+    }
+}
+
+.bienvenida-title{
+    display: block;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    margin-bottom: 30px;
+    margin-top: 50px;
+    position: relative;
+
+    font-family: 'SohoGothicPro-Bold';
+    font-size: 30px;
+    color: #FFFFFF;
+    text-align: center;
+    font-weight: normal;
+    line-height: normal;
+
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.8);
+}
+
+#bienvenida-participantes{
+    position: relative;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+}
+.bienvenida-participantes-on{
+    z-index: 10000;
+}
+.bienvenida-participantes-off{
+
+}
+#bienvenida-p1,
+#bienvenida-p2,
+#bienvenida-p3{
+    position: relative;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+
+    transition: transform 0.3s, -webkit-transform 0.3s, -o-transform 0.3s;
+    -webkit-transition: transform 0.3s, -webkit-transform 0.3s, -o-transform 0.3s;
+}
+
+#bienvenida-p1{
+    margin-right: 0px;
+    transform-origin: 100% 100%;
+    -webkit-transform-origin: 100% 100%;
+    -o-transform-origin: 100% 100%;
+}
+#bienvenida-p2{
+    margin-right: 0px;
+    transform-origin: 50% 100%;
+    -webkit-transform-origin: 50% 100%;
+    -o-transform-origin: 50% 100%;
+}
+#bienvenida-p3{
+    margin-right: 0px;
+    transform-origin: 0% 100%;
+    -webkit-transform-origin: 0% 100%;
+    -o-transform-origin: 0% 100%;
+}
+
+#bienvenida-p1:hover{
+    transform: scale(1.05) rotate(-2deg);
+    -webkit-transform: scale(1.05) rotate(-2deg);
+    -o-transform: scale(1.05) rotate(-2deg);
+}
+#bienvenida-p2:hover{
+    transform: scale(1.05);
+    -webkit-transform: scale(1.05);
+    -o-transform: scale(1.05);
+}
+#bienvenida-p3:hover{
+    transform: scale(1.05) rotate(2deg);
+    -webkit-transform: scale(1.05) rotate(2deg);
+    -o-transform: scale(1.05) rotate(2deg);
+}
+
+.bienvenido-personaje{
+    position: relative;
+    width: 300px;
+    height: 324px;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+#bienvenida-p1 .bienvenido-personaje{
+    background-image: url(../images/juan-intro.png);
+}
+#bienvenida-p2 .bienvenido-personaje{
+    background-image: url(../images/ana-intro.png);
+}
+#bienvenida-p3 .bienvenido-personaje{
+    background-image: url(../images/pedro-intro.png);
+}
+
+.ojos{
+    position: absolute;
+    width: 14%;
+    height: 4%;
+    margin: 0px;
+    padding: 0px;
+
+    transform-origin: center 0%;
+    -webkit-transform-origin: center 0%;
+    -o-transform-origin: center 0%;
+}
+#bienvenida-p1 .ojos{
+    top: 22%;
+    left: 41%;
+    background-color: #ffad82;
+}
+#bienvenida-p2 .ojos{
+    top: 18%;
+    left: 45%;
+    background-color: #ffad82;
+}
+#bienvenida-p3 .ojos{
+    top: 20%;
+    left: 46%;
+    background-color: #ffad82;
+}
+.bienvenida-on .ojos{
+    animation-name: animacion-ojos-personaje;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    -webkit-animation-name: animacion-ojos-personaje;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+}
+.bienvenida-on #bienvenida-p1 .ojos{
+    animation-duration: 4s;
+    -webkit-animation-duration: 4s;
+}
+.bienvenida-on #bienvenida-p2 .ojos{
+    animation-duration: 5s;
+    -webkit-animation-duration: 5s;
+}
+.bienvenida-on #bienvenida-p3 .ojos{
+    animation-duration: 4.5s;
+    -webkit-animation-duration: 4.5s;
+}
+@keyframes animacion-ojos-personaje{
+    0%{
+        transform: scale(1,0);
+        -webkit-transform: scale(1,0);
+        -o-transform: scale(1,0);
+    }
+    10%{
+        transform: scale(1,1);
+        -webkit-transform: scale(1,1);
+        -o-transform: scale(1,1);
+    }
+    15%{
+        transform: scale(1,0);
+        -webkit-transform: scale(1,0);
+        -o-transform: scale(1,0);
+    }
+    100%{
+        transform: scale(1,0);
+        -webkit-transform: scale(1,0);
+        -o-transform: scale(1,0);
+    }
+}
+
+.bienvenida-name{
+    position: relative;
+    display: block;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    margin-top: 10px;
+
+    font-family: 'SohoGothicPro-Bold';
+    font-size: 25px;
+    color: #FFFFFF;
+    text-align: center;
+    font-weight: normal;
+    line-height: normal;
+
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.8);
+}
+
+#bienvenida-p1 .bienvenida-name{
+    transform: skewY(7deg);
+    -webkit-transform: skewY(7deg);
+    -o-transform: skewY(7deg);
+}
+#bienvenida-p3 .bienvenida-name{
+    transform: skewY(-7deg);
+    -webkit-transform: skewY(-7deg);
+    -o-transform: skewY(-7deg);
+}
+.bienvenido-personaje-zona{
+    position: absolute;
+    width: 95%;
+    height: 95%;
+    top: 2.5%;
+    left: 2.5%;
+    padding: 0px;
+    margin: 0px;
+    cursor: pointer;
+    background-color: rgba(0,0,0,0);
+}
