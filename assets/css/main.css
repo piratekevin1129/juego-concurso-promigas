@@ -173,7 +173,7 @@ html,body{
     -webkit-transition: opacity 0.5s;
 }
 
-#intro,#inicio,#comercial{
+#intro,#inicio,#comercial,#elfin{
     position: absolute;
     width: 100%;
     height: auto;
@@ -181,7 +181,7 @@ html,body{
     margin: 0px;
     padding: 0px;
 }
-#video-intro,#video-inicio,#video-comercial{
+#video-intro,#video-inicio,#video-comercial,#video-elfin{
     position: relative;
     width: 100%;
     height: auto;
@@ -790,6 +790,9 @@ html,body{
 
 /************INICIO***********/
 #inicio{
+    background-color: #FFFFFF;
+}
+#elfin{
     background-color: #FFFFFF;
 }
 

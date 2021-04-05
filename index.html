@@ -23,14 +23,10 @@
         <div id="televisor">
             <div id="canal">
                 <div id="inicio" class="video-off">
-                    <video id="video-inicio">
-                        <source src="assets/media/inicio.mp4" type="video/mp4" />
-                    </video>
+                    <video id="video-inicio"></video>
                 </div>
                 <div id="intro" class="video-off">
-                    <video id="video-intro" class="video-intro-on">
-                        <source src="assets/media/publico.mp4" type="video/mp4" />
-                    </video>
+                    <video id="video-intro" class="video-intro-on"></video>
                     <div id="fondo-intro" class="fondo-intro-off">
                         <img src="assets/images/fondo_publico.jpg" />
                         <div id="piso-intro"></div>
@@ -102,6 +98,9 @@
                 </div>
                 <div id="comercial" class="video-off">
                     <video id="video-comercial"></video>
+                </div>
+                <div id="elfin" class="video-off">
+                    <video id="video-elfin"></video>
                 </div>
             </div>
             
@@ -614,11 +613,22 @@ function loadGame(){
             loadAudio({src:'assets/media/juego/'+p3_bien_mp3_url+'.mp3',callBack:function(data){
             p3_bien_mp3 = data
             setLoaderPercent()
-            
-                getE('loader').classList.remove('loader-on')
-                getE('loader').classList.add('loader-off')
-                //spdStopAnimation(0)
-                clickComenzar()
+
+                getE('video-inicio').src = 'assets/media/inicio.mp4'
+                getE('video-inicio').onloadedmetadata = function(){
+                    getE('video-inicio').onloadedmetadata = null
+
+                    getE('video-intro').src = 'assets/media/publico.mp4'
+                    getE('video-intro').onloadedmetadata = function(){
+                        getE('video-intro').onloadedmetadata = null
+                        
+                        getE('loader').classList.remove('loader-on')
+                        getE('loader').classList.add('loader-off')
+                        //spdStopAnimation(0)
+
+                        clickComenzar()
+                    }
+                }
             
             }})
             }})

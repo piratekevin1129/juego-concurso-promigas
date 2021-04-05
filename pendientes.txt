@@ -1,0 +1,3 @@
+omitir retroalimentacion
+pantalla para mostrar retroalimentacion
+2 actividades extras

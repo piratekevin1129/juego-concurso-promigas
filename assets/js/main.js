@@ -596,12 +596,12 @@ function nextPregunta(){
                     //getE('video-comercial').addEventListener('loaded',setVideoComercial,true)
                     //getE('video-comercial').addEventListener('loadeddata',setVideoComercial,true)
                     //getE('video-comercial').addEventListener('error',function(){alert("error")},true)
-                    getE('video-comercial').load()
+                    //getE('video-comercial').load()
                 }
             )
         },1000)
     }else{
-        if(actual_pregunta==4){
+        if(actual_pregunta==1){
             loadFinal()
         }else{
             preparePregunta('Siguiente Pregunta')
@@ -811,7 +811,8 @@ function loadFinal(){
                                         underground_mp3.pause()
                                         underground_mp3.onended = null
 
-                                        getE('tablero-brillo').className = 'tablero-off'
+                                        getE('tablero').className = 'tablero-off'
+                                        getE('tablero-brillo').className = ''
 
                                         showPresentadora('quieta')
                                         getE('presentadora').classList.add('presentadora-final')
@@ -820,10 +821,17 @@ function loadFinal(){
                                         spdStopMovieclip(mayor_mc)
                                         spdSetMovieclip({id:mayor_mc,f:1})
 
+                                        getE('intro').className = 'video-off'
+                                        getE('elfin').className = 'video-on'
                                     },
                                     function(){
                                         //callback
                                         console.log("finish")
+                                        getE('video-elfin').src = 'assets/media/elfin.mp4'
+                                        getE('video-elfin').onloadedmetadata = function(){
+                                            getE('video-elfin').onloadedmetadata = null
+                                            getE('video-elfin').play()
+                                        }
                                     }
                                 )
                             }},0)

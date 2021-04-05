@@ -3,11 +3,13 @@ var data_preguntas = [
 		id:1,
 		tipo:'verdaderofalso',
 		pregunta:'¿Es correcto decir que la mayoría de contratos requieren pólizas?',
+		preguntacc:1,
 		opciones:[
 			'Verdadero',
 			'Falso'
 		],
 		retroalimentacion:'<p><span>Correcto.</span> <br />¡La gran mayoría! Dado que nos pueden ocasionar afectación en el patrimonio por:</p><ul><li>Retracto de la oferta</li><li>Incumplimiento de obligaciones contractuales</li><li>Incumplimiento de obligaciones laborales</li><li>Daños a nuestros bienes o de terceros</li><li>Y lesiones personales o muerte de empleados o terceros</li></ul><p>Por lo tanto, antes de celebrar cualquier contrato consulta con el área de seguros.</p>',
+		retroalimentacioncc:2,
 		audiocorrect:'bien',
 		audioincorrect:'mal',
 		audiotiempo:'tiempo',
