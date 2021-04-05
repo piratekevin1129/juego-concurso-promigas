@@ -3,6 +3,8 @@
     position: absolute;
     width: 100%;
     height: 100%;
+    height: calc(100% - 70px);
+    height: -moz-calc(100% - 70px);
 }
 .pantalla-off{
     visibility: hidden;

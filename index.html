@@ -81,18 +81,29 @@
                     </div>
 
                     <div id="presentadora" class="presentadora-off">
-                        <div id="presentadora-feliz" class="spd_movieclip" width="400" height="590" frames="51" src="assets/images/presentadora-feliz/"></div>
+                        <div id="presentadora-feliz" class="spd_movieclip" width="400" height="590" frames="50" src="assets/images/presentadora-feliz/"></div>
                         <div id="presentadora-prepara" class="spd_movieclip" width="300" height="508" frames="10" src="assets/images/presentadora-prepara/"></div>
                         <div id="presentadora-desprepara" class="spd_movieclip" width="300" height="508" frames="10" src="assets/images/presentadora-desprepara/"></div>
-                        <div id="presentadora-habla" class="spd_movieclip" width="300" height="508" frames="31" src="assets/images/presentadora-habla/"></div>
+                        <div id="presentadora-habla" class="spd_movieclip" width="300" height="508" frames="30" src="assets/images/presentadora-habla/"></div>
                         <div id="presentadora-quieta" class="spd_movieclip" width="300" height="508" frames="10" src="assets/images/presentadora-quieta/"></div>
+                    </div>
+
+                    <div id="podio" class="podio-off">
+                        <div id="p1-celebra" class="spd_movieclip" width="360" height="500" frames="50" src="assets/images/p1-celebra/"></div>
+                        <div id="p2-celebra" class="spd_movieclip" width="360" height="500" frames="50" src="assets/images/p2-celebra/"></div>
+                        <div id="p3-celebra" class="spd_movieclip" width="360" height="500" frames="50" src="assets/images/p3-celebra/"></div>
+                        <div id="podio-img">
+                            <div id="podio-star-1"></div>
+                            <div id="podio-star-2"></div>
+                            <div id="podio-star-3"></div>
+                            <div id="podio-star-4"></div>
+                        </div>
                     </div>
                 </div>
                 <div id="comercial" class="video-off">
                     <video id="video-comercial"></video>
                 </div>
             </div>
-            
             
             <div id="tablero" class="tablero-off">
                 <div id="tablero-brillo" class="tablero-brillo-on"></div>
@@ -293,7 +304,8 @@
     </div>
 
     <div id="loader" class="loader-state-2 loader-on">
-        <div id="loader-clip" class="spd_sprite" width="38" height="38" frames="25" src="assets/images/preloader_sprite.png"></div>
+        <!--<div id="loader-clip" class="spd_sprite" width="38" height="38" frames="25" src="assets/images/preloader_sprite.png"></div>-->
+        <div id="loader-icon"></div>
         <div id="loader-text">Cargando</div>
     </div>
 
@@ -330,6 +342,7 @@ var dateprisa_mp3 = null
 var reloj_mp3 = null
 var booh_mp3 = null
 var susurros_mp3 = null
+var underground_mp3 = null
 
 var p1_bien_mp3 = null
 var p1_bien_mp3_url = 'juan_bien'
@@ -338,10 +351,11 @@ var p2_bien_mp3_url = 'pedro_bien'
 var p3_bien_mp3 = null
 var p3_bien_mp3_url = 'ana_bien'
 var p_bien_mp3 = null
+var final_mp3 = null
 
 var bienvenida_mp3 = null
 
-var total_elements_to_load = 30
+var total_elements_to_load = 32
 var actual_element_loaded = 0
 function setLoaderPercent(){
     actual_element_loaded++
@@ -355,10 +369,10 @@ function setLoaderPercent(){
 }
 
 window.onload = function(){
-    spdLoadSprite({idname:'loader-clip',autoplay:'off',callBack:function(){ 
+    //spdLoadSprite({idname:'loader-clip',autoplay:'off',callBack:function(){ 
         spdCreateAnimation({id:0,sprite:'loader-clip'})
 
-        spdPlayAnimation({frame:1,stop:0,loop:true},0)
+        //spdPlayAnimation({frame:1,stop:0,loop:true},0)
         getE('loader').classList.remove('loader-state-1')
         getE('loader').classList.add('loader-state-2')
 
@@ -375,15 +389,16 @@ window.onload = function(){
             
             getE('loader').classList.remove('loader-on')
             getE('loader').classList.add('loader-off')
-            spdStopAnimation(0)
+            //spdStopAnimation(0)
             getE('welcome-page').className = "welcome-page-on"
 
             document.body.onclick = function(){
                 document.body.onclick = null
 
                 getE('welcome-page').className = "welcome-page-off"
+                getE('bienvenida').className = "bienvenida-on"
+
                 turnTvOn(function(){
-                    getE('bienvenida').className = "bienvenida-on"
                     getE('bienvenida-participantes').className = 'bienvenida-participantes-on'
                     bienvenida_mp3.play()
                 })
@@ -394,7 +409,7 @@ window.onload = function(){
         }})
         }})
         }})
-    }})
+    //}})
 }
 
 function overPersonaje(){
@@ -417,7 +432,7 @@ function preLoadGame(){
         getE('bienvenida').className = "bienvenida-out"
         getE('loader').classList.remove('loader-off')
         getE('loader').classList.add('loader-on')
-        spdPlayAnimation({frame:1,stop:0,loop:true},0)
+        //spdPlayAnimation({frame:1,stop:0,loop:true},0)
 
         //setear trampita
         if(personaje_selected==2){
@@ -425,13 +440,15 @@ function preLoadGame(){
             getE('p1-piensa').setAttribute('src','assets/images/p3-piensa/')
             getE('p1-triste').setAttribute('src','assets/images/p3-triste/')
             getE('p1-quieto').setAttribute('src','assets/images/p3-quieto/')
+            getE('p1-celebra').setAttribute('src','assets/images/p3-celebra/')
 
             getE('p3-feliz').setAttribute('src','assets/images/p1-feliz/')
             getE('p3-piensa').setAttribute('src','assets/images/p1-piensa/')
             getE('p3-triste').setAttribute('src','assets/images/p1-triste/')
             getE('p3-quieto').setAttribute('src','assets/images/p1-quieto/')
+            getE('p3-celebra').setAttribute('src','assets/images/p1-celebra/')
 
-            getE('pa-piensa').setAttribute('src','assets/images/p3-piensa/')
+            getE('pa-piensa').setAttribute('src','assets/images/p3-piensa/')            
 
             getE('tablero-name-1').innerHTML = "Ana"
             getE('tablero-name-3').innerHTML = "Juan"
@@ -443,11 +460,13 @@ function preLoadGame(){
             getE('p1-piensa').setAttribute('src','assets/images/p2-piensa/')
             getE('p1-triste').setAttribute('src','assets/images/p2-triste/')
             getE('p1-quieto').setAttribute('src','assets/images/p2-quieto/')
+            getE('p1-celebra').setAttribute('src','assets/images/p2-celebra/')
 
             getE('p2-feliz').setAttribute('src','assets/images/p1-feliz/')
             getE('p2-piensa').setAttribute('src','assets/images/p1-piensa/')
             getE('p2-triste').setAttribute('src','assets/images/p1-triste/')
             getE('p2-quieto').setAttribute('src','assets/images/p1-quieto/')
+            getE('p2-celebra').setAttribute('src','assets/images/p1-celebra/')
 
             getE('pa-piensa').setAttribute('src','assets/images/p2-piensa/')
 
@@ -459,6 +478,8 @@ function preLoadGame(){
         }else{
             //todo como esta
         }
+        getE('p2-piensa').setAttribute('frames','1')
+        getE('p3-piensa').setAttribute('frames','1')
         loadGame()
     })
 }
@@ -484,11 +505,8 @@ function loadGame(){
     spdCreateMovieClip({idname:'p1-triste',callBack:function(){
     setLoaderPercent()
     spdCreateMovieClip({idname:'p1-quieto',callBack:function(){
-
-    //clonar el alterno
-    spdCreateMovieClip({idname:'pa-piensa',callBack:function(){
+    spdCreateMovieClip({idname:'pa-piensa',callBack:function(){    
     setLoaderPercent()
-    //loadImage({url:'assets/images/p1-neutro/imagen.png',callBack:function(){
 
     spdCreateMovieClip({idname:'p2-feliz',callBack:function(){
     setLoaderPercent()
@@ -498,7 +516,6 @@ function loadGame(){
     setLoaderPercent()
     spdCreateMovieClip({idname:'p2-quieto',callBack:function(){
     setLoaderPercent()
-    //loadImage({url:'assets/images/p2-neutro/imagen.png',callBack:function(){
 
     spdCreateMovieClip({idname:'p3-feliz',callBack:function(){
     setLoaderPercent()
@@ -508,7 +525,13 @@ function loadGame(){
     setLoaderPercent()
     spdCreateMovieClip({idname:'p3-quieto',callBack:function(){
     setLoaderPercent()
-    //loadImage({url:'assets/images/p3-neutro/imagen.png',callBack:function(){
+
+    spdCreateMovieClip({idname:'p1-celebra',callBack:function(){
+    setLoaderPercent()
+    spdCreateMovieClip({idname:'p2-celebra',callBack:function(){
+    setLoaderPercent()
+    spdCreateMovieClip({idname:'p3-celebra',callBack:function(){
+    setLoaderPercent()
 
         loadImage({url:'assets/images/silla.svg',callBack:function(){
         loadImage({url:'assets/images/mesa.svg',callBack:function(){
@@ -516,6 +539,9 @@ function loadGame(){
         loadImage({url:'assets/images/fondo-intro.jpg',callBack:function(){
         loadImage({url:'assets/images/fondo-pregunta1.jpg',callBack:function(){
         loadImage({url:'assets/images/fondo-pregunta2.jpg',callBack:function(){
+        loadImage({url:'assets/images/tablero.png',callBack:function(){
+        loadImage({url:'assets/images/tablero-rayas.png',callBack:function(){
+        loadImage({url:'assets/images/tablero-luz.svg',callBack:function(){
 
             spdCreateMovieClipAnimation({id:0,moviename:'presentadora-feliz'})
             spdCreateMovieClipAnimation({id:1,moviename:'presentadora-prepara'})
@@ -537,7 +563,17 @@ function loadGame(){
 
             spdCreateMovieClipAnimation({id:16,moviename:'presentadora-quieta'})
             spdCreateMovieClipAnimation({id:17,moviename:'pa-piensa'})
+
+            spdCreateMovieClipAnimation({id:18,moviename:'p1-celebra'})
+            spdCreateMovieClipAnimation({id:19,moviename:'p2-celebra'})
+            spdCreateMovieClipAnimation({id:20,moviename:'p3-celebra'})
     
+            loadAudio({src:'assets/media/juego/final.mp3',callBack:function(data){
+            final_mp3 = data
+            setLoaderPercent()
+            loadAudio({src:'assets/media/underground.mp3',callBack:function(data){
+            underground_mp3 = data
+            setLoaderPercent()
             loadAudio({src:'assets/media/transicion.mp3',callBack:function(data){
             transicion_mp3 = data
             setLoaderPercent()
@@ -550,15 +586,10 @@ function loadGame(){
             loadAudio({src:'assets/media/juego/introduccion.mp3',callBack:function(data){
             introduccion_mp3 = data
             setLoaderPercent()
-            loadAudio({src:'assets/media/puff.mp3',callBack:function(data){
-            puff_mp3 = data
-            setLoaderPercent()
             loadAudio({src:'assets/media/bien.mp3',callBack:function(data){
             bien_mp3 = data
-            setLoaderPercent()
             loadAudio({src:'assets/media/mal.mp3',callBack:function(data){
             mal_mp3 = data
-            setLoaderPercent()
             loadAudio({src:'assets/media/aplausos.mp3',callBack:function(data){
             aplausos_mp3 = data
             setLoaderPercent()
@@ -576,7 +607,6 @@ function loadGame(){
             loadAudio({src:'assets/media/booh.mp3',callBack:function(data){
             booh_mp3 = data
             setLoaderPercent()
-
             loadAudio({src:'assets/media/juego/'+p1_bien_mp3_url+'.mp3',callBack:function(data){
             p1_bien_mp3 = data
             loadAudio({src:'assets/media/juego/'+p2_bien_mp3_url+'.mp3',callBack:function(data){
@@ -587,7 +617,7 @@ function loadGame(){
             
                 getE('loader').classList.remove('loader-on')
                 getE('loader').classList.add('loader-off')
-                spdStopAnimation(0)
+                //spdStopAnimation(0)
                 clickComenzar()
             
             }})
@@ -606,6 +636,7 @@ function loadGame(){
             }})
             }})
             }})
+            }})
 
         }})
         }})
@@ -613,6 +644,13 @@ function loadGame(){
         }})
         }})
         }})
+        }})
+        }})
+        }})
+
+    }})
+    }})
+    }})
 
     }})
     }})
@@ -638,7 +676,6 @@ function loadGame(){
 
     //setTimer()
     //setTransition({title:'¿Estás listo?'})
-    
 }
 
 </script>

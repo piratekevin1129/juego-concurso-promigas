@@ -29,12 +29,18 @@ html,body{
     background-color: rgba(255,255,255,0);
 }
 
-#loader-clip{
+#loader-clip,#loader-icon{
     position: relative !important;
     margin: 0px;
     padding: 0px;
     width: 38px;
     height: 38px;
+}
+#loader-icon{
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-image: url(../images/signal-icon-1.svg);
 }
 .loader-off{
     display: none;
@@ -55,29 +61,19 @@ html,body{
 
 @keyframes animacion-preloader{
     0%{
-        transform: rotate(0deg);
-        -webkit-transform: rotate(0deg);
-        -o-transform: rotate(0deg);
+        opacity: 0.8;
     }
     33.33%{
-        transform: rotate(0deg);
-        -webkit-transform: rotate(0deg);
-        -o-transform: rotate(0deg);
+        opacity: 1;
     }
     50%{
-        transform: rotate(180deg);
-        -webkit-transform: rotate(180deg);
-        -o-transform: rotate(180deg);
+        opacity: 0.7;
     }
     83.33%{
-        transform: rotate(180deg);
-        -webkit-transform: rotate(180deg);
-        -o-transform: rotate(180deg);
+        opacity: 1;
     }
     100%{
-        transform: rotate(360deg);
-        -webkit-transform: rotate(360deg);
-        -o-transform: rotate(360deg);
+        opacity: 0.8;
     }
 }
 
@@ -126,6 +122,8 @@ html,body{
     position: absolute;
     width: 100%;
     height: 100%;
+    height: calc(100% - 70px);
+    height: -moz-calc(100% - 70px);
     top: 0px;
     left: 0px;
     margin: 0px;
@@ -944,6 +942,8 @@ html,body{
     position: absolute;
     width: 100%;
     height: 100%;
+    height: calc(100% - 70px);
+    height: -moz-calc(100% - 70px);
     top: 0px;
     left: 0px;
     margin: 0px;
@@ -956,6 +956,7 @@ html,body{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    display: flex;
 }
 
 .bienvenida-off{
@@ -965,14 +966,14 @@ html,body{
     visibility: visible;
 }
 .bienvenida-out{
-    display: none;
+    display: none !important;
 }
 
 #bienvenida-rueda-1,
 #bienvenida-rueda-2{
     position: absolute;
-    width: 1000px;
-    height: 1000px;
+    width: 800px;
+    height: 800px;
     margin: 0px;
     padding: 0px;
     background-repeat: no-repeat;
@@ -981,16 +982,16 @@ html,body{
     background-image: url(../images/rueda-inicio.png);
 }
 #bienvenida-rueda-1{
-    top: -500px;
-    left: -500px;
+    top: -400px;
+    left: -400px;
 }
 #bienvenida-rueda-2{
     top: 100%;
-    top: calc(100% - 500px);
-    top: -moz-calc(100% - 500px);
+    top: calc(100% - 400px);
+    top: -moz-calc(100% - 400px);
     left: 100%;
-    left: calc(100% - 500px);
-    left: -moz-calc(100% - 500px);
+    left: calc(100% - 400px);
+    left: -moz-calc(100% - 400px);
 }
 
 .bienvenida-on #bienvenida-rueda-1,
@@ -1257,4 +1258,171 @@ html,body{
     margin: 0px;
     cursor: pointer;
     background-color: rgba(0,0,0,0);
+}
+
+/*********************FINAL*******************/
+
+#podio{
+    position: absolute;
+    width: 540px;
+    height: 500px;
+    margin: 0px;
+    padding: 0px;
+
+    transform-origin: 100% 100%;
+    -webkit-transform-origin: 100% 100%;
+    -o-transform-origin: 100% 100%;
+
+    transform: scale(0.8);
+    -webkit-transform: scale(0.8);
+    -o-transform: scale(0.8);
+
+    bottom: 20px;
+    right: 5%;
+}
+.podio-off{
+    display: none;
+}
+.podio-on{
+    display: block;
+}
+
+#podio-img{
+    position: absolute;
+    width: 540px;
+    height: 210px;
+    bottom: 0px;
+    left: 0px;
+
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-image: url(../images/podio.png);
+}
+#podio-star-1,
+#podio-star-2,
+#podio-star-3,
+#podio-star-4{
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    margin: 0px;
+    padding: 0px;
+
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-image: url(../images/podio-star.svg);
+}
+
+.podio-on #podio-star-1,
+.podio-on #podio-star-2,
+.podio-on #podio-star-3,
+.podio-on #podio-star-4{
+    animation-name: animacion-podio-star;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    -webkit-animation-name: animacion-podio-star;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+}
+.podio-on #podio-star-1{
+    bottom: 16px;
+    left: 40px;
+    animation-duration: 2s;
+    -webkit-animation-duration: 2s;
+}
+.podio-on #podio-star-2{
+    top: 40px;
+    left: 200px;
+    animation-duration: 2.5s;
+    -webkit-animation-duration: 2.5s;
+}
+.podio-on #podio-star-3{
+    top: 20px;
+    left: 390px;
+    animation-duration: 3s;
+    -webkit-animation-duration: 3s;
+}
+.podio-on #podio-star-4{
+    bottom: 16px;
+    right: 0px;
+    animation-duration: 3.5s;
+    -webkit-animation-duration: 3.5s;
+}
+@keyframes animacion-podio-star{
+    0%{
+        transform: translateX(-50%) translateY(-50%) scale(0) rotate(0deg);
+        -webkit-transform: translateX(-50%) translateY(-50%) scale(0) rotate(0deg);
+        -o-transform: translateX(-50%) translateY(-50%) scale(0) rotate(0deg);
+    }
+    10%{
+        transform: translateX(-50%) translateY(-50%) scale(1) rotate(360deg);
+        -webkit-transform: translateX(-50%) translateY(-50%) scale(1) rotate(360deg);
+        -o-transform: translateX(-50%) translateY(-50%) scale(1) rotate(360deg);
+    }
+    20%{
+        transform: translateX(-50%) translateY(-50%) scale(0) rotate(0deg);
+        -webkit-transform: translateX(-50%) translateY(-50%) scale(0) rotate(0deg);
+        -o-transform: translateX(-50%) translateY(-50%) scale(0) rotate(0deg);
+    }
+    100%{
+        transform: translateX(-50%) translateY(-50%) scale(0) rotate(0deg);
+        -webkit-transform: translateX(-50%) translateY(-50%) scale(0) rotate(0deg);
+        -o-transform: translateX(-50%) translateY(-50%) scale(0) rotate(0deg);
+    }
+}
+
+#p1-celebra,
+#p2-celebra,
+#p3-celebra{
+    position: absolute;
+    width: 360px;
+    height: 500px;
+}
+
+.p1-celebra-default{
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+.p2-celebra-default{
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+.p3-celebra-default{
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.podio-pos1{
+    left: 50%;
+    left: calc(50% - (360px / 2));
+    left: -moz-calc(50% - (360px / 2));
+    bottom: 200px;
+}
+.podio-pos2{
+    left: 17.5%;
+    left: calc(17.5% - (360px / 2));
+    left: -moz-calc(17.5% - (360px / 2));
+    bottom: 125px;
+}
+.podio-pos3{
+    left: 82.5%;
+    left: calc(82.5% - (360px / 2));
+    left: -moz-calc(82.5% - (360px / 2));
+    bottom: 95px;
+}
+
+.podio-off #p1-celebra,
+.podio-off #p2-celebra,
+.podio-off #p3-celebra{
+    display: none;
+}
+.podio-on #p1-celebra,
+.podio-on #p2-celebra,
+.podio-on #p3-celebra{
+    display: block;
 }

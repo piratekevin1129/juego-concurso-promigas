@@ -18,6 +18,17 @@
     -webkit-transform: scale(0.7);
     -o-transform: scale(0.7);
 }
+.presentadora-final{
+    left: 10%;
+    left: calc(2% + 174px + 5%);
+    left: -moz-calc(2% + 174px + 5%);
+    transform-origin: 0% 100%;
+    -webkit-transform-origin: 0% 100%;
+    -o-transform-origin: 0% 100%;
+    transform: scale(0.8);
+    -webkit-transform: scale(0.8);
+    -o-transform: scale(0.8);
+}
 .presentadora-big{
     left: 10%;
     transform-origin: 0% 100%;

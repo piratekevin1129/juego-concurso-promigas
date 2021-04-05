@@ -3,6 +3,8 @@ var animacion_entradas = null
 
 function clickComenzar2(){
     getE('welcome-page').className = 'welcome-page-off'
+    turnTvOn(function(){
+    })
 }
 
 function clickComenzar(){
@@ -94,42 +96,46 @@ function preparePregunta(title){
         clearTimeout(animacion_entradas)
         animacion_entradas = null
 
-        setTransition({title:title},
-            function(){
-                //resetear animaciones de concursantes tristes y felices
-                resetParticipantes()
-                resetPresentadora()
-
-                showPresentadora('prepara')
-                //getE('concursantes').className = 'concursantes-big'
-                //getE('presentadora').classList.add('presentadora-big')
-                getE('concursantes').className = 'concursantes-big'
-                getE('presentadora').classList.add('presentadora-big')
-
-                getE('video-intro').currentTime = 0
-                getE('video-intro').pause()
-                getE('video-intro').onended = null
-                getE('video-intro').className = 'video-intro-off'
-                getE('trofeo').className = 'trofeo-big'
-                getE('tablero-score-1').className = ''
-                getE('tablero-score-2').className = ''
-                getE('tablero-score-3').className = ''
-
-                getE('intro').className = 'video-on intro-center'
-                getE('fondo-intro').className = 'fondo-intro-on'
-                getE('tablero').className = 'tablero-off'
-                getE('tablero-brillo').className = ''
-            },
-            function(){
-                spdPlayMovieclip({frame:1,stop:0,loop:true},7)
-                spdPlayMovieclip({frame:1,stop:0,loop:true},11)
-                spdPlayMovieclip({frame:1,stop:0,loop:true},15)
-
-                //Empezar preguntas
-                empezarPreguntas()
-            }
-        )
+        continuePregunta(title)
     },1000)
+}
+
+function continuePregunta(title){
+    setTransition({title:title},
+        function(){
+            //resetear animaciones de concursantes tristes y felices
+            resetParticipantes()
+            resetPresentadora()
+
+            showPresentadora('prepara')
+            //getE('concursantes').className = 'concursantes-big'
+            //getE('presentadora').classList.add('presentadora-big')
+            getE('concursantes').className = 'concursantes-big'
+            getE('presentadora').classList.add('presentadora-big')
+
+            getE('video-intro').currentTime = 0
+            getE('video-intro').pause()
+            getE('video-intro').onended = null
+            getE('video-intro').className = 'video-intro-off'
+            getE('trofeo').className = 'trofeo-big'
+            getE('tablero-score-1').className = ''
+            getE('tablero-score-2').className = ''
+            getE('tablero-score-3').className = ''
+
+            getE('intro').className = 'video-on intro-center'
+            getE('fondo-intro').className = 'fondo-intro-on'
+            getE('tablero').className = 'tablero-off'
+            getE('tablero-brillo').className = ''
+        },
+        function(){
+            spdPlayMovieclip({frame:1,stop:0,loop:true},7)
+            spdPlayMovieclip({frame:1,stop:0,loop:true},11)
+            spdPlayMovieclip({frame:1,stop:0,loop:true},15)
+
+            //Empezar preguntas
+            empezarPreguntas()
+        }
+    )
 }
 
 var actual_pregunta = 0
@@ -408,9 +414,7 @@ function ganarPregunta(){
                         //puff_mp3.play()
                     }},2)
                 }
-            /*}else{
-                alert("No audio")
-            }*/
+            //}
         }
     )
 }
@@ -561,18 +565,29 @@ function nextPregunta(){
             setTransition({title:'¡Ya regresamos!'},
                 function(){
                     //resetear animaciones de concursantes tristes y felices
-                    
+                    resetParticipantes()
+                    resetPresentadora()
+
+                    showPresentadora('prepara')
+                    //getE('concursantes').className = 'concursantes-big'
+                    //getE('presentadora').classList.add('presentadora-big')
+                    getE('concursantes').className = 'concursantes-big'
+                    getE('presentadora').classList.add('presentadora-big')
+
                     getE('video-intro').currentTime = 0
                     getE('video-intro').pause()
                     getE('video-intro').onended = null
                     getE('video-intro').className = 'video-intro-off'
-                    
+                    getE('trofeo').className = 'trofeo-big'
                     getE('tablero-score-1').className = ''
                     getE('tablero-score-2').className = ''
                     getE('tablero-score-3').className = ''
 
+                    getE('intro').className = 'video-on intro-center'
+                    getE('fondo-intro').className = 'fondo-intro-on'
                     getE('tablero').className = 'tablero-off'
                     getE('tablero-brillo').className = ''
+                    
                     getE('comercial').className = 'video-on'
                 },
                 function(){
@@ -586,9 +601,12 @@ function nextPregunta(){
             )
         },1000)
     }else{
-        preparePregunta('Siguiente Pregunta')
+        if(actual_pregunta==data_preguntas.length){
+            loadFinal()
+        }else{
+            preparePregunta('Siguiente Pregunta')
+        }
     }
-    
 }
 function setVideoComercial(e){
     getE('video-comercial').removeEventListener('loadedmetadata',setVideoComercial,true)
@@ -602,7 +620,7 @@ function setVideoComercial(e){
 
         getE('comercial').innerHTML = ''
         getE('comercial').className = 'video-off'
-        preparePregunta('Siguiente Pregunta')
+        continuePregunta('Siguiente Pregunta')
     }
 }
 
@@ -663,6 +681,159 @@ function sumarPuntosTablero(datos){
     }
 
     getE('tablero-brillo').className = 'tablero-brillo-on'
+}
+
+var menor = 0
+var menor_ind = 0
+var mayor = 0
+var mayor_ind = 0
+var mitad = 0
+var mitad_ind = 0
+
+function loadFinal(){
+    //hola
+    //se va
+    getE('intro').className = 'video-on intro-out'
+    animacion_entradas = setTimeout(function(){
+        clearTimeout(animacion_entradas)
+        animacion_entradas = null
+
+        setTransition({title:'Hemos terminado'},
+            function(){
+                //resetear animaciones de concursantes tristes y felices
+                resetParticipantes()
+                resetPresentadora()
+    
+                showPresentadora('prepara')
+                //getE('concursantes').className = 'concursantes-big'
+                //getE('presentadora').classList.add('presentadora-big')
+                getE('concursantes').className = 'concursantes-off'
+                getE('presentadora').classList.add('presentadora-final')
+    
+                getE('intro').className = 'video-on intro-out'
+                getE('video-intro').className = 'video-on'
+                getE('fondo-intro').className = 'fondo-intro-off'
+                getE('video-intro').play()
+                getE('video-intro').onended = function(){
+                    getE('video-intro').currentTime = 0
+                    getE('video-intro').play()
+                }
+                intro_aplausos_mp3.currentTime = 0
+                intro_aplausos_mp3.play()
+                intro_aplausos_mp3.onended = function(){
+                    intro_aplausos_mp3.currentTime = 0
+                    intro_aplausos_mp3.play()
+                }
+                underground_mp3.currentTime = 0
+                underground_mp3.play()
+                underground_mp3.onended = function(){
+                    underground_mp3.currentTime = 0
+                    underground_mp3.play()
+                }
+
+                getE('trofeo').className = 'trofeo-intro'
+                getE('tablero-score-1').className = ''
+                getE('tablero-score-2').className = ''
+                getE('tablero-score-3').className = ''
+                getE('tablero').className = 'tablero-on'
+                getE('reloj').className = 'reloj-off'
+                                
+                getE('podio').className = 'podio-on'
+
+                menor = puntajes[0]
+                menor_ind = 0
+                mayor = 0
+                mayor_ind = 0
+                mitad = 0
+                mitad_ind = 0
+
+                for(i = 0;i<puntajes.length;i++){
+                    if(puntajes[i]<=menor){
+                        menor = puntajes[i]
+                        menor_ind = i
+                    }
+                }
+                for(i = 0;i<puntajes.length;i++){
+                    if(i!=menor_ind){
+                        if(puntajes[i]>=mayor){
+                            mayor = puntajes[i]
+                            mayor_ind = i
+                        }
+                    }
+                }
+                for(i = 0;i<puntajes.length;i++){
+                    var esta = false
+                    if(i!=menor_ind&&i!=mayor_ind){
+                        mitad = puntajes[i]
+                        mitad_ind = i
+                    }
+                }
+                getE('p'+(mayor_ind+1)+'-celebra').classList.add('podio-pos1')
+                getE('p'+(mitad_ind+1)+'-celebra').classList.add('podio-pos2')
+                getE('p'+(menor_ind+1)+'-celebra').classList.add('podio-pos3')
+            },
+            function(){
+                getE('intro').className = 'video-on intro-in'
+
+                spdPlayMovieclip({frame:1,stop:0,loop:true},(18+mayor_ind))
+
+                showPresentadora('prepara')
+                getE('presentadora').classList.add('presentadora-final')
+                spdPlayMovieclip({frame:1,stop:10,loop:false,end:function(){
+                    final_mp3.currentTime = 0
+                    final_mp3.play()
+
+                    showPresentadora('habla')
+                    getE('presentadora').classList.add('presentadora-final')
+                    spdPlayMovieclip({frame:1,stop:0,loop:true},3)
+
+                    final_mp3.onended = function(){
+                        spdStopMovieclip(3)
+                        spdSetMovieclip({id:3,f:1})
+                        showPresentadora('desprepara')
+                        getE('presentadora').classList.add('presentadora-final')
+                        
+                        spdPlayMovieclip({frame:1,stop:10,loop:false,end:function(){
+                            showPresentadora('feliz')
+                            getE('presentadora').classList.add('presentadora-final')
+                            spdPlayMovieclip({frame:1,stop:50,loop:false,end:function(){
+
+                                setCortina({title:'¡Chao Chao!'},
+                                    function(){
+                                        //prepare
+                                        
+                                        getE('video-intro').pause()
+                                        getE('video-intro').onended = null
+                                        
+                                        intro_aplausos_mp3.pause()
+                                        intro_aplausos_mp3.onended = null
+                                        underground_mp3.pause()
+                                        underground_mp3.onended = null
+
+                                        getE('tablero-brillo').className = 'tablero-off'
+
+                                        spdStopMovieclip(0)
+                                        spdSetMovieclip({id:0,f:1})
+                                        showPresentadora('quieta')
+                                        getE('presentadora').classList.add('presentadora-final')
+
+                                        var mayor_mc = 18+mayor_ind
+                                        spdStopMovieclip(mayor_mc)
+                                        spdSetMovieclip({id:mayor_mc,f:1})
+
+                                    },
+                                    function(){
+                                        //callback
+                                        console.log("finish")
+                                    }
+                                )
+                            }},0)
+                        }},2)
+                    }
+                }},1)
+            }
+        )
+    },1000)
 }
 
 /*audio_general_mp3 = new Audio()

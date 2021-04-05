@@ -1,3 +1,7 @@
+var _actual_frames = null
+var _actual_callback = null
+var _actual_total = null
+
 function spdCreateMovieClip(data){
     var element = document.getElementById(data.idname)
     var width = element.getAttribute("width")
@@ -7,44 +11,54 @@ function spdCreateMovieClip(data){
     element.style.width = width+'px'
     element.style.height = height+'px'
 
-    loadFrames(1,data,width,height,frames,src)
+    _actual_frames = 0
+    _actual_total = frames
+    _actual_callback = data.callBack
+
+    loadFrames(data.idname,width,height,src)
 }
 
-function loadFrames(initial,data,w,h,frames,src){
-    if(initial>frames){
-        for(var f = 2;f<=frames;f++){
-            var canvas_id = document.getElementById(data.idname+'_frame_'+f)
-            canvas_id.style.visibility = 'hidden'
-        }
-        data.callBack()
-    }else{
-        var url = src+'imagen'+initial+'.png'
-        loadFrame(url,loadFrames,initial,data,w,h,frames,src)
+function loadFrames(idname,w,h,src){
+    for(var _i = 0;_i<_actual_total;_i++){
+        var url = src+'imagen'+(_i+1)+'.png'
+        loadFrame(url,idname,w,h)
     }
 }
 
-function loadFrame(url,callBack,initial,data,w,h,frames,src){
+function loadFrame(url,idname,w,h){
     var image_frame = new Image()
+    
     image_frame.onload = function(){
         image_frame.onload = null
         image_frame.null = null
+
+        var initial1 = String(this.src).split("n")
+        var initial2 = initial1[initial1.length-2].split(".")
+        var initial = initial2[0]
+        //console.log("initial:"+initial)
 
         var canvas = document.createElement('canvas')
         canvas.width = w
         canvas.height = h
         canvas.className = 'canvas_fotograma'
-        canvas.id = data.idname+'_frame_'+(initial)
+        canvas.id = idname+'_frame_'+(initial)
 
         var ctx = canvas.getContext('2d')
         ctx.drawImage(this,0,0,w,h)
 
-        var object = document.getElementById(data.idname)
+        var object = document.getElementById(idname)
         object.appendChild(canvas)
         
-
         image_frame = null
-        initial++
-        callBack(initial,data,w,h,frames,src)
+        
+        _actual_frames++
+        if(_actual_frames>=_actual_total){
+            for(var f = 2;f<=_actual_frames;f++){
+                var canvas_id = document.getElementById(idname+'_frame_'+f)
+                canvas_id.style.visibility = 'hidden'
+            }
+            _actual_callback()
+        }
     }
     image_frame.onerror = function(){
         console.log("error cargando el fotograma : "+url)
@@ -52,8 +66,15 @@ function loadFrame(url,callBack,initial,data,w,h,frames,src){
         image_frame.null = null
         
         image_frame = null
-        initial++
-        callBack(initial,data,w,h,frames,src)
+
+        /*_actual_frames++
+        if(_actual_frames=>_actual_total){
+            for(var f = 2;f<=_actual_frames;f++){
+                var canvas_id = document.getElementById(idname+'_frame_'+f)
+                canvas_id.style.visibility = 'hidden'
+            }
+            _actual_callback()
+        }*/
     }
     image_frame.src = url
 }
