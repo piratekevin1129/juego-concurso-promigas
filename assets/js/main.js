@@ -673,7 +673,8 @@ function setRetroalimentacion(estado){
             audio_general_mp3.onloadedmetadata = null
             audio_general_mp3.onended = null
     
-            if(estado=='mal'){
+            if(estado=='mal'&&actual_pregunta<(data_preguntas.length-1)){
+                //mirar que no sea el ultimo
                 //next
                 var n_audio = null
                 if(actual_pregunta_data.audionext==''){
@@ -989,6 +990,7 @@ function loadFinal(){
                     spdPlayMovieclip({frame:1,stop:0,loop:true},3)
 
                     final_mp3.onended = function(){
+                        unsetCC()
                         spdStopMovieclip(3)
                         spdSetMovieclip({id:3,f:1})
                         showPresentadora('desprepara')
