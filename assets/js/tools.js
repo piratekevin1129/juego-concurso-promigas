@@ -6,6 +6,17 @@ function getRand(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
+function unorderArray(lengt){
+    var array = []
+    while(array.length<lengt){
+        var r = getRand(0,(lengt-1))
+        if(!array.includes(r)){
+            array.push(r)
+        }
+    }
+    return array
+}
+
 function getE(idname){
     return document.getElementById(idname)
 }

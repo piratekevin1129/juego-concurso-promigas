@@ -177,10 +177,10 @@
                         <div class="pregunta-2-zona"></div>
                     </div>
                 </div>
-                <div id="pregunta-2-marco">
-                    <div id="pregunta-2-marco-3-1"></div>
-                    <div id="pregunta-2-marco-1">
-                        <div id="pregunta-2-participante">
+                <div class="pregunta-marco" id="pregunta-2-marco">
+                    <div class="pregunta-marco-3-1"></div>
+                    <div class="pregunta-marco-1">
+                        <div class="pregunta-participante">
                             <div id="participante-alterno" class="participante-on">
                                 <div class="participante-silla"></div>
                                 <div id="pa-piensa" class="spd_movieclip" width="250" height="430" frames="45" src="assets/images/p1-piensa/"></div>
@@ -188,9 +188,92 @@
                             </div>
                         </div>
                     </div>
-                    <div id="pregunta-2-marco-2"></div>
-                    <div id="pregunta-2-marco-3-2"></div>
+                    <div class="pregunta-marco-2"></div>
+                    <div class="pregunta-marco-3-2"></div>
                 </div>
+            </div>
+
+            <div id="pregunta-cont-3" class="pregunta-cont-3-out">
+                <div id="pregunta-3-title">Lorem Ipsum is simply</div>
+                <div id="pregunta-3-enunciado">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</div>
+
+                <div id="pregunta-3-body">
+                    <div id="pregunta-3-boards">
+                        <div id="pregunta-board-1" class="pregunta-board" ind="0">
+                            <div class="pregunta-board-number">1</div>
+                            <div class="pregunta-board-text"></div>
+                        </div>
+                        <div id="pregunta-board-separador1"></div>
+                        <div id="pregunta-board-2" class="pregunta-board" ind="1">
+                            <div class="pregunta-board-number">2</div>
+                            <div class="pregunta-board-text"></div>
+                        </div>
+                        <div id="pregunta-board-separador2"></div>
+                        <div id="pregunta-board-4" class="pregunta-board" ind="2">
+                            <div class="pregunta-board-number">4</div>
+                            <div class="pregunta-board-text"></div>
+                        </div>
+                        <div id="pregunta-board-separador3"></div>
+                        <div id="pregunta-board-3" class="pregunta-board" ind="3">
+                            <div class="pregunta-board-number">3</div>
+                            <div class="pregunta-board-text"></div>
+                        </div>
+                    </div>
+                    <div class="pregunta-marco" id="pregunta-3-marco">
+                        <img id="pregunta-marco-template" src="assets/images/marco-arrastrar-0.png" />
+                        <div class="pregunta-marco-3-1"></div>
+                        <div class="pregunta-marco-1">
+                            <div class="pregunta-participante">
+                                <div id="participante-extra" class="participante-on">
+                                    <div class="participante-silla"></div>
+                                    <div id="pe-piensa" class="spd_movieclip" width="250" height="430" frames="45" src="assets/images/p1-piensa/"></div>
+                                    <div class="participante-mesa"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pregunta-marco-2"></div>
+                        <div class="pregunta-marco-3-2"></div>
+                    </div>
+                </div>
+
+                <div id="pregunta-3-piezas">
+                    <div id="pregunta-pieza0" ind="0" class="pregunta-pieza">
+                        <p><span>Consulte vía SAS</span>, en el software equivalente a la Coordinación de Seguros o con el área encargada adjuntando el <span>formato FA-1602</span> y/o plantilla de definición de pólizas equivalente.</p>
+                        <div class="pregunta-3-zona" onmousedown="downOpcion(event,0)"></div>
+                    </div>
+                    <div id="pregunta-pieza1" ind="0" class="pregunta-pieza">
+                        <p>Lorem imsp</p>
+                        <div class="pregunta-3-zona"></div>
+                    </div>
+                    <div id="pregunta-pieza2" ind="0" class="pregunta-pieza">
+                        <p>Lorem imsp</p>
+                        <div class="pregunta-3-zona"></div>
+                    </div>
+                    <div id="pregunta-pieza3" ind="0" class="pregunta-pieza">
+                        <p>Lorem imsp</p>
+                        <div class="pregunta-3-zona"></div>
+                    </div>
+                </div>
+                
+                <div id="pregunta-3-pieza" class="pregunta-3-pieza-off"></div>
+            </div>
+
+            <div id="pregunta-cont-4" class="pregunta-cont-4-in">
+                <div id="pregunta-4-enunciado">Lorem impsu</div>
+                <div id="pregunta-4-columnas">
+                    <div id="pregunta-4-col1">
+                        <div class="pregunta-cola">
+                            
+                        </div>
+                    </div>
+                    <div id="pregunta-4-col2">
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div id="franja-cc" class="franja-cc-off">
+                <p id="franja-cc-txt"></p>
             </div>
 
             <div id="reloj" class="reloj-off">
@@ -292,7 +375,7 @@
 
         <div id="marco-tv"></div>
         <div id="destello-tv"></div>
-
+        
         <div id="footer-tv">
             <h1>Gestión de seguros</h1>
             <button id="sonido-btn" class="sonido-btn-on"></button>
@@ -300,6 +383,8 @@
         <div id="logo-cont">
             <div id="logo"></div>
         </div>
+
+        <button id="omitir_btn" onclick="skipIntro()" style="position: absolute; top: 0px; left: 0px;">SKIP>></button>
     </div>
 
     <div id="loader" class="loader-state-2 loader-on">
@@ -309,6 +394,7 @@
     </div>
 
     <script src="assets/data.js"></script>
+    <script src="assets/cc.js"></script>
     <script src="assets/js/tools.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/clock.js"></script>
@@ -316,6 +402,7 @@
     <script src="assets/js/pantalla.js"></script>
     <script src="assets/js/presentadora.js"></script>
     <script src="assets/js/participantes.js"></script>
+    <script src="assets/js/preguntas.js"></script>
 
     <!--Librerias-->
     <script src="assets/sprites/fotograma.js"></script>
@@ -342,6 +429,9 @@ var reloj_mp3 = null
 var booh_mp3 = null
 var susurros_mp3 = null
 var underground_mp3 = null
+var over2_mp3 = null
+var wrong_mp3 = null
+var correct_mp3 = null
 
 var p1_bien_mp3 = null
 var p1_bien_mp3_url = 'juan_bien'
@@ -383,8 +473,14 @@ window.onload = function(){
         tvturnoff_mp3 = data
         loadAudio({src:'assets/media/over.mp3',callBack:function(data){
         over_mp3 = data
+        loadAudio({src:'assets/media/over2.mp3',callBack:function(data){
+        over2_mp3 = data
         loadAudio({src:'assets/media/click.mp3',callBack:function(data){
         click_mp3 = data
+        loadAudio({src:'assets/media/wrong.mp3',callBack:function(data){
+        wrong_mp3 = data
+        loadAudio({src:'assets/media/correct.mp3',callBack:function(data){
+        correct_mp3 = data
             
             getE('loader').classList.remove('loader-on')
             getE('loader').classList.add('loader-off')
@@ -403,6 +499,9 @@ window.onload = function(){
                 })
             }
             
+        }})
+        }})
+        }})
         }})
         }})
         }})
@@ -447,7 +546,8 @@ function preLoadGame(){
             getE('p3-quieto').setAttribute('src','assets/images/p1-quieto/')
             getE('p3-celebra').setAttribute('src','assets/images/p1-celebra/')
 
-            getE('pa-piensa').setAttribute('src','assets/images/p3-piensa/')            
+            getE('pa-piensa').setAttribute('src','assets/images/p3-piensa/')
+            getE('pe-piensa').setAttribute('src','assets/images/p3-piensa/')
 
             getE('tablero-name-1').innerHTML = "Ana"
             getE('tablero-name-3').innerHTML = "Juan"
@@ -468,6 +568,7 @@ function preLoadGame(){
             getE('p2-celebra').setAttribute('src','assets/images/p1-celebra/')
 
             getE('pa-piensa').setAttribute('src','assets/images/p2-piensa/')
+            getE('pe-piensa').setAttribute('src','assets/images/p2-piensa/')
 
             getE('tablero-name-1').innerHTML = "Pedro"
             getE('tablero-name-2').innerHTML = "Juan"
@@ -504,7 +605,8 @@ function loadGame(){
     spdCreateMovieClip({idname:'p1-triste',callBack:function(){
     setLoaderPercent()
     spdCreateMovieClip({idname:'p1-quieto',callBack:function(){
-    spdCreateMovieClip({idname:'pa-piensa',callBack:function(){    
+    spdCreateMovieClip({idname:'pa-piensa',callBack:function(){
+    spdCreateMovieClip({idname:'pe-piensa',callBack:function(){
     setLoaderPercent()
 
     spdCreateMovieClip({idname:'p2-feliz',callBack:function(){
@@ -562,10 +664,11 @@ function loadGame(){
 
             spdCreateMovieClipAnimation({id:16,moviename:'presentadora-quieta'})
             spdCreateMovieClipAnimation({id:17,moviename:'pa-piensa'})
+            spdCreateMovieClipAnimation({id:18,moviename:'pe-piensa'})
 
-            spdCreateMovieClipAnimation({id:18,moviename:'p1-celebra'})
-            spdCreateMovieClipAnimation({id:19,moviename:'p2-celebra'})
-            spdCreateMovieClipAnimation({id:20,moviename:'p3-celebra'})
+            spdCreateMovieClipAnimation({id:19,moviename:'p1-celebra'})
+            spdCreateMovieClipAnimation({id:20,moviename:'p2-celebra'})
+            spdCreateMovieClipAnimation({id:21,moviename:'p3-celebra'})
     
             loadAudio({src:'assets/media/juego/final.mp3',callBack:function(data){
             final_mp3 = data
@@ -677,6 +780,7 @@ function loadGame(){
     }})
     }})
     }})
+    }})
 
     }})
     }})
@@ -686,6 +790,10 @@ function loadGame(){
 
     //setTimer()
     //setTransition({title:'¿Estás listo?'})
+}
+
+function skipIntro(){
+    introduccion_mp3.currentTime = 20
 }
 
 </script>

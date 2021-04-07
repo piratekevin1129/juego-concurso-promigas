@@ -1,3 +1,21 @@
 omitir retroalimentacion
 pantalla para mostrar retroalimentacion
 2 actividades extras
+cc sin omitir
+linea de tiempo al video del comercial, no omitir
+incluir video final
+
+
+correcto
+muy bien
+
+tu respuesta no es correcta
+No, tu respuesta no es correcta no has sumado puntos
+oh que pasa tu respuesta no es correcta, probemos suerte en el siguiente juego
+oh tu respuesta no es correcta, veamos la siguiente pregunta
+
+No has sumado puntos
+no te desanimes, probemos suerte en el siguiente juego
+veamos la siguiente pregunta
+no te desanimes
+no te desanimes, probemos con la siguiente pregunta
