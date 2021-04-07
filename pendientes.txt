@@ -4,6 +4,7 @@ pantalla para mostrar retroalimentacion
 cc sin omitir
 linea de tiempo al video del comercial, no omitir
 incluir video final
+padding para que el reloj no tape los titulos
 
 
 correcto

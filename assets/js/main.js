@@ -11,9 +11,9 @@ function clickComenzar(){
     //getE('welcome-page').className = 'welcome-page-off'
 
     turnTvOn(function(){
-        //getE('inicio').className = 'video-on'
-        //getE('video-inicio').play()
-        //getE('video-inicio').onended = function(){
+        getE('inicio').className = 'video-on'
+        getE('video-inicio').play()
+        getE('video-inicio').onended = function(){
             setTransition({title:'Vamos a comenzar'},
                 function(){
                     //prepare
@@ -86,7 +86,7 @@ function clickComenzar(){
                     }
                 }
             )
-        //}
+        }
     })
 }
 
@@ -251,7 +251,7 @@ function empezarPreguntas(){
                 }
                 else if(actual_pregunta_data.tipo=='arrastrar'){
                     getE('reloj').className = 'reloj-on'
-                    setTimer({t:10,timeout:function(){
+                    setTimer({t:60,timeout:function(){
                         timeUp2()
                     }})
                     getE('pregunta-3-title').innerHTML = actual_pregunta_data.pregunta
