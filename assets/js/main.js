@@ -290,7 +290,7 @@ function empezarPreguntas(){
                 else if(actual_pregunta_data.tipo=='emparejamiento'){
                     getE('reloj').className = 'reloj-on'
                     setTimer({t:60,timeout:function(){
-                        timeUp2()
+                        timeUp3()
                     }})
 
                     getE('pregunta-4-enunciado').innerHTML = actual_pregunta_data.pregunta
@@ -514,7 +514,7 @@ function ganarPregunta(){
                 spdStopMovieclip(3)
                 spdSetMovieclip({id:3,f:1})
 
-                setRetroalimentacion()
+                setRetroalimentacion('bien')
             }
         }
     )
@@ -613,7 +613,7 @@ function perderPregunta(answer){
                     if(answer){
                         var mal_rand = 0
                         if(actual_pregunta_data.audioincorrect==''){
-                            mal_rand = getRand(1,3)+'-mal.mp3'
+                            mal_rand = getRand(1,4)+'-mal.mp3'
                         }else{
                             mal_rand = actual_pregunta_data.audioincorrect+'.mp3'
                         }
@@ -621,7 +621,7 @@ function perderPregunta(answer){
                     }else{
                         var tiempo_rand = 0
                         if(actual_pregunta_data.audiotiempo==''){
-                            tiempo_rand = getRand(1,4)+'-tiempo.mp3'
+                            tiempo_rand = getRand(1,2)+'-tiempo.mp3'
                         }else{
                             tiempo_rand = actual_pregunta_data.audiotiempo+'.mp3'
                         }
@@ -645,7 +645,7 @@ function perderPregunta(answer){
                         spdSetMovieclip({id:3,f:1})
 
                         //reproducir audio de retroalimentacion
-                        setRetroalimentacion()
+                        setRetroalimentacion('mal')
                     }
                 }
             }},1)
@@ -653,7 +653,7 @@ function perderPregunta(answer){
     )
 }
 
-function setRetroalimentacion(){
+function setRetroalimentacion(estado){
     //reproducir audio de retroalimentacion
     if(actual_pregunta_data.audioretroalimentacion){
         audio_general_mp3 = new Audio()
@@ -673,14 +673,40 @@ function setRetroalimentacion(){
             audio_general_mp3.onloadedmetadata = null
             audio_general_mp3.onended = null
     
-            spdStopMovieclip(3)
-            spdSetMovieclip({id:3,f:1})
-            showPresentadora('desprepara')
-            getE('presentadora').classList.add('presentadora-intro')
+            if(estado=='mal'){
+                //next
+                var n_audio = null
+                if(actual_pregunta_data.audionext==''){
+                    n_audio = getRand(0,2)
+                }else{
+                    n_audio = actual_pregunta_data.audionext
+                }
+
+                next_audios[n_audio].play()
+                next_audios[n_audio].onended = function(){
+                    next_audios[n_audio].currentTime = 0
+                    next_audios[n_audio].onended = null
+
+                    spdStopMovieclip(3)
+                    spdSetMovieclip({id:3,f:1})
+                    showPresentadora('desprepara')
+                    getE('presentadora').classList.add('presentadora-intro')
+                    
+                    spdPlayMovieclip({frame:1,stop:10,loop:false,end:function(){
+                        nextPregunta()
+                    }},2)
+                }
+            }else{
+                spdStopMovieclip(3)
+                spdSetMovieclip({id:3,f:1})
+                showPresentadora('desprepara')
+                getE('presentadora').classList.add('presentadora-intro')
+                
+                spdPlayMovieclip({frame:1,stop:10,loop:false,end:function(){
+                    nextPregunta()
+                }},2)
+            }
             
-            spdPlayMovieclip({frame:1,stop:10,loop:false,end:function(){
-                nextPregunta()
-            }},2)
         }
     }else{
         showPresentadora('desprepara')
@@ -753,13 +779,15 @@ function nextPregunta(){
 }
 function setVideoComercial(e){
     getE('video-comercial').removeEventListener('loadedmetadata',setVideoComercial,true)
-    getE('video-comercial').play()                
+    getE('video-comercial').play()    
+    setTimeline()            
     getE('video-comercial').onended = function(){
         getE('video-comercial').onloadedmetadata = null
         getE('video-comercial').onended = null
         //tumbar video para que no estorbe
         var source = getE('video-comercial')
         source.src = ''
+        unsetTimeline()
 
         getE('comercial').innerHTML = ''
         getE('comercial').className = 'video-off'
@@ -787,6 +815,8 @@ function setDatePrisaAnim(){
             getE('presentadora').classList.add('presentadora-big')
             
             spdPlayMovieclip({frame:1,stop:10,loop:false,end:function(){
+                showPresentadora('quieta')
+                getE('presentadora').classList.add('presentadora-big')
                 animating_date_prisa = false
             }},2)
         }
@@ -808,12 +838,28 @@ function unsetDatePrisaAnim(){
 }
 
 function timeUp(){
+    unsetDatePrisaAnim()
     clickResponde()
     perderPregunta(false)
 }
 function timeUp2(){
     //lo mismo pero para el de arrastrar
+
+    //remover eventos
+    perderJuegoArrastra()
+    unsetDatePrisaAnim()
     clickResponde()
+
+    perderPregunta(false)
+}
+function timeUp3(){
+    //lo mismo pero para el de emparejamiento
+
+    //remover eventos
+    perderJuegoEmparejamiento()
+    unsetDatePrisaAnim()
+    clickResponde()
+
     perderPregunta(false)
 }
 

@@ -12,6 +12,7 @@
     <link href="assets/css/presentadora.css" type="text/css" rel="stylesheet" />
     <link href="assets/css/participantes.css" type="text/css" rel="stylesheet" />
     <link href="assets/css/preguntas.css" type="text/css" rel="stylesheet" />
+    <link href="assets/css/timeline.css" type="text/css" rel="stylesheet" />
 
     <!--Librerias-->
     <link href="assets/sprites/fotograma.css" rel="stylesheet" type="text/css" />
@@ -374,6 +375,14 @@
 
         <div id="marco-tv"></div>
         <div id="destello-tv"></div>
+
+        <div id="timeline" class="timeline-off">
+            <button id="tl-play-btn" class="tl-play-paused" onclick="handleVideo()"></button>
+            <div id="tl-playbar" onclick="clickTimeline(event)">
+                <div id="tl-playbar-status"></div>
+            </div>
+            <div id="tl-duration"></div>
+        </div>
         
         <div id="footer-tv">
             <h1>Gestión de seguros</h1>
@@ -383,7 +392,7 @@
             <div id="logo"></div>
         </div>
 
-        <button id="omitir_btn" onclick="skipIntro()" style="position: absolute; top: 0px; left: 0px;">SKIP</button>
+        <!--<button id="omitir_btn" onclick="skipIntro()" style="position: absolute; top: 0px; left: 0px;">SKIP</button>-->
     </div>
 
     <div id="loader" class="loader-state-2 loader-on">
@@ -402,6 +411,7 @@
     <script src="assets/js/presentadora.js"></script>
     <script src="assets/js/participantes.js"></script>
     <script src="assets/js/preguntas.js"></script>
+    <script src="assets/js/timeline.js"></script>
 
     <!--Librerias-->
     <script src="assets/sprites/fotograma.js"></script>
@@ -440,10 +450,14 @@ var p3_bien_mp3 = null
 var p3_bien_mp3_url = 'ana_bien'
 var p_bien_mp3 = null
 var final_mp3 = null
+var next1_mp3 = null
+var next2_mp3 = null
+var next3_mp3 = null
+var next_audios = []
 
 var bienvenida_mp3 = null
 
-var total_elements_to_load = 32
+var total_elements_to_load = 33
 var actual_element_loaded = 0
 function setLoaderPercent(){
     actual_element_loaded++
@@ -715,6 +729,16 @@ function loadGame(){
             loadAudio({src:'assets/media/juego/'+p3_bien_mp3_url+'.mp3',callBack:function(data){
             p3_bien_mp3 = data
             setLoaderPercent()
+            loadAudio({src:'assets/media/juego/1-next.mp3',callBack:function(data){
+            next1_mp3 = data
+            loadAudio({src:'assets/media/juego/2-next.mp3',callBack:function(data){
+            next2_mp3 = data
+            loadAudio({src:'assets/media/juego/3-next.mp3',callBack:function(data){
+            next3_mp3 = data
+            setLoaderPercent()
+
+            next_audios = [next1_mp3,next2_mp3,next3_mp3]
+
 
                 getE('video-inicio').src = 'assets/media/inicio.mp4'
                 getE('video-inicio').onloadedmetadata = function(){
@@ -732,6 +756,9 @@ function loadGame(){
                     }
                 }
             
+            }})
+            }})
+            }})
             }})
             }})
             }})

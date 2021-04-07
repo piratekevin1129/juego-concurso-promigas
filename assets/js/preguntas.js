@@ -105,6 +105,16 @@ function ganarJuegoArrastra(){
     ganarPregunta()
 }
 
+function perderJuegoArrastra(){
+    document.body.removeEventListener('mousemove',moveOpcion,true)
+    document.body.removeEventListener('mouseup',upOpcion,true)
+
+    actual_opcion_board = null
+    actual_opcion_board_ind = -1
+    actual_opcion_board_txt = ''
+    getE('pregunta-3-pieza').className = 'pregunta-3-pieza-off'    
+}
+
 /*****************APAREAMIENTO*************/
 
 var actual_col_a = null
@@ -234,4 +244,22 @@ function ganarJuegoEmparejamiento(){
     unsetDatePrisaAnim()
     clickResponde()
     ganarPregunta()
+}
+
+function perderJuegoEmparejamiento(){
+    document.body.removeEventListener('mousemove', moveCol, true)
+    document.body.removeEventListener('mouseup', upCol, true)
+
+    if(actual_col_a_raya!=null){
+        actual_col_a_raya.style.width = '0px'
+        actual_col_a_raya.style.transform = 'rotate(0deg)'
+        actual_col_a_raya.style.webkitTransform = 'rotate(0deg)'
+        actual_col_a_raya.style.oTransform = 'rotate(0deg)'
+    }
+
+    actual_col_a = null
+    actual_col_a_raya = null
+    actual_col_a_letra = null
+    actual_col_a_rect = null
+    actual_col_a_ind = -1
 }
