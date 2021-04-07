@@ -256,7 +256,8 @@ function empezarPreguntas(){
                     }})
                     getE('pregunta-3-title').innerHTML = actual_pregunta_data.pregunta
                     getE('pregunta-3-enunciado').innerHTML = actual_pregunta_data.enunciado
-                    var desorden = unorderArray(4)
+                    piezas_total = actual_pregunta_data.opciones.length
+                    var desorden = unorderArray(piezas_total)
                     getE('pregunta-pieza0').getElementsByTagName('p')[0].innerHTML = actual_pregunta_data.opciones[desorden[0]]
                     getE('pregunta-pieza0').setAttribute('ind',desorden[0])
                     getE('pregunta-pieza1').getElementsByTagName('p')[0].innerHTML = actual_pregunta_data.opciones[desorden[1]]
@@ -285,6 +286,43 @@ function empezarPreguntas(){
                         getE('pregunta-3-piezas').className = 'preguntas-3-opciones-front'
                     },500)
 
+                }
+                else if(actual_pregunta_data.tipo=='emparejamiento'){
+                    getE('reloj').className = 'reloj-on'
+                    setTimer({t:60,timeout:function(){
+                        timeUp2()
+                    }})
+
+                    getE('pregunta-4-enunciado').innerHTML = actual_pregunta_data.pregunta
+                    columnas_total = actual_pregunta_data.opciones.length
+                    var desorden = unorderArray(columnas_total)
+                    var desorden2 = unorderArray(columnas_total)
+                    for(i = 0;i<desorden.length;i++){
+                        var col_a = document.createElement('div')
+                        col_a.className = 'pregunta-col-a'
+                        col_a.id = 'pregunta-col-a-'+desorden[i]
+                        col_a.setAttribute('ind',desorden[i])
+                        col_a.innerHTML = '<div class="pregunta-col-raya" style="background-color:#'+columnas_colors[desorden[i]]+'"></div><section class="pregunta-col-a-section-'+(desorden[i]+1)+'"></section><p>'+actual_pregunta_data.opciones[desorden[i]].opcion1+'</p><div class="pregunta-col-letter" onmouseover="overOpcion()" onmouseout="outOpcion()" onmousedown="downCol(event,'+desorden[i]+')" style="background-color:#'+columnas_colors[desorden[i]]+'">'+columnas_letras[i]+'</div>'
+
+                        getE('pregunta-4-col1').appendChild(col_a)
+                    }
+                    for(i = 0;i<desorden2.length;i++){
+                        var col_b = document.createElement('div')
+                        col_b.className = 'pregunta-col-b'
+                        col_b.setAttribute('ind',desorden2[i])
+                        col_b.innerHTML = '<p>'+actual_pregunta_data.opciones[desorden2[i]].opcion2+'</p><div class="pregunta-col-number">'+(i+1)+'</div>'
+
+                        getE('pregunta-4-col2').appendChild(col_b)
+                    }
+                    getE('pregunta-cont-4').className = 'pregunta-cont-4-in'
+
+                    animacion_pregunta = setTimeout(function(){
+                        clearTimeout(animacion_pregunta)
+                        animacion_pregunta = null
+
+                        getE('pregunta-cont-4').className = 'pregunta-cont-4-on'
+                        getE('pregunta-4-columnas').className = 'preguntas-4-opciones-front'
+                    },500)
                 }
             //},1000)
         }},2)
@@ -325,7 +363,7 @@ function clickResponde(){
     var zonas = []
 
     if(actual_pregunta_data.tipo=='verdaderofalso'){
-        zonas = getE('pregunta-cont-1').getElementsByTagName('pregunta-1-zona')
+        zonas = getE('pregunta-cont-1').getElementsByClassName('pregunta-1-zona')
         for(i = 0;i<zonas.length;i++){
             zonas[i].removeAttribute('onclick')
             zonas[i].removeAttribute('onmouseover')
@@ -338,7 +376,7 @@ function clickResponde(){
         //spdStopMovieclip(9)
         //spdStopMovieclip(13)
     }else if(actual_pregunta_data.tipo=='seleccionmultiple'){
-        zonas = getE('pregunta-cont-2').getElementsByTagName('pregunta-2-zona')
+        zonas = getE('pregunta-cont-2').getElementsByClassName('pregunta-2-zona')
         for(i = 0;i<zonas.length;i++){
             zonas[i].removeAttribute('onclick')
             zonas[i].removeAttribute('onmouseover')
@@ -351,9 +389,9 @@ function clickResponde(){
         //spdStopMovieclip(9)
         //spdStopMovieclip(13)
     }else if(actual_pregunta_data.tipo=='arrastrar'){
-        zonas = getE('pregunta-cont-3').getElementsByTagName('pregunta-3-zona')
+        zonas = getE('pregunta-cont-3').getElementsByClassName('pregunta-3-zona')
         for(i = 0;i<zonas.length;i++){
-            zonas[i].removeAttribute('onmouseover')
+            zonas[i].removeAttribute('onmousedown')
             zonas[i].removeAttribute('onmouseover')
             zonas[i].removeAttribute('onmouseout')
         }
@@ -363,6 +401,16 @@ function clickResponde(){
         stopParticipantePensar(18)
         //spdStopMovieclip(9)
         //spdStopMovieclip(13)
+    }else if(actual_pregunta_data.tipo=='emparejamiento'){
+        zonas = getE('pregunta-4-col1').getElementsByClassName('pregunta-col-a')
+        for(i = 0;i<zonas.length;i++){
+            zonas[i].removeAttribute('onmousedown')
+            zonas[i].removeAttribute('onmouseover')
+            zonas[i].removeAttribute('onmouseout')
+        }
+        
+        getE('pregunta-4-columnas').className = ''
+        getE('pregunta-cont-4').className = 'pregunta-cont-4-out'
     }
     
     suspenso_mp3.pause()
@@ -696,7 +744,7 @@ function nextPregunta(){
             )
         },1000)
     }else{
-        if(actual_pregunta==1){
+        if(actual_pregunta==data_preguntas.length){
             loadFinal()
         }else{
             preparePregunta('Siguiente Pregunta')
@@ -885,6 +933,8 @@ function loadFinal(){
                 showPresentadora('prepara')
                 getE('presentadora').classList.add('presentadora-final')
                 spdPlayMovieclip({frame:1,stop:10,loop:false,end:function(){
+
+                    setCC(10,'final')
                     final_mp3.currentTime = 0
                     final_mp3.play()
 
@@ -988,6 +1038,8 @@ function startCC(){
             var ct = -1
             if(actual_cc_audio=='introduccion'){
                 ct = introduccion_mp3.currentTime
+            }else if(actual_cc_audio=='final'){
+                ct = final_mp3.currentTime
             }else{
                 ct = audio_general_mp3.currentTime
             }

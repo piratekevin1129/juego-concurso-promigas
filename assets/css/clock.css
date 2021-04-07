@@ -26,16 +26,19 @@
     justify-content: flex-start;
     align-items: flex-start;
 
-    transform-origin: 50% 0%;
-    -webkit-transform-origin: 50% 0%;
-    -o-transform-origin: 50% 0%;
+    transform-origin: 100% 0%;
+    -webkit-transform-origin: 100% 0%;
+    -o-transform-origin: 100% 0%;
+    transform: scale(0.8);
+    -webkit-transform: scale(0.8);
+    -o-transform: scale(0.8);
 }
 .reloj-off{
     visibility: hidden;
 }
 .reloj-on{
     visibility: visible;
-    right: 100px;
+    right: 50px;
 
     animation-name: animacion-reloj-on;
     animation-duration: 1s;

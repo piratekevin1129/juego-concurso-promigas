@@ -141,7 +141,7 @@
                 </div>
             </div>
 
-            <div id="pregunta-cont-2" class="pregunta-cont-2-on">
+            <div id="pregunta-cont-2" class="pregunta-cont-2-out">
                 <div id="pregunta-2-enunciado">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's </div>
 
                 <div id="pregunta-2-body">
@@ -263,53 +263,11 @@
                 <div id="pregunta-3-pieza" class="pregunta-3-pieza-off"></div>
             </div>
 
-            <div id="pregunta-cont-4" class="pregunta-cont-4-in">
+            <div id="pregunta-cont-4" class="pregunta-cont-4-out">
                 <div id="pregunta-4-enunciado">Lorem impsu</div>
                 <div id="pregunta-4-columnas">
-                    <div id="pregunta-4-col1">
-                        <div class="pregunta-col-a">
-                            <p>asdasd</p>
-                            <section></section>
-                            <div>A</div>
-                        </div>
-                        <div class="pregunta-col-a">
-                            <p>asdasd</p>
-                            <section></section>
-                            <div>A</div>
-                        </div>
-                        <div class="pregunta-col-a">
-                            <p>asdasd</p>
-                            <section></section>
-                            <div>A</div>
-                        </div>
-                        <div class="pregunta-col-a">
-                            <p>asdasd</p>
-                            <section></section>
-                            <div>A</div>
-                        </div>
-                    </div>
-                    <div id="pregunta-4-col2">
-                        <div class="pregunta-col-b">
-                            <p>asdasd</p>
-                            <section></section>
-                            <div>1</div>
-                        </div>
-                        <div class="pregunta-col-b">
-                            <p>asdasd</p>
-                            <section></section>
-                            <div>2</div>
-                        </div>
-                        <div class="pregunta-col-b">
-                            <p>asdasd</p>
-                            <section></section>
-                            <div>3</div>
-                        </div>
-                        <div class="pregunta-col-a">
-                            <p>asdasd</p>
-                            <section></section>
-                            <div>4</div>
-                        </div>
-                    </div>
+                    <div id="pregunta-4-col1"></div>
+                    <div id="pregunta-4-col2"></div>
                 </div>
             </div>
 
@@ -425,7 +383,7 @@
             <div id="logo"></div>
         </div>
 
-        <button id="omitir_btn" onclick="skipIntro()" style="position: absolute; top: 0px; left: 0px;">SKIP>></button>
+        <button id="omitir_btn" onclick="skipIntro()" style="position: absolute; top: 0px; left: 0px;">SKIP</button>
     </div>
 
     <div id="loader" class="loader-state-2 loader-on">
@@ -532,11 +490,11 @@ window.onload = function(){
                 document.body.onclick = null
 
                 getE('welcome-page').className = "welcome-page-off"
-                //getE('bienvenida').className = "bienvenida-on"
+                getE('bienvenida').className = "bienvenida-on"
 
                 turnTvOn(function(){
-                    //getE('bienvenida-participantes').className = 'bienvenida-participantes-on'
-                    //bienvenida_mp3.play()
+                    getE('bienvenida-participantes').className = 'bienvenida-participantes-on'
+                    bienvenida_mp3.play()
                 })
             }
             

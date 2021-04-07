@@ -6,6 +6,11 @@ html,body{
     padding: 0px;
     overflow: hidden;
 }
+body{
+    width: 1366px;
+    height: 690px;
+    position: relative;
+}
 
 #loader{
     position: absolute;
@@ -265,8 +270,8 @@ html,body{
     top: 0px;
     background-color: #000000;
     height: 100%;
-    height: calc(100% - 70px);
-    height: -moz-calc(100% - 70px);
+    /*height: calc(100% - 70px);
+    height: -moz-calc(100% - 70px);*/
 }
 #video-comercial{
     height: 100%;
