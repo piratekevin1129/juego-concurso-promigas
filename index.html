@@ -657,6 +657,10 @@ function loadGame(){
         loadImage({url:'assets/images/tablero-rayas.png',callBack:function(){
         loadImage({url:'assets/images/tablero-luz.svg',callBack:function(){
 
+        loadImage({url:'assets/images/icon-multiple-back-over.png',callBack:function(){
+        loadImage({url:'assets/images/icon-falso-over.svg',callBack:function(){
+        loadImage({url:'assets/images/icon-verdadero-over.svg',callBack:function(){
+
             spdCreateMovieClipAnimation({id:0,moviename:'presentadora-feliz'})
             spdCreateMovieClipAnimation({id:1,moviename:'presentadora-prepara'})
             spdCreateMovieClipAnimation({id:2,moviename:'presentadora-desprepara'})
@@ -740,9 +744,9 @@ function loadGame(){
             next_audios = [next1_mp3,next2_mp3,next3_mp3]
 
 
-                getE('video-inicio').src = 'assets/media/inicio.mp4'
-                getE('video-inicio').onloadedmetadata = function(){
-                    getE('video-inicio').onloadedmetadata = null
+                //getE('video-inicio').src = 'assets/media/inicio.mp4'
+                //getE('video-inicio').onloadedmetadata = function(){
+                    //getE('video-inicio').onloadedmetadata = null
 
                     getE('video-intro').src = 'assets/media/publico.mp4'
                     getE('video-intro').onloadedmetadata = function(){
@@ -754,7 +758,7 @@ function loadGame(){
 
                         clickComenzar()
                     }
-                }
+                //}
             
             }})
             }})
@@ -776,6 +780,10 @@ function loadGame(){
             }})
             }})
             }})
+
+        }})
+        }})
+        }})
 
         }})
         }})

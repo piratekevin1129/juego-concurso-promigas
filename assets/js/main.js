@@ -11,9 +11,9 @@ function clickComenzar(){
     //getE('welcome-page').className = 'welcome-page-off'
 
     turnTvOn(function(){
-        getE('inicio').className = 'video-on'
-        getE('video-inicio').play()
-        getE('video-inicio').onended = function(){
+        //getE('inicio').className = 'video-on'
+        //getE('video-inicio').play()
+        //getE('video-inicio').onended = function(){
             setTransition({title:'Vamos a comenzar'},
                 function(){
                     //prepare
@@ -86,7 +86,7 @@ function clickComenzar(){
                     }
                 }
             )
-        }
+        //}
     })
 }
 
