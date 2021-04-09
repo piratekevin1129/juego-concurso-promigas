@@ -353,12 +353,6 @@ function clickResponde(callBack,resultado){
 
     if(resultado=='incorrecto'){
         mal_mp3.play()
-        setParticipante(1,'triste')
-        //setParticipante(2,'neutro')
-        //setParticipante(3,'neutro')
-        spdPlayMovieclip({frame:1,stop:0,loop:false,end:function(){
-            //nada
-        }},6)
     }else{
 
     }
@@ -375,6 +369,11 @@ function clickResponde(callBack,resultado){
             //mostrar la respuesta correcta
             getE('pregunta-1-opcion'+(actual_pregunta_data.correcta-1)).classList.add('pregunta-1-opcion-correcto')
 
+            setParticipante(1,'triste')
+            spdPlayMovieclip({frame:1,stop:0,loop:false,end:function(){
+                //nada
+            }},6)
+
             animacion_mostrar_correcto = setTimeout(function(){
                 clearTimeout(animacion_mostrar_correcto)
                 animacion_mostrar_correcto = null
@@ -386,7 +385,7 @@ function clickResponde(callBack,resultado){
                 //spdStopMovieclip(13)
 
                 callBack()
-            },3000)
+            },2000)
         }else{
             getE('pregunta-1-opciones').className = ''
             getE('pregunta-cont-1').className = 'pregunta-cont-1-out'
@@ -418,8 +417,13 @@ function clickResponde(callBack,resultado){
                 //spdStopMovieclip(9)
                 //spdStopMovieclip(13)
 
+                setParticipante(1,'triste')
+                spdPlayMovieclip({frame:1,stop:0,loop:false,end:function(){
+                    //nada
+                }},6)
+
                 callBack()
-            },3000)
+            },2000)
         }else{
             getE('pregunta-2-opciones').className = ''
             getE('pregunta-cont-2').className = 'pregunta-cont-2-out'
@@ -705,6 +709,12 @@ function perderPregunta(answer){
 function setRetroalimentacion(estado){
     //reproducir audio de retroalimentacion
     if(actual_pregunta_data.audioretroalimentacion){
+        global_status = 'retroalimentacion'
+        //desbloquear boton
+        getE('play-btn').setAttribute('status','unlocked')
+        getE('play-btn').setAttribute('estado','playing')
+        getE('play-btn').className = 'play-btn-pause'        
+
         audio_general_mp3 = new Audio()
         audio_general_mp3.src = 'assets/media/juego/'+actual_pregunta_data.id+'/retroalimentacion.mp3'
                 
@@ -715,19 +725,28 @@ function setRetroalimentacion(estado){
             
             spdPlayMovieclip({frame:1,stop:0,loop:true},3)
             susurros_mp3.play()
+            susurros_mp3.onended = function(){
+                susurros_mp3.play()
+            }
             setCC(actual_pregunta_data.cc,'general')
         }
         audio_general_mp3.onended = function(){
+            global_status = ''
+            //bloquear boton
+            getE('play-btn').setAttribute('status','locked')
+            getE('play-btn').setAttribute('estado','paused')
+            getE('play-btn').className = 'play-btn-play play-btn-locked'
+            
             unsetCC()
             audio_general_mp3.onloadedmetadata = null
             audio_general_mp3.onended = null
     
-            if(estado=='mal'&&actual_pregunta<(data_preguntas.length-1)){
+            if(estado=='mal'&&actual_pregunta<data_preguntas.length){
                 //mirar que no sea el ultimo
                 //next
                 var n_audio = null
                 if(actual_pregunta_data.audionext==''){
-                    n_audio = getRand(0,2)
+                    n_audio = getRand(0,1)
                 }else{
                     n_audio = actual_pregunta_data.audionext
                 }
@@ -770,6 +789,7 @@ function setRetroalimentacion(estado){
 
 function nextPregunta(){
     susurros_mp3.pause()
+    susurros_mp3.onended = null
     susurros_mp3.currentTime = 0
     actual_pregunta++
     if(actual_pregunta==4){
@@ -906,6 +926,10 @@ function pasarJuegoArrastra(){
     click_continuar_mp3.pause()
     getE('pregunta-3-piezas').className = ''
     getE('pregunta-cont-3').className = 'pregunta-cont-3-out'
+    setParticipante(1,'triste')
+    spdPlayMovieclip({frame:1,stop:0,loop:false,end:function(){
+        //nada
+    }},6)
     
     stopParticipantePensar(18)
     //spdStopMovieclip(9)
@@ -926,6 +950,10 @@ function pasarJuegoEmparejamiento(){
     click_continuar_mp3.pause()
     getE('pregunta-4-columnas').className = ''
     getE('pregunta-cont-4').className = 'pregunta-cont-4-out'
+    setParticipante(1,'triste')
+    spdPlayMovieclip({frame:1,stop:0,loop:false,end:function(){
+        //nada
+    }},6)
 
     perderPregunta(null)
 }
@@ -1096,11 +1124,11 @@ function loadFinal(){
                                     function(){
                                         //callback
                                         console.log("finish")
-                                        getE('video-elfin').src = 'assets/media/elfin.mp4'
+                                        /*getE('video-elfin').src = 'assets/media/elfin.mp4'
                                         getE('video-elfin').onloadedmetadata = function(){
                                             getE('video-elfin').onloadedmetadata = null
                                             getE('video-elfin').play()
-                                        }
+                                        }*/
                                     }
                                 )
                             }},0)
@@ -1168,6 +1196,76 @@ function startCC(){
     },100)
 }
 
+function stopCC(){
+    clearInterval(animacion_cc)
+    animacion_cc = null
+}
+function resumeCC(){
+    startCC()
+}
+
+var global_status = ''
+function clickPlayPause(btn){
+    var status = btn.getAttribute('status')
+    if(status=='unlocked'){
+        var estado = btn.getAttribute('estado')
+        if(global_status=='retroalimentacion'){
+            if(estado=='playing'){
+                //bloquear el boton momentaneamente
+                btn.classList.add('play-btn-locked')
+                btn.setAttribute('status','locked')
+                
+                //detener audio y cc
+                audio_general_mp3.pause()
+                stopCC()
+
+                //parar a la muñequita y bajar el micro
+                spdStopMovieclip(3)
+                spdSetMovieclip({id:3,f:1})
+                showPresentadora('desprepara')
+                getE('presentadora').classList.add('presentadora-intro')
+                
+                spdPlayMovieclip({frame:1,stop:10,loop:false,end:function(){
+                    //desbloquear el botón de nuevo
+                    btn.classList.remove('play-btn-locked')
+                    btn.setAttribute('status','unlocked')
+                }},2)
+                
+                btn.classList.remove('play-btn-pause')
+                btn.classList.add('play-btn-play')
+                btn.setAttribute('estado','stopped')
+            }else if(estado=='stopped'){
+                //bloquear el boton momentaneamente
+                btn.classList.add('play-btn-locked')
+                btn.setAttribute('status','locked')
+
+                //subir microfono a la presentadora
+                showPresentadora('prepara')
+                getE('presentadora').classList.add('presentadora-intro')
+                spdPlayMovieclip({frame:1,stop:10,loop:false,end:function(){
+                    //desbloquear el botón de nuevo
+                    btn.classList.remove('play-btn-locked')
+                    btn.setAttribute('status','unlocked')
+
+                    //seguir con la retro
+                    showPresentadora('habla')
+                    getE('presentadora').classList.add('presentadora-intro')
+                    spdPlayMovieclip({frame:1,stop:0,loop:true},3)
+
+                    //resume audio y cc
+                    audio_general_mp3.play()
+                    resumeCC()
+                }},1)
+                
+                btn.classList.remove('play-btn-play')
+                btn.classList.add('play-btn-pause')
+                btn.setAttribute('estado','playing')
+            }
+        }
+    }else{
+        alert("bloqueado")
+    }
+}
 
 /*audio_general_mp3 = new Audio()
 audio_general_mp3.onloadedmetadata = null

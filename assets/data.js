@@ -1,47 +1,5 @@
 var data_preguntas = [
 	{
-		id:5,
-		tipo:'emparejamiento',
-		cc:5,
-		audiocorrect:'',
-		audioincorrect:'',
-		audiotiempo:'',
-		audionext:'',
-		audioretroalimentacion:true,
-		preguntaaudio:'pregunta',
-		pregunta:'Los procesos de contratación y al ejecutar los contratos se debe:',
-		opciones:[
-			{
-				opcion1:'Incluir en el contrato',
-				opcion2:'un plan de inversión del anticipo (póliza no cubren el riesgo de amortización)'
-			},
-			{
-				opcion1:'La Póliza de seriedad',
-				opcion2:'debe estar vigente hasta que se suscriba el contrato y se reciban las pólizas de etapa contractual'
-			},
-			{
-				opcion1:'El Administrador del contrato',
-				opcion2:'debe realizar el seguimiento al vencimiento de las pólizas y solicitar al proveedor su renovación en caso de ser necesario. Tenga presente que la renovación automática del contrato, no implica la renovación de las pólizas.'
-			},
-			{
-				opcion1:'Solicitar al proveedor',
-				opcion2:'que notifique a la aseguradora: actas de inicio, suspensión, reinicio y finalización. Todos los cambios al contrato. La modificación de la póliza debe ser validada por el área de seguros'
-			},
-			{
-				opcion1:'En caso que el proveedor solicite cartas de no siniestro,',
-				opcion2:'se debe consultar con el área de seguros'
-			},
-			{
-				opcion1:'Previo a que se realice una movilización de mercancía',
-				opcion2:'el administrador deberá consultar a través de SAS o software equivalente a la Coordinación de Seguros o área encargada para validar su cobertura adjuntando el formato FA-189 o formato equivalente.'
-			},
-			{
-				opcion1:'Solicitar al inicio y con cierta frecuencia',
-				opcion2:'la relación de trabajadores asignados a cada contrato.'
-			}
-		]
-	},
-	{
 		id:1,
 		tipo:'verdaderofalso',
 		pregunta:'¿Es correcto decir que la mayoría de contratos requieren pólizas?',
@@ -126,7 +84,48 @@ var data_preguntas = [
 		correcta:4
 	},
 
-	
+	{
+		id:5,
+		tipo:'emparejamiento',
+		cc:5,
+		audiocorrect:'',
+		audioincorrect:'',
+		audiotiempo:'',
+		audionext:'',
+		audioretroalimentacion:true,
+		preguntaaudio:'pregunta',
+		pregunta:'Los procesos de contratación y al ejecutar los contratos se debe:',
+		opciones:[
+			{
+				opcion1:'Incluir en el contrato',
+				opcion2:'un plan de inversión del anticipo (póliza no cubren el riesgo de amortización)'
+			},
+			{
+				opcion1:'La Póliza de seriedad',
+				opcion2:'debe estar vigente hasta que se suscriba el contrato y se reciban las pólizas de etapa contractual'
+			},
+			{
+				opcion1:'El Administrador del contrato',
+				opcion2:'debe realizar el seguimiento al vencimiento de las pólizas y solicitar al proveedor su renovación en caso de ser necesario. Tenga presente que la renovación automática del contrato, no implica la renovación de las pólizas.'
+			},
+			{
+				opcion1:'Solicitar al proveedor',
+				opcion2:'que notifique a la aseguradora: actas de inicio, suspensión, reinicio y finalización. Todos los cambios al contrato. La modificación de la póliza debe ser validada por el área de seguros'
+			},
+			{
+				opcion1:'En caso que el proveedor solicite cartas de no siniestro,',
+				opcion2:'se debe consultar con el área de seguros'
+			},
+			{
+				opcion1:'Previo a que se realice una movilización de mercancía',
+				opcion2:'el administrador deberá consultar a través de SAS o software equivalente a la Coordinación de Seguros o área encargada para validar su cobertura adjuntando el formato FA-189 o formato equivalente.'
+			},
+			{
+				opcion1:'Solicitar al inicio y con cierta frecuencia',
+				opcion2:'la relación de trabajadores asignados a cada contrato.'
+			}
+		]
+	},
 
 	{
 		id:6,
@@ -150,6 +149,7 @@ var data_preguntas = [
 		opcionesaudio:false,
 		correcta:4
 	},
+
 	{
 		id:7,
 		tipo:'verdaderofalso',
@@ -169,6 +169,7 @@ var data_preguntas = [
 		opcionesaudio:null,
 		correcta:2
 	},
+
 	{
 		id:8,
 		tipo:'seleccionmultiple',
@@ -190,6 +191,7 @@ var data_preguntas = [
 		opcionesaudio:false,
 		correcta:2
 	},
+
 	{
 		id:9,
 		tipo:'seleccionmultiple',
@@ -211,5 +213,4 @@ var data_preguntas = [
 		opcionesaudio:false,
 		correcta:1
 	}
-	
 ]

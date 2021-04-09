@@ -1,6 +1,8 @@
 https://virtualcolors.com/demos/promigas_2020/juego/
-ponerlos a celebrar al principio
-quitar click luego de contestar
+evaluar cc y sonido del silencio
+
+el final dejarlo en chao chao
+boton de pausar y retroceder las retroalimentaciones
 
 correcto
 muy bien

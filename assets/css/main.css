@@ -211,8 +211,8 @@ body{
 }
 .intro-in{
     top: -150px;
-    transition: top 10s linear;
-    -webkit-transition: top 10s linear;
+    transition: top 2s linear;
+    -webkit-transition: top 2s linear;
 }
 .intro-center{
     top: -150px;
@@ -913,7 +913,7 @@ body{
     font-weight: normal;
 }
 
-#sonido-btn{
+#sonido-btn,#play-btn{
     position: relative;
     width: 35px;
     height: 35px;
@@ -931,7 +931,7 @@ body{
     margin-right: 20px;
 
     background-repeat: no-repeat;
-    background-size: 25px;
+    background-size: 20px;
     background-position: center;
 
     transition: transform 0.2s, -webkit-transform 0.2s, -o-transform 0.2s;
@@ -944,11 +944,26 @@ body{
     background-image: url(../images/sonido-off.svg);
 }
 
-#sonido-btn:hover{
+#sonido-btn:hover,#play-btn:hover{
     cursor: pointer;
     transform: scale(1.1);
     -webkit-transform: scale(1.1);
     -o-transform: scale(1.1);
+}
+
+.play-btn-locked{
+    opacity: 0.3;
+    cursor: not-allowed !important;
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    background-image: url(../images/locked-on.svg) !important;
+}
+.play-btn-play{
+    background-image: url(../images/play-on.svg);
+}
+.play-btn-pause{
+    background-image: url(../images/pause-on.svg);
 }
 
 /********************BIENVENIDA***************************/
