@@ -4,6 +4,7 @@ var animacion_entradas = null
 function clickComenzar2(){
     getE('welcome-page').className = 'welcome-page-off'
     turnTvOn(function(){
+        empezarPreguntas()
     })
 }
 
@@ -254,26 +255,13 @@ function empezarPreguntas(){
                     setTimer({t:60,timeout:function(){
                         timeUp2()
                     }})
+
+                    setJuegoArrastra(actual_pregunta_data.opciones.length)
+
                     getE('pregunta-3-title').innerHTML = actual_pregunta_data.pregunta
                     getE('pregunta-3-enunciado').innerHTML = actual_pregunta_data.enunciado
-                    piezas_total = actual_pregunta_data.opciones.length
-                    var desorden = unorderArray(piezas_total)
-                    getE('pregunta-pieza0').getElementsByTagName('p')[0].innerHTML = actual_pregunta_data.opciones[desorden[0]]
-                    getE('pregunta-pieza0').setAttribute('ind',desorden[0])
-                    getE('pregunta-pieza1').getElementsByTagName('p')[0].innerHTML = actual_pregunta_data.opciones[desorden[1]]
-                    getE('pregunta-pieza1').setAttribute('ind',desorden[1])
-                    getE('pregunta-pieza2').getElementsByTagName('p')[0].innerHTML = actual_pregunta_data.opciones[desorden[2]]
-                    getE('pregunta-pieza2').setAttribute('ind',desorden[2])
-                    getE('pregunta-pieza3').getElementsByTagName('p')[0].innerHTML = actual_pregunta_data.opciones[desorden[3]]
-                    getE('pregunta-pieza3').setAttribute('ind',desorden[3])
-
+                    
                     getE('pregunta-cont-3').className = 'pregunta-cont-3-in'
-                    zonas = getE('pregunta-cont-3').getElementsByClassName('pregunta-3-zona')
-                    for(i = 0;i<zonas.length;i++){
-                        zonas[i].setAttribute('onmousedown','downOpcion(event,'+i+')')
-                        zonas[i].setAttribute('onmouseover','overOpcion()')
-                        zonas[i].setAttribute('onmouseout','outOpcion()')
-                    }
 
                     getE('participante-extra').className = 'participante-on'
                     participantePensar(18)
@@ -294,26 +282,8 @@ function empezarPreguntas(){
                     }})
 
                     getE('pregunta-4-enunciado').innerHTML = actual_pregunta_data.pregunta
-                    columnas_total = actual_pregunta_data.opciones.length
-                    var desorden = unorderArray(columnas_total)
-                    var desorden2 = unorderArray(columnas_total)
-                    for(i = 0;i<desorden.length;i++){
-                        var col_a = document.createElement('div')
-                        col_a.className = 'pregunta-col-a'
-                        col_a.id = 'pregunta-col-a-'+desorden[i]
-                        col_a.setAttribute('ind',desorden[i])
-                        col_a.innerHTML = '<div class="pregunta-col-raya" style="background-color:#'+columnas_colors[desorden[i]]+'"></div><section class="pregunta-col-a-section-'+(desorden[i]+1)+'"></section><p>'+actual_pregunta_data.opciones[desorden[i]].opcion1+'</p><div class="pregunta-col-letter" onmouseover="overOpcion()" onmouseout="outOpcion()" onmousedown="downCol(event,'+desorden[i]+')" style="background-color:#'+columnas_colors[desorden[i]]+'">'+columnas_letras[i]+'</div>'
+                    setJuegoEmparejamiento(actual_pregunta_data.opciones.length)
 
-                        getE('pregunta-4-col1').appendChild(col_a)
-                    }
-                    for(i = 0;i<desorden2.length;i++){
-                        var col_b = document.createElement('div')
-                        col_b.className = 'pregunta-col-b'
-                        col_b.setAttribute('ind',desorden2[i])
-                        col_b.innerHTML = '<p>'+actual_pregunta_data.opciones[desorden2[i]].opcion2+'</p><div class="pregunta-col-number">'+(i+1)+'</div>'
-
-                        getE('pregunta-4-col2').appendChild(col_b)
-                    }
                     getE('pregunta-cont-4').className = 'pregunta-cont-4-in'
 
                     animacion_pregunta = setTimeout(function(){
@@ -338,29 +308,48 @@ function outOpcion(){
 
 }
 
+var animacion_mostrar_correcto = null
 function clickOpcion(zona){
     var o = zona
 
     unsetDatePrisaAnim()
-    clickResponde()
     
     if(o==actual_pregunta_data.correcta){  
-        ganarPregunta()
+        clickResponde(function(){
+            ganarPregunta()
+        },'correcto')
     }else{
-        perderPregunta(true)
+        clickResponde(function(){
+            perderPregunta(true)
+        },'incorrecto')
     }
 }
 
 var respuesta_bot = 0
 
-function clickResponde(){
+var animacion
+function clickResponde(callBack,resultado){
     //click_mp3.play()
+    suspenso_mp3.pause()
+    suspenso_mp3.onended = null
     
     //parar presentadora parpadea
     stopPresentadoraQuieta()
 
     stopTimer()
     var zonas = []
+
+    if(resultado=='incorrecto'){
+        mal_mp3.play()
+        setParticipante(1,'triste')
+        //setParticipante(2,'neutro')
+        //setParticipante(3,'neutro')
+        spdPlayMovieclip({frame:1,stop:0,loop:false,end:function(){
+            //nada
+        }},6)
+    }else{
+
+    }
 
     if(actual_pregunta_data.tipo=='verdaderofalso'){
         zonas = getE('pregunta-cont-1').getElementsByClassName('pregunta-1-zona')
@@ -369,12 +358,32 @@ function clickResponde(){
             zonas[i].removeAttribute('onmouseover')
             zonas[i].removeAttribute('onmouseout')
         }
-        getE('pregunta-1-opciones').className = ''
-        getE('pregunta-cont-1').className = 'pregunta-cont-1-out'
 
-        stopParticipantePensar(5)
-        //spdStopMovieclip(9)
-        //spdStopMovieclip(13)
+        if(resultado=='incorrecto'){
+            //mostrar la respuesta correcta
+            getE('pregunta-1-opcion'+(actual_pregunta_data.correcta-1)).classList.add('pregunta-1-opcion-correcto')
+
+            animacion_mostrar_correcto = setTimeout(function(){
+                clearTimeout(animacion_mostrar_correcto)
+                animacion_mostrar_correcto = null
+
+                getE('pregunta-1-opciones').className = ''
+                getE('pregunta-cont-1').className = 'pregunta-cont-1-out'
+                stopParticipantePensar(5)
+                //spdStopMovieclip(9)
+                //spdStopMovieclip(13)
+
+                callBack()
+            },3000)
+        }else{
+            getE('pregunta-1-opciones').className = ''
+            getE('pregunta-cont-1').className = 'pregunta-cont-1-out'
+            stopParticipantePensar(5)
+            //spdStopMovieclip(9)
+            //spdStopMovieclip(13)
+
+            callBack()
+        }
     }else if(actual_pregunta_data.tipo=='seleccionmultiple'){
         zonas = getE('pregunta-cont-2').getElementsByClassName('pregunta-2-zona')
         for(i = 0;i<zonas.length;i++){
@@ -382,12 +391,32 @@ function clickResponde(){
             zonas[i].removeAttribute('onmouseover')
             zonas[i].removeAttribute('onmouseout')
         }
-        getE('pregunta-2-opciones').className = ''
-        getE('pregunta-cont-2').className = 'pregunta-cont-2-out'
 
-        stopParticipantePensar(17)
-        //spdStopMovieclip(9)
-        //spdStopMovieclip(13)
+        if(resultado=='incorrecto'){
+            //mostrar la respuesta correcta
+            getE('pregunta-2-opcion'+(actual_pregunta_data.correcta-1)).classList.add('pregunta-2-opcion-correcto')
+
+            animacion_mostrar_correcto = setTimeout(function(){
+                clearTimeout(animacion_mostrar_correcto)
+                animacion_mostrar_correcto = null
+
+                getE('pregunta-2-opciones').className = ''
+                getE('pregunta-cont-2').className = 'pregunta-cont-2-out'
+                stopParticipantePensar(17)
+                //spdStopMovieclip(9)
+                //spdStopMovieclip(13)
+
+                callBack()
+            },3000)
+        }else{
+            getE('pregunta-2-opciones').className = ''
+            getE('pregunta-cont-2').className = 'pregunta-cont-2-out'
+            stopParticipantePensar(17)
+            //spdStopMovieclip(9)
+            //spdStopMovieclip(13)
+
+            callBack()
+        }
     }else if(actual_pregunta_data.tipo=='arrastrar'){
         zonas = getE('pregunta-cont-3').getElementsByClassName('pregunta-3-zona')
         for(i = 0;i<zonas.length;i++){
@@ -395,26 +424,36 @@ function clickResponde(){
             zonas[i].removeAttribute('onmouseover')
             zonas[i].removeAttribute('onmouseout')
         }
-        getE('pregunta-3-piezas').className = ''
-        getE('pregunta-cont-3').className = 'pregunta-cont-3-out'
+
+        if(resultado=='incorrecto'){
+            juegoAutomaticoArrastra()
+        }else{
+            getE('pregunta-3-piezas').className = ''
+            getE('pregunta-cont-3').className = 'pregunta-cont-3-out'
+            
+            stopParticipantePensar(18)
+            //spdStopMovieclip(9)
+            //spdStopMovieclip(13)
+            callBack()
+        }
         
-        stopParticipantePensar(18)
-        //spdStopMovieclip(9)
-        //spdStopMovieclip(13)
     }else if(actual_pregunta_data.tipo=='emparejamiento'){
-        zonas = getE('pregunta-4-col1').getElementsByClassName('pregunta-col-a')
+        zonas = getE('pregunta-4-col1').getElementsByClassName('pregunta-col-letter')
         for(i = 0;i<zonas.length;i++){
             zonas[i].removeAttribute('onmousedown')
             zonas[i].removeAttribute('onmouseover')
             zonas[i].removeAttribute('onmouseout')
         }
         
-        getE('pregunta-4-columnas').className = ''
-        getE('pregunta-cont-4').className = 'pregunta-cont-4-out'
+        if(resultado=='incorrecto'){
+            juegoAutomaticoEmparejamiento()
+        }else{
+            getE('pregunta-4-columnas').className = ''
+            getE('pregunta-cont-4').className = 'pregunta-cont-4-out'
+            callBack()
+        }
     }
     
-    suspenso_mp3.pause()
-    suspenso_mp3.onended = null
 }
 
 function ganarPregunta(){
@@ -521,22 +560,20 @@ function ganarPregunta(){
 }
 
 function perderPregunta(answer){
-    mal_mp3.play()
-    setParticipante(1,'triste')
-    //setParticipante(2,'neutro')
-    //setParticipante(3,'neutro')
-    
-    spdPlayMovieclip({frame:1,stop:0,loop:false,end:function(){
-        //nada
-    }},6)
+    //reproduccion de sonido, se movió a clicResponde
+    //-------
 
     var title_cortina = ''
-    if(answer){
-        title_cortina = '!Incorrecto¡'
+    if(answer==null){
+        title_cortina = '¡No aprobado!'
     }else{
-        title_cortina = '¡Tiempo!'
+        if(answer){
+            title_cortina = '¡Incorrecto!'
+        }else{
+            title_cortina = '¡Tiempo!'
+        }
     }
-
+    
     //detectar cual bot respondió bien
     var respuesta_bot = getRand(1,2)
 
@@ -840,8 +877,9 @@ function unsetDatePrisaAnim(){
 
 function timeUp(){
     unsetDatePrisaAnim()
-    clickResponde()
-    perderPregunta(false)
+    clickResponde(function(){
+        perderPregunta(false)
+    },'incorrecto')
 }
 function timeUp2(){
     //lo mismo pero para el de arrastrar
@@ -849,19 +887,35 @@ function timeUp2(){
     //remover eventos
     perderJuegoArrastra()
     unsetDatePrisaAnim()
-    clickResponde()
-
-    perderPregunta(false)
+    clickResponde(null,'incorrecto')
 }
+function pasarJuegoArrastra(){
+    getE('pregunta-3-btn').className = 'pregunta-continuar-btn pregunta-continuar-btn-off'
+    click_continuar_mp3.pause()
+    getE('pregunta-3-piezas').className = ''
+    getE('pregunta-cont-3').className = 'pregunta-cont-3-out'
+    
+    stopParticipantePensar(18)
+    //spdStopMovieclip(9)
+    //spdStopMovieclip(13)
+    perderPregunta(null)
+}
+
 function timeUp3(){
     //lo mismo pero para el de emparejamiento
 
     //remover eventos
     perderJuegoEmparejamiento()
     unsetDatePrisaAnim()
-    clickResponde()
+    clickResponde(null,'incorrecto')
+}
+function pasarJuegoEmparejamiento(){
+    getE('pregunta-4-btn').className = 'pregunta-continuar-btn pregunta-continuar-btn-off'
+    click_continuar_mp3.pause()
+    getE('pregunta-4-columnas').className = ''
+    getE('pregunta-cont-4').className = 'pregunta-cont-4-out'
 
-    perderPregunta(false)
+    perderPregunta(null)
 }
 
 var animacion_tablero_puntos = null

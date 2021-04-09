@@ -1,86 +1,5 @@
 var data_preguntas = [
 	{
-		id:1,
-		tipo:'verdaderofalso',
-		pregunta:'¿Es correcto decir que la mayoría de contratos requieren pólizas?',
-		opciones:[
-			'Verdadero',
-			'Falso'
-		],
-		retroalimentacion:'<p><span>Correcto.</span> <br />¡La gran mayoría! Dado que nos pueden ocasionar afectación en el patrimonio por:</p><ul><li>Retracto de la oferta</li><li>Incumplimiento de obligaciones contractuales</li><li>Incumplimiento de obligaciones laborales</li><li>Daños a nuestros bienes o de terceros</li><li>Y lesiones personales o muerte de empleados o terceros</li></ul><p>Por lo tanto, antes de celebrar cualquier contrato consulta con el área de seguros.</p>',
-		cc:1,
-		audiocorrect:'',
-		audioincorrect:'',
-		audiotiempo:'',
-		audioretroalimentacion:true,
-		audionext:'',
-		preguntaaudio:'pregunta',
-		opcionesaudio:null,
-		correcta:1
-	},
-	{
-		id:2,
-		tipo:'seleccionmultiple',
-		pregunta:'¿Cuáles son las etapas de la contratación y sus respectivas pólizas?',
-		opciones:[
-			'Etapa Precontractual con póliza de Cumplimiento (Seriedad de la oferta)',
-			'Etapa Contractual y Etapa Postcontractual con póliza de cumplimiento (cuenta con amparos para ambas etapas) y póliza de Responsabilidad Civil',
-			'Etapa Precontractual, Etapa Contractual y Etapa Postcontractua con póliza de Cumplimiento',
-			'A y B son correctas'
-		],
-		retroalimentacion:'<p><span>Correcto.</span>¡Muy bien!.</span> Además es importante tener en cuenta las obligaciones en cada una de las etapas mencionadas, es decir, en la:</p><ul><li><span>Etapa Precontractual:</span> Mantener la oferta, suscribir el contrato y constituir garantías, por ello es importante solicitar póliza de Seriedad de la oferta.</li><li>En la <span>etapa contractual:</span> Usar correctamente el anticipo, cumplir las obligaciones del contrato y pagar obligaciones laborales.</li><li>Y en la <span>etapa postcontractual:</span> Corregir errores o fallas por incumplimientos que causan mala calidad de bienes, servicios y/o estabilidad de las obras.</li></ul><p>Para estas dos últimas etapas es necesario solicitar pólizas de cumplimiento para garantizar que cuenta con amparos para ambas etapas y la póliza de responsabilidad Civil.<br />Recuerda que todas las pólizas recibidas deben ser expedidas por aseguradoras constituidas en Colombia cuya fortaleza financiera sea AAA.</p>',
-		cc:2,
-		audiocorrect:'',
-		audioincorrect:'',
-		audiotiempo:'',
-		audionext:2,
-		audioretroalimentacion:true,
-		preguntaaudio:'pregunta',
-		opcionesaudio:false,
-		correcta:4
-	},
-	{
-		id:3,
-		tipo:'arrastrar',
-		cc:3,
-		audiocorrect:'',
-		audioincorrect:'',
-		audiotiempo:'',
-		audionext:'',
-		audioretroalimentacion:false,
-		preguntaaudio:'pregunta',
-		pregunta:'Definición y revisión de pólizas',
-		enunciado:'En este punto deberás arrastrar y ordenar los siguientes procesos. Lee y analiza muy bien para que alcances el máximo puntaje.',
-		opcionesaudio:false,
-		opciones:[
-			'<span>Consulte vía SAS</span>, en el software equivalente a la Coordinación de Seguros o con el área encargada adjuntando el <span>formato FA-1602</span> y/o plantilla de definición de pólizas equivalente.',
-			'Luego de emitido el <span>concepto</span> de seguros y las pólizas sean presentadas por el proveedor, el responsable del contrato deberá solicitar revisión vía SAS o en el <span>software equivalente</span>',
-			'En caso que las pólizas presentadas <span>no cumplan</span> con lo requerido, se establecerán las razones en el SAS o en el software equivalente y la solicitud será puesta en <span>STOP.</span>',
-			'Al momento que sean corregidos, la <span>Coordinación de Seguros</span> o el área encargada procederá con su revisión y aprobación'
-		]		
-	},
-	{
-		id:4,
-		tipo:'seleccionmultiple',
-		cc:4,
-		pregunta:'¿Cuales son las cláusulas especiales que debemos verificar en las pólizas?',
-		opciones:[
-			'Cláusula de proporcionalidad',
-			'Cláusula de no cancelación por mora en el pago de la prima.',
-			'Cláusula de indemnidad',
-			'A y B son correctas'
-		],
-		retroalimentacion:'<p>Recuerda que la <span>Cláusula de proporcionalidad,</span> hace referencia a la inaplicabilidad de esta u otra similar, evitando que apliquen a los perjuicios el porcentaje incumplido del contrato. y la <span>Cláusula de no cancelación por mora en el pago,</span> es la cláusula que indique que la póliza no terminará automáticamente por mora en el pago de la prima del proveedor.</p>',
-		audiocorrect:'',
-		audioincorrect:'',
-		audiotiempo:'',
-		audionext:2,
-		audioretroalimentacion:true,
-		preguntaaudio:'pregunta',
-		opcionesaudio:false,
-		correcta:4
-	},
-	{
 		id:5,
 		tipo:'emparejamiento',
 		cc:5,
@@ -122,6 +41,93 @@ var data_preguntas = [
 			}
 		]
 	},
+	{
+		id:1,
+		tipo:'verdaderofalso',
+		pregunta:'¿Es correcto decir que la mayoría de contratos requieren pólizas?',
+		opciones:[
+			'Verdadero',
+			'Falso'
+		],
+		retroalimentacion:'<p><span>Correcto.</span> <br />¡La gran mayoría! Dado que nos pueden ocasionar afectación en el patrimonio por:</p><ul><li>Retracto de la oferta</li><li>Incumplimiento de obligaciones contractuales</li><li>Incumplimiento de obligaciones laborales</li><li>Daños a nuestros bienes o de terceros</li><li>Y lesiones personales o muerte de empleados o terceros</li></ul><p>Por lo tanto, antes de celebrar cualquier contrato consulta con el área de seguros.</p>',
+		cc:1,
+		audiocorrect:'',
+		audioincorrect:'',
+		audiotiempo:'',
+		audioretroalimentacion:true,
+		audionext:'',
+		preguntaaudio:'pregunta',
+		opcionesaudio:null,
+		correcta:1
+	},
+
+	{
+		id:2,
+		tipo:'seleccionmultiple',
+		pregunta:'¿Cuáles son las etapas de la contratación y sus respectivas pólizas?',
+		opciones:[
+			'Etapa Precontractual con póliza de Cumplimiento (Seriedad de la oferta)',
+			'Etapa Contractual y Etapa Postcontractual con póliza de cumplimiento (cuenta con amparos para ambas etapas) y póliza de Responsabilidad Civil',
+			'Etapa Precontractual, Etapa Contractual y Etapa Postcontractua con póliza de Cumplimiento',
+			'A y B son correctas'
+		],
+		retroalimentacion:'<p><span>Correcto.</span>¡Muy bien!.</span> Además es importante tener en cuenta las obligaciones en cada una de las etapas mencionadas, es decir, en la:</p><ul><li><span>Etapa Precontractual:</span> Mantener la oferta, suscribir el contrato y constituir garantías, por ello es importante solicitar póliza de Seriedad de la oferta.</li><li>En la <span>etapa contractual:</span> Usar correctamente el anticipo, cumplir las obligaciones del contrato y pagar obligaciones laborales.</li><li>Y en la <span>etapa postcontractual:</span> Corregir errores o fallas por incumplimientos que causan mala calidad de bienes, servicios y/o estabilidad de las obras.</li></ul><p>Para estas dos últimas etapas es necesario solicitar pólizas de cumplimiento para garantizar que cuenta con amparos para ambas etapas y la póliza de responsabilidad Civil.<br />Recuerda que todas las pólizas recibidas deben ser expedidas por aseguradoras constituidas en Colombia cuya fortaleza financiera sea AAA.</p>',
+		cc:2,
+		audiocorrect:'',
+		audioincorrect:'',
+		audiotiempo:'',
+		audionext:2,
+		audioretroalimentacion:true,
+		preguntaaudio:'pregunta',
+		opcionesaudio:false,
+		correcta:4
+	},
+
+	{
+		id:3,
+		tipo:'arrastrar',
+		cc:3,
+		audiocorrect:'',
+		audioincorrect:'',
+		audiotiempo:'',
+		audionext:'',
+		audioretroalimentacion:false,
+		preguntaaudio:'pregunta',
+		pregunta:'Definición y revisión de pólizas',
+		enunciado:'En este punto deberás arrastrar y ordenar los siguientes procesos. Lee y analiza muy bien para que alcances el máximo puntaje.',
+		opcionesaudio:false,
+		opciones:[
+			'<span>Consulte vía SAS</span>, en el software equivalente a la Coordinación de Seguros o con el área encargada adjuntando el <span>formato FA-1602</span> y/o plantilla de definición de pólizas equivalente.',
+			'Luego de emitido el <span>concepto</span> de seguros y las pólizas sean presentadas por el proveedor, el responsable del contrato deberá solicitar revisión vía SAS o en el <span>software equivalente</span>',
+			'En caso que las pólizas presentadas <span>no cumplan</span> con lo requerido, se establecerán las razones en el SAS o en el software equivalente y la solicitud será puesta en <span>STOP.</span>',
+			'Al momento que sean corregidos, la <span>Coordinación de Seguros</span> o el área encargada procederá con su revisión y aprobación'
+		]		
+	},
+
+	{
+		id:4,
+		tipo:'seleccionmultiple',
+		cc:4,
+		pregunta:'¿Cuales son las cláusulas especiales que debemos verificar en las pólizas?',
+		opciones:[
+			'Cláusula de proporcionalidad',
+			'Cláusula de no cancelación por mora en el pago de la prima.',
+			'Cláusula de indemnidad',
+			'A y B son correctas'
+		],
+		retroalimentacion:'<p>Recuerda que la <span>Cláusula de proporcionalidad,</span> hace referencia a la inaplicabilidad de esta u otra similar, evitando que apliquen a los perjuicios el porcentaje incumplido del contrato. y la <span>Cláusula de no cancelación por mora en el pago,</span> es la cláusula que indique que la póliza no terminará automáticamente por mora en el pago de la prima del proveedor.</p>',
+		audiocorrect:'',
+		audioincorrect:'',
+		audiotiempo:'',
+		audionext:2,
+		audioretroalimentacion:true,
+		preguntaaudio:'pregunta',
+		opcionesaudio:false,
+		correcta:4
+	},
+
+	
+
 	{
 		id:6,
 		tipo:'seleccionmultiple',

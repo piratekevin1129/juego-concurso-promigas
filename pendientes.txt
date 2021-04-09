@@ -1,11 +1,5 @@
-omitir retroalimentacion
-pantalla para mostrar retroalimentacion
-2 actividades extras
-cc sin omitir
-linea de tiempo al video del comercial, no omitir
-incluir video final
-padding para que el reloj no tape los titulos
-
+https://virtualcolors.com/demos/promigas_2020/juego/
+ponerlos a celebrar al principio
 
 correcto
 muy bien

@@ -219,9 +219,9 @@ body{
 }
 
 #video-intro{
-    filter: blur(1px);
+    /*filter: blur(1px);
     -webkit-filter: blur(1px);
-    -o-filter: blur(1px);
+    -o-filter: blur(1px);*/
 }
 .video-intro-off{
     display: none;
@@ -716,7 +716,7 @@ body{
     }
     20%{
         width: 0%;
-        left: 67%;
+        left: 68%;
         opacity: 0;
         filter: blur(0px);
         -webkit-filter: blur(0px);
@@ -724,7 +724,7 @@ body{
     }
     100%{
         width: 0%;
-        left: 67%;
+        left: 68%;
         opacity: 0;
         filter: blur(0px);
         -webkit-filter: blur(0px);
@@ -751,11 +751,11 @@ body{
     -o-transform-origin: center 100%;
     
     animation-name: animacion-luz-trofeo;
-    animation-duration: 1s;
+    animation-duration: 2s;
     animation-iteration-count: infinite;
     animation-timing-function: ease-out;
     -webkit-animation-name: animacion-luz-trofeo;
-    -webkit-animation-duration: 1s;
+    -webkit-animation-duration: 2s;
     -webkit-animation-iteration-count: infinite;
     -webkit-animation-timing-function: ease-out;
 }
@@ -766,14 +766,20 @@ body{
         -o-transform: translateX(-50%) translateY(-50%) scale(0);
         opacity: 1;
     }
-    50%{
+    25%{
         opacity: 1;
     }
-    100%{
+    50%{
         transform: translateX(-50%) translateY(-50%) scale(1);
         -webkit-transform: translateX(-50%) translateY(-50%) scale(1);
         -o-transform: translateX(-50%) translateY(-50%) scale(1);
         opacity: 0;
+    }
+    100%{
+        opacity: 0;
+        transform: translateX(-50%) translateY(-50%) scale(0);
+        -webkit-transform: translateX(-50%) translateY(-50%) scale(0);
+        -o-transform: translateX(-50%) translateY(-50%) scale(0);
     }
 }
 

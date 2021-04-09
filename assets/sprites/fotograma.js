@@ -55,7 +55,8 @@ function loadFrame(url,idname,w,h){
         if(_actual_frames>=_actual_total){
             for(var f = 2;f<=_actual_frames;f++){
                 var canvas_id = document.getElementById(idname+'_frame_'+f)
-                canvas_id.style.visibility = 'hidden'
+                //canvas_id.style.visibility = 'hidden'
+                canvas_id.style.display = 'none'
             }
             _actual_callback()
         }
@@ -72,6 +73,7 @@ function loadFrame(url,idname,w,h){
             for(var f = 2;f<=_actual_frames;f++){
                 var canvas_id = document.getElementById(idname+'_frame_'+f)
                 canvas_id.style.visibility = 'hidden'
+                canvas_id.style.display = 'none'
             }
             _actual_callback()
         }*/
@@ -84,10 +86,12 @@ function setFotograma(fotograma,moviename){
     var fotogramas = object.getElementsByTagName('canvas')
     for(var f = 0;f<fotogramas.length;f++){
         var foto = fotogramas[f]
-        foto.style.visibility = 'hidden'
+        //foto.style.visibility = 'hidden'
+        foto.style.display = 'none'
     }
     var canvas_foto = document.getElementById(moviename+'_frame_'+fotograma)
-    canvas_foto.style.visibility = 'visible'
+    //canvas_foto.style.visibility = 'visible'
+    canvas_foto.style.display = 'block'
     
 }
 

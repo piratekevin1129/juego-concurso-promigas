@@ -196,7 +196,6 @@
                         <div class="pregunta-marco-3-2"></div>
                     </div>
                 </div>
-                
             </div>
 
             <div id="pregunta-cont-3" class="pregunta-cont-3-out">
@@ -215,12 +214,12 @@
                             <div class="pregunta-board-text"></div>
                         </div>
                         <div id="pregunta-board-separador2"></div>
-                        <div id="pregunta-board-4" class="pregunta-board" ind="2">
+                        <div id="pregunta-board-4" class="pregunta-board" ind="3">
                             <div class="pregunta-board-number">4</div>
                             <div class="pregunta-board-text"></div>
                         </div>
                         <div id="pregunta-board-separador3"></div>
-                        <div id="pregunta-board-3" class="pregunta-board" ind="3">
+                        <div id="pregunta-board-3" class="pregunta-board" ind="2">
                             <div class="pregunta-board-number">3</div>
                             <div class="pregunta-board-text"></div>
                         </div>
@@ -242,26 +241,10 @@
                     </div>
                 </div>
 
-                <div id="pregunta-3-piezas">
-                    <div id="pregunta-pieza0" ind="0" class="pregunta-pieza">
-                        <p><span>Consulte vía SAS</span>, en el software equivalente a la Coordinación de Seguros o con el área encargada adjuntando el <span>formato FA-1602</span> y/o plantilla de definición de pólizas equivalente.</p>
-                        <div class="pregunta-3-zona" onmousedown="downOpcion(event,0)"></div>
-                    </div>
-                    <div id="pregunta-pieza1" ind="0" class="pregunta-pieza">
-                        <p>Lorem imsp</p>
-                        <div class="pregunta-3-zona"></div>
-                    </div>
-                    <div id="pregunta-pieza2" ind="0" class="pregunta-pieza">
-                        <p>Lorem imsp</p>
-                        <div class="pregunta-3-zona"></div>
-                    </div>
-                    <div id="pregunta-pieza3" ind="0" class="pregunta-pieza">
-                        <p>Lorem imsp</p>
-                        <div class="pregunta-3-zona"></div>
-                    </div>
-                </div>
+                <div id="pregunta-3-piezas"></div>
                 
                 <div id="pregunta-3-pieza" class="pregunta-3-pieza-off"></div>
+                <button id="pregunta-3-btn" class="pregunta-continuar-btn pregunta-continuar-btn-off" onclick="pasarJuegoArrastra()">Continuar</button>
             </div>
 
             <div id="pregunta-cont-4" class="pregunta-cont-4-out">
@@ -270,6 +253,8 @@
                     <div id="pregunta-4-col1"></div>
                     <div id="pregunta-4-col2"></div>
                 </div>
+
+                <button id="pregunta-4-btn" class="pregunta-continuar-btn pregunta-continuar-btn-off" onclick="pasarJuegoEmparejamiento()">Continuar</button>
             </div>
 
             <div id="franja-cc" class="franja-cc-off">
@@ -454,6 +439,7 @@ var next1_mp3 = null
 var next2_mp3 = null
 var next3_mp3 = null
 var next_audios = []
+var click_continuar_mp3 = null
 
 var bienvenida_mp3 = null
 
@@ -739,6 +725,9 @@ function loadGame(){
             next2_mp3 = data
             loadAudio({src:'assets/media/juego/3-next.mp3',callBack:function(data){
             next3_mp3 = data
+            loadAudio({src:'assets/media/juego/haz_click_continuar.mp3',callBack:function(data){
+            click_continuar_mp3 = data
+            
             setLoaderPercent()
 
             next_audios = [next1_mp3,next2_mp3,next3_mp3]
@@ -748,7 +737,7 @@ function loadGame(){
                 //getE('video-inicio').onloadedmetadata = function(){
                     //getE('video-inicio').onloadedmetadata = null
 
-                    getE('video-intro').src = 'assets/media/publico.mp4'
+                    getE('video-intro').src = 'assets/media/publico_1.mp4'
                     getE('video-intro').onloadedmetadata = function(){
                         getE('video-intro').onloadedmetadata = null
                         
@@ -760,6 +749,7 @@ function loadGame(){
                     }
                 //}
             
+            }})
             }})
             }})
             }})
