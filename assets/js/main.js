@@ -30,9 +30,9 @@ function clickComenzar(){
                     showPresentadora('habla')
                     getE('presentadora').classList.add('presentadora-intro')
                     getE('concursantes').className = 'concursantes-intro'
-                    setParticipante(1,'quieto')
-                    setParticipante(2,'quieto')
-                    setParticipante(3,'quieto')
+                    setParticipante(1,'feliz')
+                    setParticipante(2,'feliz')
+                    setParticipante(3,'feliz')
 
                     getE('tablero').className = 'tablero-on'
                 },
@@ -42,9 +42,18 @@ function clickComenzar(){
                     getE('luces').className = 'luces-on'
                     getE('intro').className = 'video-on intro-in'
                     
-                    spdPlayMovieclip({frame:1,stop:0,loop:true},7)
-                    spdPlayMovieclip({frame:1,stop:0,loop:true},11)
-                    spdPlayMovieclip({frame:1,stop:0,loop:true},15)
+                    spdPlayMovieclip({frame:1,stop:45,loop:false,end:function(){
+                        setParticipante(1,'quieto')
+                        spdPlayMovieclip({frame:1,stop:0,loop:true},7)
+                    }},4)
+                    spdPlayMovieclip({frame:1,stop:45,loop:false,end:function(){
+                        setParticipante(2,'quieto')
+                        spdPlayMovieclip({frame:1,stop:0,loop:true},11)
+                    }},8)
+                    spdPlayMovieclip({frame:1,stop:45,loop:false,end:function(){
+                        setParticipante(3,'quieto')
+                        spdPlayMovieclip({frame:1,stop:0,loop:true},15)
+                    }},12)
 
                     intro_mp3.play()
                     intro_aplausos_mp3.play()
@@ -79,6 +88,9 @@ function clickComenzar(){
                         spdSetMovieclip({id:3,f:1})
 
                         //parar concursantes parpadeando
+                        spdStopMovieclip(4)
+                        spdStopMovieclip(8)
+                        spdStopMovieclip(12)
                         spdStopMovieclip(7)
                         spdStopMovieclip(11)
                         spdStopMovieclip(15)

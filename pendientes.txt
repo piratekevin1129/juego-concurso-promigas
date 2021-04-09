@@ -1,5 +1,6 @@
 https://virtualcolors.com/demos/promigas_2020/juego/
 ponerlos a celebrar al principio
+quitar click luego de contestar
 
 correcto
 muy bien
