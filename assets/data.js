@@ -26,7 +26,7 @@ var data_preguntas = [
 		opciones:[
 			'Etapa Precontractual con póliza de Cumplimiento (Seriedad de la oferta)',
 			'Etapa Contractual y Etapa Postcontractual con póliza de cumplimiento (cuenta con amparos para ambas etapas) y póliza de Responsabilidad Civil',
-			'Etapa Precontractual, Etapa Contractual y Etapa Postcontractua con póliza de Cumplimiento',
+			'Etapa Precontractual, Etapa Contractual y Etapa Postcontractual con póliza de Cumplimiento',
 			'A y B son correctas'
 		],
 		retroalimentacion:'<p><span>Correcto.</span>¡Muy bien!.</span> Además es importante tener en cuenta las obligaciones en cada una de las etapas mencionadas, es decir, en la:</p><ul><li><span>Etapa Precontractual:</span> Mantener la oferta, suscribir el contrato y constituir garantías, por ello es importante solicitar póliza de Seriedad de la oferta.</li><li>En la <span>etapa contractual:</span> Usar correctamente el anticipo, cumplir las obligaciones del contrato y pagar obligaciones laborales.</li><li>Y en la <span>etapa postcontractual:</span> Corregir errores o fallas por incumplimientos que causan mala calidad de bienes, servicios y/o estabilidad de las obras.</li></ul><p>Para estas dos últimas etapas es necesario solicitar pólizas de cumplimiento para garantizar que cuenta con amparos para ambas etapas y la póliza de responsabilidad Civil.<br />Recuerda que todas las pólizas recibidas deben ser expedidas por aseguradoras constituidas en Colombia cuya fortaleza financiera sea AAA.</p>',

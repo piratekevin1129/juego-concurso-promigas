@@ -298,34 +298,34 @@ var data_cc = [
                 end:30.4
             },
             {
-                txt:'¿Qué Gerencia que sufrió la pérdida?: Ocurrencia y cuantía',
+                txt:'La Gerencia que sufrió la pérdida será la responsable de gestionar la información necesaria para demostrar la ocurrencia y la cuantía del evento.',
                 start:30.4,
-                end:34.76
+                end:39.1
             },
             {
-                txt:'Y realiza la coordinación de seguros: reclamación',
-                start:34.76,
-                end:39.34
+                txt:'Una vez se obtenga tal información, la Coordinación de Seguros presentará la reclamación al Asegurador a través del Intermediario de Seguros.',
+                start:39.1,
+                end:47.9
             },
             {
                 txt:'En el caso del Ajuste',
-                start:39.34,
-                end:40.79
+                start:47.9,
+                end:49.4
             },
             {
                 txt:'Si hay diferencias, la liquidación será revisada por la gerencia encargada de cuantificar la pérdida. Cuando la pérdida es superior a 2.400 smmlv, la revisará la VP o Gerencia General.',
-                start:40.79,
-                end:56.16
+                start:49.4,
+                end:64.7
             },
             {
                 txt:'Y para el Acuerdo del ajuste',
-                start:56.16,
-                end:58.28
+                start:64.7,
+                end:67
             },
             {
                 txt:'En caso de no acuerdo con asegurador, se informará a la VP asuntos corporativos o área encargada para determinar el curso. Solo la Presidencia de Promigas podrá autorizar el pago comercial.',
-                start:58.28,
-                end:71
+                start:67,
+                end:79.5
             }
         ]
     },

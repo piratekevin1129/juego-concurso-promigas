@@ -289,7 +289,7 @@ function empezarPreguntas(){
                 }
                 else if(actual_pregunta_data.tipo=='emparejamiento'){
                     getE('reloj').className = 'reloj-on'
-                    setTimer({t:60,timeout:function(){
+                    setTimer({t:120,timeout:function(){
                         timeUp3()
                     }})
 
